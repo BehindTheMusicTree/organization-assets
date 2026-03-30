@@ -31,6 +31,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 ```markdown
 ## [Unreleased]
 
+## [1.1.1] - 2026-03-30
+
 ## [1.1.0] - 2026-03-30
 
 ### Added
@@ -45,6 +47,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 **Note:** During releases, maintainers will move entries from `[Unreleased]` to a versioned section (e.g., `## [1.1.0] - 2026-04-01`).
 
 ## [Unreleased]
+
+## [1.1.1] - 2026-03-30
 
 ### Fixed
 
