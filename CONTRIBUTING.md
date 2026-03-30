@@ -222,37 +222,24 @@ Before submitting a Pull Request:
 
 Releases are created from the `main` branch. A GitHub Actions workflow automatically publishes to GitHub Packages when a release is created.
 
-1. **Ensure you're on `main`:**
+Run the release script from `main` with a clean working tree:
 
-   ```bash
-   git checkout main
-   git pull origin main
-   ```
+```bash
+npm run release -- patch   # 1.0.0 -> 1.0.1
+npm run release -- minor   # 1.0.0 -> 1.1.0
+npm run release -- major   # 1.0.0 -> 2.0.0
+```
 
-2. **Update `CHANGELOG.md`:**
+The script (`scripts/release.sh`) does the following in one shot:
 
-   - Move content from `[Unreleased]` to a new version entry with date (e.g., `## [1.1.0] - 2026-04-01`)
-   - Leave the `[Unreleased]` section empty for future PRs
+1. Validates you're on `main` with a clean working tree
+2. Bumps the version in `package.json`
+3. Stamps `CHANGELOG.md` — replaces `[Unreleased]` with the new version and today's date, keeping an empty `[Unreleased]` section for future PRs
+4. Commits `package.json`, `package-lock.json`, and `CHANGELOG.md`
+5. Creates a git tag `v<version>`
+6. Pushes the commit and tag
 
-3. **Bump the version:**
-
-   ```bash
-   npm version patch   # 1.0.0 -> 1.0.1
-   # or: npm version minor  # 1.0.0 -> 1.1.0
-   # or: npm version major  # 1.0.0 -> 2.0.0
-   ```
-
-   This updates `package.json`, creates a commit, and creates a git tag.
-
-4. **Push the commit and tag:**
-
-   ```bash
-   git push --follow-tags
-   ```
-
-5. **Create a GitHub Release** from the new tag at [github.com/BehindTheMusicTree/organization-assets/releases/new](https://github.com/BehindTheMusicTree/organization-assets/releases/new).
-
-6. The workflow handles the rest: checkout, `npm ci`, `npm run build`, `npm publish` to GitHub Packages.
+After the push, **create a GitHub Release** from the new tag at [github.com/BehindTheMusicTree/organization-assets/releases/new](https://github.com/BehindTheMusicTree/organization-assets/releases/new). The workflow handles the rest: checkout, `npm ci`, `npm run build`, `npm publish` to GitHub Packages.
 
 ## License & Attribution
 

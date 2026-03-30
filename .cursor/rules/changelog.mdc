@@ -25,15 +25,15 @@ git checkout main
 git pull origin main
 ```
 
-Before preparing a release, refer to the "Releasing _(For Maintainers)_" section in `CONTRIBUTING.md` for the complete release process. The release process includes:
+Use the release script from `main`:
 
-1. **Ensuring you're on the `main` branch** - Releases must be prepared from `main`, not from feature branches
-2. Updating `CHANGELOG.md` with the new release version and changes
-3. Bumping version using `npm version patch|minor|major`
-4. Pushing the commit and tag (`git push --follow-tags`)
-5. Creating a GitHub Release — the CI workflow automatically publishes to GitHub Packages
+```bash
+npm run release -- patch   # or minor / major
+```
 
-**Do not skip any steps in the release process.** See `CONTRIBUTING.md` for detailed instructions.
+The script (`scripts/release.sh`) validates the branch, bumps `package.json`, stamps `## [Unreleased]` in `CHANGELOG.md` with the new version and date, commits, tags, and pushes. After the push, create a GitHub Release to trigger publishing.
+
+See `CONTRIBUTING.md` § "Releasing" for full details.
 
 ## Documentation Entries
 
