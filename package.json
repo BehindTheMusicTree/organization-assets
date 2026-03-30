@@ -1,6 +1,6 @@
 {
   "name": "@behindthemusictree/assets",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Shared assets (components, tokens, icons, styles) for React projects",
   "repository": {
     "type": "git",
@@ -70,7 +70,12 @@
     "tsup": "^8.0.0",
     "typescript": "^5.0.0"
   },
-  "keywords": ["react", "components", "design-tokens", "shared-assets"],
+  "keywords": [
+    "react",
+    "components",
+    "design-tokens",
+    "shared-assets"
+  ],
   "author": "",
   "license": "ISC"
 }
