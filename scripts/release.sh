@@ -38,5 +38,4 @@ git push --follow-tags
 
 echo ""
 echo "Released v$NEW_VERSION ($OLD_VERSION -> $NEW_VERSION)"
-echo "Create a GitHub Release from the tag to trigger publishing:"
-echo "  https://github.com/BehindTheMusicTree/organization-assets/releases/new?tag=v$NEW_VERSION"
+echo "Publishing to GitHub Packages will start automatically."

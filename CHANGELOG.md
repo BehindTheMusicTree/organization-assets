@@ -50,6 +50,10 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 - **Release Script**: Use annotated tags (`git tag -a`) so `git push --follow-tags` reliably pushes the tag to the remote
 
+### Changed
+
+- **Publish Workflow**: Trigger on `v*` tag push instead of GitHub Release event — `npm run release` is now the only step needed to publish
+
 ## [1.1.0] - 2026-03-30
 
 ### Added

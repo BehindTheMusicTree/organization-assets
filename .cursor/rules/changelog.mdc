@@ -31,7 +31,7 @@ Use the release script from `main`:
 npm run release -- patch   # or minor / major
 ```
 
-The script (`scripts/release.sh`) validates the branch, bumps `package.json`, stamps `## [Unreleased]` in `CHANGELOG.md` with the new version and date, commits, tags, and pushes. After the push, create a GitHub Release to trigger publishing.
+The script (`scripts/release.sh`) validates the branch, bumps `package.json`, stamps `## [Unreleased]` in `CHANGELOG.md` with the new version and date, commits, tags, and pushes. Publishing to GitHub Packages starts automatically.
 
 See `CONTRIBUTING.md` § "Releasing" for full details.
 

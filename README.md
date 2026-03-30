@@ -60,13 +60,13 @@ Ensure design tokens are loaded (e.g. import `@behindthemusictree/assets/styles`
 
 ## Publishing
 
-A GitHub Actions workflow automatically publishes to GitHub Packages whenever you [create a release](https://github.com/BehindTheMusicTree/organization-assets/releases/new) on this repo. To cut a new version:
+A GitHub Actions workflow automatically publishes to GitHub Packages whenever a version tag is pushed. To cut a new version:
 
 ```bash
 npm run release -- patch   # or minor / major
 ```
 
-This bumps the version, stamps the changelog, commits, tags, and pushes. Then create a GitHub Release from the new tag — the workflow handles the rest. See [CONTRIBUTING.md](CONTRIBUTING.md#6-releasing-for-maintainers) for details.
+This bumps the version, stamps the changelog, commits, tags, and pushes. Publishing starts automatically. See [CONTRIBUTING.md](CONTRIBUTING.md#6-releasing-for-maintainers) for details.
 
 ## Build
 
