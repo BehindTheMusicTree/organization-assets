@@ -1,4 +1,4 @@
-# @your-org/assets
+# @behindthemusictree/assets
 
 Shared assets (components, design tokens, icons, styles, hooks, utils) for React projects across the organization.
 
@@ -6,7 +6,8 @@ Shared assets (components, design tokens, icons, styles, hooks, utils) for React
 
 - **components** – Reusable React components (e.g. `Button`)
 - **tokens** – Design tokens (colors, spacing, radius) as CSS vars and JS
-- **icons** – Raster or SVG marks (see [`docs/asset-naming.md`](docs/asset-naming.md))
+- **icons** – Raster or SVG marks ([`docs/asset-naming.md`](docs/asset-naming.md), [`docs/logo-assets.md`](docs/logo-assets.md))
+- **favicons** – Per-project favicon bundles (`src/favicons/<project>/`)
 - **styles** – Global resets and shared CSS (import tokens)
 - **hooks** – Shared React hooks
 - **utils** – Helpers and constants
@@ -14,36 +15,42 @@ Shared assets (components, design tokens, icons, styles, hooks, utils) for React
 ## Install
 
 ```bash
-npm install @your-org/assets
+npm install @behindthemusictree/assets
 ```
 
-Or via git: `"@your-org/assets": "git+https://..."` in your app’s `package.json`.
+Or via git: `"@behindthemusictree/assets": "git+https://..."` in your app’s `package.json`.
 
 ## Usage
 
 Use subpath imports so apps only pull what they need:
 
 ```tsx
-import { Button } from "@your-org/assets/components";
-import { colors, spacing } from "@your-org/assets/tokens";
-import "@your-org/assets/styles";
+import { Button } from "@behindthemusictree/assets/components";
+import { colors, spacing } from "@behindthemusictree/assets/tokens";
+import "@behindthemusictree/assets/styles";
 ```
 
 BehindTheMusicTree logos (PNG):
 
 ```tsx
-import orgLogo from "@your-org/assets/icons/behind-the-music-tree/behind-the-music-tree-logo.png";
+import orgLogo from "@behindthemusictree/assets/icons/behind-the-music-tree/behind-the-music-tree-logo.png";
 ```
 
-Naming rules for new files: [`docs/asset-naming.md`](docs/asset-naming.md).
+Project favicon bundle:
+
+```tsx
+import faviconSvg from "@behindthemusictree/assets/favicons/behind-the-music-tree/favicon.svg";
+```
+
+Naming and logo export rules: [`docs/asset-naming.md`](docs/asset-naming.md), [`docs/logo-assets.md`](docs/logo-assets.md).
 
 Or from the main entry:
 
 ```tsx
-import { Button, colors } from "@your-org/assets";
+import { Button, colors } from "@behindthemusictree/assets";
 ```
 
-Ensure design tokens are loaded (e.g. import `@your-org/assets/styles` once in your app root, or import `@your-org/assets/tokens` and include the tokens CSS in your build).
+Ensure design tokens are loaded (e.g. import `@behindthemusictree/assets/styles` once in your app root, or import `@behindthemusictree/assets/tokens` and include the tokens CSS in your build).
 
 ## Build
 
@@ -56,4 +63,4 @@ Output is in `dist/`. Consuming apps should depend on the built package (publish
 
 ## Local development
 
-From this repo: `npm link`. In your React app: `npm link @your-org/assets`. Use `npm run dev` here for watch mode.
+From this repo: `npm link`. In your React app: `npm link @behindthemusictree/assets`. Use `npm run dev` here for watch mode.

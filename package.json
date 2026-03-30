@@ -23,6 +23,7 @@
       "require": "./dist/icons/index.cjs"
     },
     "./icons/behind-the-music-tree/*": "./dist/icons/behind-the-music-tree/*",
+    "./favicons/*": "./dist/favicons/*",
     "./tokens": {
       "types": "./dist/tokens/index.d.ts",
       "import": "./dist/tokens/index.js",
@@ -45,7 +46,7 @@
     "docs"
   ],
   "scripts": {
-    "build": "tsup && cp -r src/styles dist/ && cp -r src/icons/behind-the-music-tree dist/icons/",
+    "build": "tsup && cp -r src/styles dist/ && cp -r src/icons/behind-the-music-tree dist/icons/ && cp -r src/favicons dist/",
     "dev": "tsup --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

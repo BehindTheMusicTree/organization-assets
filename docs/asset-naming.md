@@ -1,6 +1,8 @@
 # Asset naming
 
-Conventions for raster and vector files in this package (`src/icons/`, future `src/illustrations/`, etc.).
+Conventions for raster and vector files in this package (`src/icons/`, `src/favicons/`, future `src/illustrations/`, etc.).
+
+For **format choice, extensions, pixel sizes, and export quality** for logos and marks, see [`logo-assets.md`](logo-assets.md).
 
 ## Rules
 
@@ -24,6 +26,7 @@ Conventions for raster and vector files in this package (`src/icons/`, future `s
 6. **Format** — Keep the real format in the extension (`.svg`, `.png`, `.webp`). Do not use misleading extensions.
 
 7. **Folders mirror meaning** — Group by domain or product family, not by source document (e.g. `icons/behind-the-music-tree/`, not `icons/cv/`). Export map in `package.json` should follow the same path.
+8. **Favicons use dedicated bundles** — Keep one bundle per project in `src/favicons/<project-slug>/` (see [`logo-assets.md`](logo-assets.md)).
 
 ## Examples
 
@@ -40,3 +43,5 @@ Conventions for raster and vector files in this package (`src/icons/`, future `s
 - [ ] Appropriate role suffix (`-logo`, `-mark`, `-icon`, …)  
 - [ ] Placed under a semantic folder  
 - [ ] `package.json` `exports` and `build` copy step updated if the path is new  
+- [ ] Logo/mark specs (format, dimensions, variants) follow [`logo-assets.md`](logo-assets.md) where applicable  
+- [ ] Favicon files (if any) are grouped in `src/favicons/<project-slug>/`  

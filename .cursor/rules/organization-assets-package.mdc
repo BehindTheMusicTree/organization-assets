@@ -1,0 +1,26 @@
+---
+description: organization-assets package layout, build, and exports
+alwaysApply: true
+---
+
+# organization-assets package
+
+Shared **React** library: components, tokens, icons (static files), styles, hooks, utils. Consumed via subpath imports from `@behindthemusictree/assets/...`.
+
+## Build
+
+- **tsup** compiles TS entry points to `dist/` (ESM + CJS + `.d.ts`). Config: `tsup.config.ts`.
+- **Post-build copy:** `src/styles` → `dist/styles/`; raster icon folders → `dist/icons/...`; favicon bundles `src/favicons/...` → `dist/favicons/...` (see `package.json` `scripts.build`).
+- Run `npm run build` after structural changes; `dev` is tsup watch only (copies are not re-run each save—re-run full build when static files change).
+
+## Adding code or entries
+
+- New **TS surface**: add or extend an entry in `tsup.config.ts` and matching `exports` in `package.json`.
+- New **static assets** under `src/icons/<folder>/`: add `"./icons/<folder>/*": "./dist/icons/<folder>/*"` to `exports` and extend the build script `cp` so files land in `dist/`.
+- New **favicons** under `src/favicons/<project>/`: expose `"./favicons/*": "./dist/favicons/*"` and ensure the build copies `src/favicons` to `dist/`.
+- **TypeScript:** `tsconfig.json` uses `"moduleResolution": "bundler"`—keep it compatible with tsup.
+
+## Scope
+
+- Prefer **minimal, focused diffs**; match existing component and import style.
+- Published files: `dist` and `docs` (`package.json` `files`).
