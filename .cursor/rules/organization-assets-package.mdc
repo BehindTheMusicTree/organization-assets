@@ -5,7 +5,7 @@ alwaysApply: true
 
 # organization-assets package
 
-Shared **React** library: components, tokens, icons (static files), styles, hooks, utils. Consumed via subpath imports from `@behindthemusictree/assets/...`.
+Shared **React** library: components, tokens, icons (static files), styles, hooks, utils. Published as `@behindthemusictree/assets` to GitHub Packages. Consumed via subpath imports from `@behindthemusictree/assets/...`.
 
 ## Build
 
@@ -20,7 +20,15 @@ Shared **React** library: components, tokens, icons (static files), styles, hook
 - New **favicons** under `src/favicons/<project>/`: expose `"./favicons/*": "./dist/favicons/*"` and ensure the build copies `src/favicons` to `dist/`.
 - **TypeScript:** `tsconfig.json` uses `"moduleResolution": "bundler"`—keep it compatible with tsup.
 
+## Publishing
+
+- Published to **GitHub Packages** via `.github/workflows/publish.yml` (triggers on GitHub Release).
+- `package.json` has `"publishConfig": { "registry": "https://npm.pkg.github.com" }`.
+- Release process: bump version with `npm version`, push tag, create GitHub Release. See `CONTRIBUTING.md` § "Releasing" for full steps.
+- Update `CHANGELOG.md` `[Unreleased]` section in every PR. During releases, move entries to a versioned section.
+
 ## Scope
 
 - Prefer **minimal, focused diffs**; match existing component and import style.
 - Published files: `dist` and `docs` (`package.json` `files`).
+- Follow commit message and PR naming conventions documented in `CONTRIBUTING.md`.

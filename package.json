@@ -1,7 +1,14 @@
 {
-  "name": "@your-org/assets",
+  "name": "@behindthemusictree/assets",
   "version": "1.0.0",
   "description": "Shared assets (components, tokens, icons, styles) for React projects",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BehindTheMusicTree/organization-assets.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

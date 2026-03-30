@@ -14,11 +14,17 @@ Shared assets (components, design tokens, icons, styles, hooks, utils) for React
 
 ## Install
 
+The package is published to [GitHub Packages](https://github.com/orgs/BehindTheMusicTree/packages). Consuming repos need an `.npmrc` that points the scope to GitHub's registry:
+
+```
+@behindthemusictree:registry=https://npm.pkg.github.com
+```
+
+Then install normally:
+
 ```bash
 npm install @behindthemusictree/assets
 ```
-
-Or via git: `"@behindthemusictree/assets": "git+https://..."` in your app’s `package.json`.
 
 ## Usage
 
@@ -52,6 +58,14 @@ import { Button, colors } from "@behindthemusictree/assets";
 
 Ensure design tokens are loaded (e.g. import `@behindthemusictree/assets/styles` once in your app root, or import `@behindthemusictree/assets/tokens` and include the tokens CSS in your build).
 
+## Publishing
+
+A GitHub Actions workflow automatically publishes to GitHub Packages whenever you [create a release](https://github.com/BehindTheMusicTree/organization-assets/releases/new) on this repo. To cut a new version:
+
+1. Bump the version in `package.json` (e.g. `npm version patch`).
+2. Push the commit and tag (`git push --follow-tags`).
+3. Create a GitHub Release from the new tag — the workflow handles the rest.
+
 ## Build
 
 ```bash
@@ -59,7 +73,7 @@ npm install
 npm run build
 ```
 
-Output is in `dist/`. Consuming apps should depend on the built package (publish to a private registry or use a git dependency).
+Output is in `dist/`.
 
 ## Local development
 
