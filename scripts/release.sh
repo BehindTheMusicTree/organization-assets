@@ -33,7 +33,7 @@ sed -i '' "s/^## \[Unreleased\]/## [Unreleased]\n\n## [$NEW_VERSION] - $TODAY/" 
 
 git add package.json package-lock.json CHANGELOG.md
 git commit -m "chore: release $NEW_VERSION"
-git tag "v$NEW_VERSION"
+git tag -a "v$NEW_VERSION" -m "v$NEW_VERSION"
 git push --follow-tags
 
 echo ""
