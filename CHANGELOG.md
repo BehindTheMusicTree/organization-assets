@@ -31,12 +31,6 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 ```markdown
 ## [Unreleased]
 
-## [1.1.2] - 2026-04-01
-
-## [1.1.1] - 2026-03-30
-
-## [1.1.0] - 2026-03-30
-
 ### Added
 
 - **New Component**: Added `Card` component with variants for outlined and elevated styles
