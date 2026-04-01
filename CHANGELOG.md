@@ -44,6 +44,10 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Documentation
+
+- **README**: Added ecosystem section with portfolio link (`themusictree.org`) and clarified portfolio source (`the-music-tree-frontend`) for this shared package.
+
 ## [1.1.2] - 2026-04-01
 
 ### Added

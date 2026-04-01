@@ -2,6 +2,14 @@
 
 Shared assets (components, design tokens, icons, styles, hooks, utils) for React projects across the organization.
 
+## Ecosystem
+
+Built inside the **[BehindTheMusicTree](https://github.com/BehindTheMusicTree)** ecosystem.
+
+Want the big picture? Explore the full project universe on **[themusictree.org](https://themusictree.org)**. This package is **`@behindthemusictree/assets`** — the shared components, tokens, and icons used by our web apps.
+
+The portfolio website content lives in **[the-music-tree-frontend](https://github.com/BehindTheMusicTree/the-music-tree-frontend)**; this README focuses on developing, versioning, and publishing this package.
+
 ## Structure
 
 - **components** – Reusable React components (e.g. `Button`)
