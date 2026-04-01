@@ -48,6 +48,14 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Added
+
+- **Audiometa greyscale logo**: `audiometa-logo-greyscale.svg` (sRGB luminance filter) for contexts that need a committed greyscale mark
+
+### Documentation
+
+- **Logo assets**: Document when to ship `-logo-greyscale.svg` versus using CSS; note filter-`id` uniqueness for inline SVG
+
 ### CI
 
 - **GitHub Actions Runtime**: Upgraded `actions/checkout` and `actions/setup-node` to v5 to stay compatible with the Node.js 24 transition on GitHub-hosted runners; publish job now uses Node.js 22.

@@ -13,7 +13,7 @@ alwaysApply: false
 Full detail lives in-repo—keep rules and files aligned:
 
 - [`docs/asset-naming.md`](docs/asset-naming.md) — kebab-case filenames; spell out product names (not `gtmt`-style abbreviations in shipped names); role suffixes `-logo`, `-mark`, `-icon`, `-og`; semantic folders (e.g. `behind-the-music-tree/`, not source-based names like `cv/`).
-- [`docs/logo-assets.md`](docs/logo-assets.md) — prefer **SVG** for scalable marks; **PNG RGBA** when raster is required; extension must match format; dimension and file-size guidance for wordmarks vs square marks vs OG images, plus favicon bundle location under `src/favicons/<project>/`.
+- [`docs/logo-assets.md`](docs/logo-assets.md) — prefer **SVG** for scalable marks; **PNG RGBA** when raster is required; extension must match format; dimension and file-size guidance for wordmarks vs square marks vs OG images, plus favicon bundle location under `src/favicons/<project>/`. **Greyscale:** do not add a `-logo-greyscale` file for every mark; prefer CSS `grayscale` / `opacity` on the consumer. Add `…-logo-greyscale.svg` only when guidelines or non-CSS contexts need a shipped asset; match the color logo’s paths and use a **unique filter `id`** inside that SVG (see logo-assets doc).
 
 ## When editing icons/favicons or `package.json`
 

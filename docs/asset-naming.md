@@ -21,6 +21,7 @@ For **format choice, extensions, pixel sizes, and export quality** for logos and
 
 5. **Variants** — When you add themes or densities, append before the extension:
    - Theme: `product-logo-dark.png`, `product-logo-light.png`
+   - Greyscale (optional; only when a committed asset is required): `product-logo-greyscale.svg` — see [`logo-assets.md`](logo-assets.md) for when to add this versus using CSS.
    - Raster scale: `product-logo@2x.png` (only if you ship multiple bitmaps; prefer SVG when possible)
 
 6. **Format** — Keep the real format in the extension (`.svg`, `.png`, `.webp`). Do not use misleading extensions.

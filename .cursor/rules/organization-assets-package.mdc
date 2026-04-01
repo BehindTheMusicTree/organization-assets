@@ -16,7 +16,7 @@ Shared **React** library: components, tokens, icons (static files), styles, hook
 ## Adding code or entries
 
 - New **TS surface**: add or extend an entry in `tsup.config.ts` and matching `exports` in `package.json`.
-- New **static assets** under `src/icons/<folder>/`: add `"./icons/<folder>/*": "./dist/icons/<folder>/*"` to `exports` and extend the build script `cp` so files land in `dist/`.
+- New **static assets** under `src/icons/<folder>/`: add `"./icons/<folder>/*": "./dist/icons/<folder>/*"` to `exports` and extend the build script `cp` so files land in `dist/`. Optional **`…-logo-greyscale.svg`** variants live beside the color logo in the same folder; see [`docs/logo-assets.md`](docs/logo-assets.md) — add them only when needed, not for every logo.
 - New **favicons** under `src/favicons/<project>/`: expose `"./favicons/*": "./dist/favicons/*"` and ensure the build copies `src/favicons` to `dist/`.
 - **TypeScript:** `tsconfig.json` uses `"moduleResolution": "bundler"`—keep it compatible with tsup.
 

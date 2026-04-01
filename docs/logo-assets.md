@@ -71,6 +71,7 @@ Think in **CSS pixels** for layout and **intrinsic** bitmap size for clarity on 
 ## Color, transparency, and background
 
 - **Light + dark UI:** ship **`…-logo-light.svg`** / **`…-logo-dark.svg`** (or PNG equivalents) when a single file does not work on both; see naming guide for variant suffixes.
+- **Greyscale / muted marks:** do **not** ship a grey copy of every logo by default. Prefer CSS for web (for example `opacity`, or `filter: grayscale(1)` on a wrapper) when you only need a subdued or disabled look. Add a **dedicated greyscale file** only when brand guidelines, print/PDF, email, or readability require a committed asset (automatic greyscale can collapse distinct brand colors to similar greys). Use the variant suffix **`…-logo-greyscale.svg`** next to the full-color **`…-logo.svg`**. Implementation note: greyscale SVGs in this package wrap the same paths as the color logo and apply an sRGB luminance **`feColorMatrix`** filter so the file stays in sync with the source artwork without hand-editing hundreds of fills. Each file uses a **unique `id` on the filter** (for example `audiometa-logo-greyscale`) to reduce clashes when inlining multiple SVGs on one page.
 - **Safe area:** keep padding inside the canvas so the mark does not touch edges when used in circles or rounded avatars.
 
 ## File size (practical targets)
