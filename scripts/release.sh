@@ -29,7 +29,23 @@ npm version "$BUMP" --no-git-tags-version > /dev/null
 NEW_VERSION=$(node -p "require('./package.json').version")
 TODAY=$(date +%Y-%m-%d)
 
-sed -i '' "s/^## \[Unreleased\]/## [Unreleased]\n\n## [$NEW_VERSION] - $TODAY/" CHANGELOG.md
+# Replace only the *changelog entries* ## [Unreleased] (2nd occurrence): the 1st may be inside
+# the fenced contributor example at the top of CHANGELOG.md.
+node -e "
+const fs = require('fs');
+const v = process.argv[1];
+const day = process.argv[2];
+let s = fs.readFileSync('CHANGELOG.md', 'utf8');
+const needle = /^## \\[Unreleased\\]$/gm;
+let n = 0;
+s = s.replace(needle, (m) => {
+  n += 1;
+  if (n === 2) return \`## [Unreleased]\\n\\n## [\${v}] - \${day}\`;
+  return m;
+});
+if (n < 2) { console.error('Error: expected a second ## [Unreleased] in CHANGELOG.md'); process.exit(1); }
+fs.writeFileSync('CHANGELOG.md', s);
+" "$NEW_VERSION" "$TODAY"
 
 git add package.json package-lock.json CHANGELOG.md
 git commit -m "chore: release $NEW_VERSION"
