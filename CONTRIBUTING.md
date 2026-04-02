@@ -221,7 +221,7 @@ Before submitting a Pull Request:
 
 ### 6. Releasing _(For Maintainers)_
 
-Releases are created from the `main` branch. A GitHub Actions workflow automatically publishes to GitHub Packages when a version tag is pushed.
+Releases are created from the `main` branch. A GitHub Actions workflow publishes to GitHub Packages when a version tag is pushed and **creates a GitHub Release** for that tag (generated notes, for watcher notifications).
 
 Run the release script from `main` with a clean working tree:
 
@@ -240,7 +240,7 @@ The script (`scripts/release.sh`) does the following in one shot:
 5. Creates a git tag `v<version>`
 6. Pushes the commit and tag
 
-Publishing to GitHub Packages starts automatically once the tag is pushed.
+Publishing to GitHub Packages and creating the GitHub Release start automatically once the tag is pushed.
 
 ## License & Attribution
 

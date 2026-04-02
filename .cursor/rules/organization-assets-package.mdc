@@ -23,7 +23,7 @@ Shared **React** library: components, tokens, brand artwork (static files), styl
 
 ## Publishing
 
-- Published to **GitHub Packages** via `.github/workflows/publish.yml` (triggers on `v*` tag push).
+- Published to **GitHub Packages** via `.github/workflows/publish.yml` (triggers on `v*` tag push). The same workflow creates a **GitHub Release** so watchers can subscribe to release notifications (`Watch` → **Releases** on the repo).
 - `package.json` has `"publishConfig": { "registry": "https://npm.pkg.github.com" }`.
 - Release process: `npm run release -- patch|minor|major` (bumps version, stamps changelog, commits, tags, pushes). Publishing starts automatically. See `CONTRIBUTING.md` § "Releasing" for full steps.
 - Update `CHANGELOG.md` `[Unreleased]` section in every PR. During releases, move entries to a versioned section.
