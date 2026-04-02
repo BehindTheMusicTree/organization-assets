@@ -25,7 +25,7 @@ if [[ -n "$(git status --porcelain)" ]]; then
 fi
 
 OLD_VERSION=$(node -p "require('./package.json').version")
-npm version "$BUMP" --no-git-tags-version > /dev/null
+npm version "$BUMP" --no-git-tag-version > /dev/null
 NEW_VERSION=$(node -p "require('./package.json').version")
 TODAY=$(date +%Y-%m-%d)
 
