@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-04-02
+
 ### BREAKING CHANGE
 
 - **Brand export path**: Removed `./icons` subpath. Static brand assets are under `./brand` (source: `src/brand/`). Update imports from `@behindthemusictree/assets/icons/...` to `@behindthemusictree/assets/brand/...`. See [`docs/migrations/icons-to-brand.md`](docs/migrations/icons-to-brand.md). Release as **major** version.
