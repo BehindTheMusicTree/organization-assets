@@ -56,7 +56,7 @@ Branch prefixes (`feature/`, `chore/`, `hotfix/`) are for branch organization an
 | ---------- | ------------------------------------------------ | -------------------------- |
 | components | `feat(components): add Card component`           | React components           |
 | tokens     | `fix(tokens): export missing color variable`     | Design tokens              |
-| icons      | `chore(icons): add project logo assets`          | Icon/logo static assets    |
+| brand      | `chore(brand): add project mark assets`          | Static brand artwork (`src/brand/`) |
 | favicons   | `feat(favicons): add gtmt favicon bundle`        | Favicon bundles            |
 | styles     | `fix(styles): correct reset specificity`         | Global styles/CSS          |
 | hooks      | `feat(hooks): add useMediaQuery hook`            | Shared React hooks         |

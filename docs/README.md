@@ -1,0 +1,34 @@
+# Asset documentation index
+
+Start here for naming, formats, and where specs live.
+
+## Table of contents
+
+- [Naming](#naming)
+- [Brand assets (marks and lockups)](#brand-assets-marks-and-lockups)
+- [Colocated READMEs](#colocated-readmes)
+- [Breaking change (icons → brand)](#breaking-change-icons-brand)
+- [Published package contents](#published-package-contents)
+
+## Naming
+
+Conventions for filenames and folders across `src/brand/`, `src/favicons/`, `src/banners/`, and future asset trees: **[`asset-naming.md`](asset-naming.md)** (kebab-case, role suffixes such as `-mark` / `-lockup`, placement, checklist).
+
+## Brand assets (marks and lockups)
+
+The canonical specification for **formats, dimensions, greyscale SVG filters, and checks** for files in `src/brand/` lives next to those assets: **[`src/brand/README.md`](../src/brand/README.md)**.
+
+File naming for those assets follows [`asset-naming.md`](asset-naming.md).
+
+## Colocated READMEs
+
+- Banners — [`src/banners/README.md`](../src/banners/README.md) (**one `src/banners/<project-slug>/` per product**, naming, hero vs social, platform export matrix)
+- Favicon bundles — [`src/favicons/README.md`](../src/favicons/README.md) (layout, import path, recommended files, PWA sizes)
+
+## Breaking change (icons → brand)
+
+If you used `@behindthemusictree/assets/icons/...`, migrate to `./brand` — see [`migrations/icons-to-brand.md`](migrations/icons-to-brand.md).
+
+## Published package contents
+
+Published installs include this `docs/` tree (including [`asset-naming.md`](asset-naming.md)), `src/banners/README.md`, and `src/brand/README.md` (see `package.json` `files`). Favicon guidance is also available under `dist/favicons/README.md` after a build.

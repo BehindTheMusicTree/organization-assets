@@ -1,0 +1,113 @@
+# Brand artwork (static files)
+
+This directory holds **static brand identity** assets: marks (`-mark`), wordmarks (`-wordmark`), lockups (`-lockup`), and related raster/vector exports. It is not a UI icon set; use the `-icon` role only for small interface glyphs if you add them here.
+
+**Related:** naming rules in [`docs/asset-naming.md`](../../docs/asset-naming.md); documentation index [`docs/README.md`](../../docs/README.md). **Favicon bundles** live under [`src/favicons/`](../favicons/README.md), not here.
+
+**Layout:** one **`src/brand/<project-slug>/`** folder per product (same slug style as [`src/favicons/`](../favicons/README.md)). Each folder holds that project’s marks, lockups, and wordmarks—not an umbrella folder mixing every product.
+
+## Table of contents
+
+- [Imports](#imports)
+- [Role suffixes (mark, wordmark, lockup)](#role-suffixes-mark-wordmark-lockup)
+- [Preferred formats (in order)](#preferred-formats-in-order)
+- [Extensions](#extensions)
+- [Dimensions and resolution](#dimensions-and-resolution)
+- [Color, transparency, and background](#color-transparency-and-background)
+- [File size (practical targets)](#file-size-practical-targets)
+- [Checklist for new brand files](#checklist-for-new-brand-files)
+
+## Imports
+
+From published package:
+
+```text
+@behindthemusictree/assets/brand/<project-slug>/<filename>
+```
+
+Examples:
+
+```tsx
+import orgMark from "@behindthemusictree/assets/brand/behind-the-music-tree/behind-the-music-tree-mark.png";
+import productMark from "@behindthemusictree/assets/brand/audiometa/audiometa-mark.svg";
+```
+
+## Role suffixes (mark, wordmark, lockup)
+
+Use explicit roles when possible:
+
+- `-mark`: symbol-only asset
+- `-wordmark`: text-only project name
+- `-lockup`: symbol + text combined
+- `-logo`: deprecated legacy role kept only for historical references
+
+## Preferred formats (in order)
+
+1. **SVG (`.svg`)** — Default for web when the artwork is vector-friendly: infinite scaling, usually smaller than high-res PNG, easy to theme with CSS (`currentColor`, `fill`). Use for wordmarks and simple marks without heavy raster effects.
+
+2. **PNG (`.png`)** — Use when the design relies on fine gradients, photos, or effects that do not export cleanly to SVG, or when the org standard is raster lockups. Prefer **24-bit RGBA** with transparency for UI; avoid indexed PNG unless file size is critical and quality is acceptable.
+
+3. **WebP (`.webp`)** — Optional **delivery** format in apps (smaller than PNG at similar quality). For **this repo**, prefer shipping **SVG or PNG** as the source of truth; apps may convert or serve WebP at build/CDN time. If you commit WebP here, keep a PNG or SVG alongside for tooling that does not support WebP.
+
+Avoid **JPEG** for marks on arbitrary backgrounds (no alpha). Use JPEG only for photo-based wordmarks where a rectangular crop is intentional.
+
+## Extensions
+
+The file extension must match the encoded format (see [`asset-naming.md`](../../docs/asset-naming.md)). Common cases:
+
+| Extension | Typical use |
+|-----------|-------------|
+| `.svg` | Vector mark or wordmark |
+| `.png` | Raster with transparency |
+| `.webp` | Raster alternative (if explicitly committed) |
+
+Do not use `.jpg`/`.jpeg` for assets that need transparency behind the artwork.
+
+## Dimensions and resolution
+
+Think in **CSS pixels** for layout and **intrinsic** bitmap size for clarity on retina displays.
+
+### Horizontal / wordmark (`-wordmark`, legacy `-logo`)
+
+- **Target display width** in UIs is often **96–200px** wide (nav, footer); hero use can be larger.
+- **Raster exports:** provide art at **2×** the maximum display width you support, or **cap the long edge** around **512–800px** if the design is simple—enough for retina headers without oversized files.
+- **Minimum:** avoid exporting below **~120px** on the long edge for primary artwork; tiny bitmaps look soft when scaled up.
+
+### Lockups (`-lockup`)
+
+- **Horizontal lockup (`-lockup-horizontal`)**: use for nav bars and footers; same sizing as wordmarks above (**96–200px** typical display width, export at **2×** or long edge **512–800px**).
+- **Stacked lockup (`-lockup-stacked`)**: use when vertical space is available; common display widths are **72–140px** in cards/empty states, exported at **2×**.
+- If shipping only one lockup orientation, use `-lockup` without orientation suffix.
+
+### Square marks (`-mark`, `-icon`)
+
+- **UI list rows / avatars:** display often **24–32px**; raster source at **48–64px** minimum on the square.
+- **Favicon / PWA files** belong under `src/favicons/` — see [`src/favicons/README.md`](../favicons/README.md).
+
+### Open Graph / social (`-og`)
+
+- Typical **1200×630** (1.91∶1) for many platforms; confirm current platform docs when adding new crops.
+
+### SVG sizing
+
+- Set a sensible `viewBox` and omit fixed `width`/`height` when the artwork should scale with CSS, or set dimensions that match the design grid.
+- For crisp alignment, prefer **integer** coordinates in the SVG where practical.
+
+## Color, transparency, and background
+
+- **Light + dark UI:** ship **`…-lockup-light.svg`** / **`…-lockup-dark.svg`** (or PNG equivalents) when a single file does not work on both; see naming guide for variant suffixes.
+- **Greyscale / muted marks:** do **not** ship a grey copy of every mark by default. Prefer CSS for web (for example `opacity`, or `filter: grayscale(1)` on a wrapper) when you only need a subdued or disabled look. Add a **dedicated greyscale file** only when brand guidelines, print/PDF, email, or readability require a committed asset (automatic greyscale can collapse distinct brand colors to similar greys). Use the variant suffix **`…-mark-greyscale.svg`** (or `…-lockup-greyscale.svg` for symbol+text files) next to the full-color source. Implementation note: greyscale SVGs in this package wrap the same paths as the color source asset and apply an sRGB luminance **`feColorMatrix`** filter so the file stays in sync with the source artwork without hand-editing hundreds of fills. Each file uses a **unique `id` on the filter** (for example `audiometa-mark-greyscale`) to reduce clashes when inlining multiple SVGs on one page.
+- **Safe area:** keep padding inside the canvas so the mark does not touch edges when used in circles or rounded avatars.
+
+## File size (practical targets)
+
+- **SVG:** optimize (SVGO or equivalent); typical UI marks often stay **under ~15–30KB** unless highly detailed.
+- **PNG:** compress losslessly; for flat artwork, **under ~100KB** at 2× nav size is a reasonable goal; investigate SVG if files grow much larger.
+
+## Checklist for new brand files
+
+- [ ] Format matches the artwork (SVG vs PNG) and extension is correct  
+- [ ] Role is explicit and matches usage (`-mark`, `-wordmark`, `-lockup`; avoid legacy `-logo`)  
+- [ ] Raster long-edge or square size matches intended max display × retina, without huge unused resolution  
+- [ ] Transparency or explicit light/dark variants documented in filename  
+- [ ] File size reasonable; consider SVG if PNG is large and flat  

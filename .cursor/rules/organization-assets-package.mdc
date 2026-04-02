@@ -5,19 +5,20 @@ alwaysApply: true
 
 # organization-assets package
 
-Shared **React** library: components, tokens, icons (static files), styles, hooks, utils. Published as `@behindthemusictree/assets` to GitHub Packages. Consumed via subpath imports from `@behindthemusictree/assets/...`.
+Shared **React** library: components, tokens, brand artwork (static files), styles, hooks, utils. Published as `@behindthemusictree/assets` to GitHub Packages. Consumed via subpath imports from `@behindthemusictree/assets/...`.
 
 ## Build
 
 - **tsup** compiles TS entry points to `dist/` (ESM + CJS + `.d.ts`). Config: `tsup.config.ts`.
-- **Post-build copy:** `src/styles` → `dist/styles/`; raster icon folders → `dist/icons/...`; favicon bundles `src/favicons/...` → `dist/favicons/...` (see `package.json` `scripts.build`).
+- **Post-build copy:** `src/styles` → `dist/styles/`; brand asset folders → `dist/brand/...`; favicon bundles `src/favicons/...` → `dist/favicons/...`; each `src/banners/<project-slug>/` → `dist/banners/<project-slug>/` (see `package.json` `scripts.build`).
 - Run `npm run build` after structural changes; `dev` is tsup watch only (copies are not re-run each save—re-run full build when static files change).
 
 ## Adding code or entries
 
 - New **TS surface**: add or extend an entry in `tsup.config.ts` and matching `exports` in `package.json`.
-- New **static assets** under `src/icons/<folder>/`: add `"./icons/<folder>/*": "./dist/icons/<folder>/*"` to `exports` and extend the build script `cp` so files land in `dist/`. Optional **`…-logo-greyscale.svg`** variants live beside the color logo in the same folder; see [`docs/logo-assets.md`](docs/logo-assets.md) — add them only when needed, not for every logo.
-- New **favicons** under `src/favicons/<project>/`: expose `"./favicons/*": "./dist/favicons/*"` and ensure the build copies `src/favicons` to `dist/`.
+- New **static brand assets** under `src/brand/<folder>/`: add `"./brand/<folder>/*": "./dist/brand/<folder>/*"` to `exports` and extend the build script `cp` so files land in `dist/brand/`. Optional **`…-mark-greyscale.svg`** / **`…-lockup-greyscale.svg`** variants live beside the color source in the same folder; see [`src/brand/README.md`](../../src/brand/README.md) — add them only when needed, not for every mark.
+- New **favicons** under `src/favicons/<project>/`: expose `"./favicons/*": "./dist/favicons/*"` and ensure the build copies `src/favicons` to `dist/`. Conventions: [`src/favicons/README.md`](../../src/favicons/README.md).
+- **Banners:** one folder per project under `src/banners/<project-slug>/` (same slug style as brand/favicons). Conventions in [`src/banners/README.md`](../../src/banners/README.md). Expose `"./banners/*": "./dist/banners/*"` (already in `package.json`); build copies all immediate subdirs of `src/banners/` into `dist/banners/`. The README ships in npm `files`. Full doc map: [`docs/README.md`](../../docs/README.md).
 - **TypeScript:** `tsconfig.json` uses `"moduleResolution": "bundler"`—keep it compatible with tsup.
 
 ## Publishing
@@ -30,5 +31,6 @@ Shared **React** library: components, tokens, icons (static files), styles, hook
 ## Scope
 
 - Prefer **minimal, focused diffs**; match existing component and import style.
-- Published files: `dist` and `docs` (`package.json` `files`).
+- Published files: `dist`, `docs`, and colocated READMEs listed in `package.json` `files` (e.g. `src/banners/README.md`, `src/brand/README.md`).
 - Follow commit message and PR naming conventions documented in `CONTRIBUTING.md`.
+- **Markdown:** multi-section `*.md` files repo-wide should include a **Table of contents** per [`static-assets-and-docs.mdc`](static-assets-and-docs.mdc) (`CHANGELOG.md` and one-section stubs exempt).

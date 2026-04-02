@@ -31,7 +31,7 @@ Anyone can be a contributor by:
 - Submitting bug reports or feature requests via GitHub Issues
 - Proposing code changes through Pull Requests
 - Improving documentation
-- Adding or updating components, tokens, icons, or styles
+- Adding or updating components, tokens, brand assets, or styles
 
 **Maintainers**
 
@@ -141,8 +141,9 @@ npm link @behindthemusictree/assets
 ### 3. Developing
 
 - **New TS entry points**: add or extend an entry in `tsup.config.ts` and matching `exports` in `package.json`.
-- **New static assets** under `src/icons/<folder>/`: add the corresponding export in `package.json` and extend the build script `cp` so files land in `dist/`.
+- **New static brand assets** under `src/brand/<folder>/`: add the corresponding `./brand/<folder>/*` export in `package.json` and extend the build script `cp` so files land in `dist/brand/`.
 - **New favicons** under `src/favicons/<project>/`: expose via `"./favicons/*"` export and ensure the build copies them.
+- **Banner assets** under `src/banners/<project-slug>/`: add files in a project subfolder (not loose under `src/banners/`). `"./banners/*"` and the build’s `dist/banners/` copy pick up new folders automatically; run a full build after adding binaries.
 - **Components**: follow existing component patterns and import style; prefer minimal, focused diffs.
 - **TypeScript**: `tsconfig.json` uses `"moduleResolution": "bundler"` — keep it compatible with tsup.
 
@@ -189,7 +190,7 @@ Before submitting a Pull Request:
 
 - Update README if adding new features or changing behavior
 - Update `CHANGELOG.md` with your changes in the `[Unreleased]` section (see [Changelog Best Practices](CHANGELOG.md#changelog-best-practices))
-- Update docs under `docs/` if asset naming or logo conventions change
+- Update documentation when asset conventions change: global guides in `docs/` and colocated specs in `src/*/README.md` (see [`docs/README.md`](docs/README.md)). Any **multi-section** Markdown file in the repo should include a **Table of contents** linking each `##` section ([`CHANGELOG.md`](CHANGELOG.md) and one-section stubs exempt); see [`.cursor/rules/static-assets-and-docs.mdc`](.cursor/rules/static-assets-and-docs.mdc).
 
 **4. Git Hygiene**
 
