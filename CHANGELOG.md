@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [2.0.1] - 2026-04-02
+
 ### CI
 
 - **GitHub Release**: The publish workflow now creates a **GitHub Release** for each `v*` tag (auto-generated notes plus a link to `CHANGELOG.md`) so repository watchers can get release notifications.
