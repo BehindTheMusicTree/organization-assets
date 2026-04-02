@@ -2,16 +2,6 @@
 
 Shared assets (components, design tokens, icons, styles, hooks, utils) for React projects across the organization.
 
-## Table of contents
-
-- [Ecosystem](#ecosystem)
-- [Structure](#structure)
-- [Install](#install)
-- [Usage](#usage)
-- [Publishing](#publishing)
-- [Build](#build)
-- [Local development](#local-development)
-
 ## Ecosystem
 
 Built inside the **[BehindTheMusicTree](https://github.com/BehindTheMusicTree)** ecosystem.
@@ -54,14 +44,15 @@ import { colors, spacing } from "@behindthemusictree/assets/tokens";
 import "@behindthemusictree/assets/styles";
 ```
 
-**TheMusicTreeByline** — one clickable rectangle (logo + “By TheMusicTree”). Defaults: **36px** min height, **24×24px** mark, **8px / 12px** padding, **8px** corner radius, **~8px** gap — total width typically **~170–200px** at 13px label. Use **`variant="onDark"`** on dark headers so the black SVG mark is inverted and visible.
+**TheMusicTreeByline** — single clickable image: **`the-music-tree-lockup-horizontal.svg`** only (no extra text node). Default display height **36px**, width **auto**. Pass **`href`** from **`getOrgSiteHref()`** (reads **`NEXT_PUBLIC_DOMAIN_NAME`**, which should mirror GitHub **`DOMAIN_NAME`**). There is **no default**: if the variable is unset, **`getOrgSiteHref()`** throws and the build fails. Use **`variant="onDark"`** only for monochrome/black lockups on dark surfaces (CSS invert); omit for full-color lockup artwork.
 
 ```tsx
-import { TheMusicTreeByline } from "@behindthemusictree/assets/components";
+import { TheMusicTreeByline, getOrgSiteHref } from "@behindthemusictree/assets/components";
 
 <TheMusicTreeByline
+  href={getOrgSiteHref()}
   variant="onDark"
-  className="border border-white/15 bg-white/5 text-gray-200 hover:bg-white/10"
+  className="border border-white/15 bg-white/5 p-2 hover:bg-white/10"
 />
 ```
 

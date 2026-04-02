@@ -1,6 +1,6 @@
 {
   "name": "@behindthemusictree/assets",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Shared assets (components, tokens, brand artwork, styles) for React projects",
   "repository": {
     "type": "git",
@@ -73,6 +73,7 @@
     "react-dom": ">=18.0.0"
   },
   "devDependencies": {
+    "@types/node": "^25.5.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "react": "^18.2.0",

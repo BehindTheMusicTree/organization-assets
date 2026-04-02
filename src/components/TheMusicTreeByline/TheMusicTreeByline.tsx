@@ -1,82 +1,87 @@
 import type { CSSProperties } from "react";
-import markSvg from "../../brand/the-music-tree/the-music-tree-mark.svg";
+import lockupSvg from "../../brand/the-music-tree/the-music-tree-lockup-horizontal.svg";
 
 /**
- * Rectangular “By TheMusicTree” lockup: one clickable block, mark + label.
- *
- * Suggested sizing (defaults below): **~36px tall**, **24×24px mark**, **8px / 12px** padding,
- * **~8px** gap — total width typically **~170–200px** at 13px label text.
+ * Env var name for the org site (Next.js: must be `NEXT_PUBLIC_*`).
+ * Mirror GitHub **`DOMAIN_NAME`** into **`NEXT_PUBLIC_DOMAIN_NAME`** for client bundles.
+ */
+export const ORG_URL = "NEXT_PUBLIC_DOMAIN_NAME" as const;
+
+/**
+ * Resolves the org site URL from **`process.env[ORG_URL]`** (mirror GitHub **`DOMAIN_NAME`** into **`NEXT_PUBLIC_DOMAIN_NAME`** for Next).
+ * Throws if unset so production builds fail instead of shipping a silent fallback.
+ */
+export function getOrgSiteHref(): string {
+  const raw = process.env[ORG_URL]?.trim();
+  if (!raw) {
+    throw new Error(
+      `Missing required environment variable ${ORG_URL} (set from GitHub DOMAIN_NAME in CI).`,
+    );
+  }
+  return raw.startsWith("http")
+    ? raw
+    : `https://${raw.replace(/\/$/, "")}/`;
+}
+
+/**
+ * Clickable **the-music-tree-lockup-horizontal** only (no separate text node).
+ * Pass **`href`** from the app, typically **`getOrgSiteHref()`** so missing env fails the build.
  */
 export type TheMusicTreeBylineProps = {
-  /** Defaults to `https://themusictree.org/`. */
-  href?: string;
-  /** Applied to the outer `<a>` (layout, border, colors, hover). */
+  /** Portfolio / ecosystem URL. Apps: **`getOrgSiteHref()`** or equivalent (no default — env must be set). */
+  href: string;
+  /** Applied to the outer `<a>`. */
   className?: string;
-  /** Mark image; default 24×24. On `variant="onDark"`, the mark is inverted for contrast. */
+  /** Lockup image sizing (default height **36px**, width **auto**). */
   imageClassName?: string;
   imageStyle?: CSSProperties;
-  /** Label next to the mark (default: “By TheMusicTree”). */
-  label?: string;
-  labelClassName?: string;
   /**
-   * `onDark`: black SVG mark is inverted so it reads on dark backgrounds (e.g. black/slate headers).
+   * `onDark`: invert monochrome/black lockups for dark backgrounds. Omit for full-color lockup artwork.
    */
   variant?: "default" | "onDark";
 };
 
-const DEFAULT_HREF = "https://themusictree.org/";
-
-/** Default lockup: min height 36px, padding 8px 12px, 8px gap, 8px corner radius. */
 const anchorStyle: CSSProperties = {
-  display: "inline-flex",
-  alignItems: "center",
-  gap: "8px",
-  minHeight: "36px",
-  padding: "8px 12px",
-  borderRadius: "8px",
+  display: "inline-block",
+  lineHeight: 0,
   textDecoration: "none",
-  boxSizing: "border-box",
+  borderRadius: "8px",
 };
 
-const labelStyle: CSSProperties = {
-  fontSize: "13px",
-  fontWeight: 500,
-  lineHeight: 1.2,
-  whiteSpace: "nowrap",
+const defaultImgStyle: CSSProperties = {
+  display: "block",
+  height: "36px",
+  width: "auto",
 };
 
 export function TheMusicTreeByline({
-  href = DEFAULT_HREF,
+  href,
   className,
   imageClassName,
   imageStyle,
-  label = "By TheMusicTree",
-  labelClassName,
   variant = "default",
 }: TheMusicTreeBylineProps) {
-  const markFilter =
-    variant === "onDark"
-      ? "brightness(0) invert(1)"
-      : undefined;
+  const filter =
+    variant === "onDark" ? "brightness(0) invert(1)" : undefined;
 
   return (
-    <a href={href} className={className} style={anchorStyle}>
+    <a
+      href={href}
+      className={className}
+      style={anchorStyle}
+      aria-label="TheMusicTree — open ecosystem site"
+    >
       <img
-        src={markSvg}
+        src={lockupSvg}
         alt=""
-        width={24}
-        height={24}
         className={imageClassName}
         style={{
-          flexShrink: 0,
+          ...defaultImgStyle,
           ...imageStyle,
-          ...(markFilter ? { filter: markFilter } : {}),
+          ...(filter ? { filter } : {}),
         }}
         aria-hidden
       />
-      <span className={labelClassName} style={labelStyle}>
-        {label}
-      </span>
     </a>
   );
 }

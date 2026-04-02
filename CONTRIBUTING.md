@@ -126,6 +126,8 @@ One-time setup after clone (or when `playground/package.json` dependencies chang
 npm run playground:install
 ```
 
+Copy `playground/.env.example` to `playground/.env` and set **`NEXT_PUBLIC_DOMAIN_NAME`** (same value you use for GitHub **`DOMAIN_NAME`**). The playground Vite config requires it; **`npm run dev`** / **`build`** in `playground/` fail if it is missing.
+
 Run a build and start the dev server (default port **5174**):
 
 ```bash

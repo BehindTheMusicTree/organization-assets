@@ -44,15 +44,19 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Added
+
+- **Brand**: `src/brand/the-music-tree/the-music-tree-lockup-horizontal.svg` (interim copy of the mark until the official horizontal lockup ships).
+- **getOrgSiteHref**: reads **`NEXT_PUBLIC_DOMAIN_NAME`** and throws if missing so apps fail the build instead of using a fallback URL. Dev dependency **`@types/node`** added for `process.env` typing in declaration emit.
+
 ### Changed
 
-- **TheMusicTreeByline** (breaking): single rectangular clickable lockup — **24×24** mark + **“By TheMusicTree”** label, default **36px** min-height, **8px / 12px** padding, **8px** radius (~**170–200px** wide at 13px type). Removed `linkClassName` and `prefix`. Added **`variant="onDark"`** (inverts the black SVG on dark backgrounds).
+- **TheMusicTreeByline** (breaking): uses **only** `the-music-tree-lockup-horizontal.svg` as the image (no separate label). **`href` is required** — use **`getOrgSiteHref()`** (reads **`NEXT_PUBLIC_DOMAIN_NAME`**, mirroring GitHub **`DOMAIN_NAME`**). **No default URL**: missing env throws so the build fails. Default image height **36px**, width **auto**. **`variant="onDark"`** inverts the whole lockup for dark UIs.
 
 ### Documentation
 
-- **README**: Added table of contents to root [`README.md`](README.md).
-- **Brand**: [`src/brand/README.md`](src/brand/README.md) and [`docs/asset-naming.md`](docs/asset-naming.md) — enclosed (badge/pill) lockups vs open lockups; `…-lockup-horizontal-badge` when both variants ship.
-- **README**: TheMusicTreeByline dimensions and `variant` example.
+- **README**: TheMusicTreeByline lockup + **`getOrgSiteHref()`** (no default URL).
+- **CONTRIBUTING**: Playground requires **`NEXT_PUBLIC_DOMAIN_NAME`** via `playground/.env`.
 - **README**: Added ecosystem section with portfolio link (`themusictree.org`) and clarified portfolio source (`the-music-tree-frontend`) for this shared package.
 
 ## [1.1.2] - 2026-04-01

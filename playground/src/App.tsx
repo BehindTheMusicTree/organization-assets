@@ -4,7 +4,11 @@ import {
   faviconAssets,
 } from "./distAssetGlobs";
 import { AssetFigure } from "./AssetFigure";
-import { Button, TheMusicTreeByline } from "@behindthemusictree/assets/components";
+import {
+  Button,
+  getOrgSiteHref,
+  TheMusicTreeByline,
+} from "@behindthemusictree/assets/components";
 
 function labelFromGlobKey(key: string): string {
   const normalized = key.replace(/^\.\.\//, "");
@@ -41,6 +45,7 @@ export default function App() {
   const brandEntries = sortedEntries(brandAssets);
   const bannerEntries = sortedEntries(bannerAssets);
   const faviconEntries = sortedEntries(faviconAssets);
+  const orgHref = getOrgSiteHref();
 
   return (
     <div className="playground">
@@ -61,17 +66,13 @@ export default function App() {
         </div>
         <div className="demo-row">
           <span className="demo-label">TheMusicTreeByline</span>
-          <TheMusicTreeByline />
+          <TheMusicTreeByline href={orgHref} />
         </div>
         <div className="asset-strip-dark">
           <span className="demo-label">TheMusicTreeByline on dark</span>
           <div className="demo-row">
-            <TheMusicTreeByline />
+            <TheMusicTreeByline href={orgHref} variant="onDark" />
           </div>
-        </div>
-        <div className="demo-row">
-          <span className="demo-label">TheMusicTreeByline (custom prefix)</span>
-          <TheMusicTreeByline prefix={<span style={{ opacity: 0.85 }}>Credit · </span>} />
         </div>
       </section>
 
