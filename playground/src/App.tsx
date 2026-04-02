@@ -6,8 +6,8 @@ import {
 import { AssetFigure } from "./AssetFigure";
 import {
   Button,
-  getOrgSiteHref,
-  TheMusicTreeByline,
+  parseOrgSiteHref,
+  TheMusicTreeHorizontalLink,
 } from "@behindthemusictree/assets/components";
 
 function labelFromGlobKey(key: string): string {
@@ -45,7 +45,7 @@ export default function App() {
   const brandEntries = sortedEntries(brandAssets);
   const bannerEntries = sortedEntries(bannerAssets);
   const faviconEntries = sortedEntries(faviconAssets);
-  const orgHref = getOrgSiteHref();
+  const orgHref = parseOrgSiteHref(import.meta.env.NEXT_PUBLIC_DOMAIN_NAME);
 
   return (
     <div className="playground">
@@ -65,13 +65,13 @@ export default function App() {
           <Button variant="secondary">Secondary</Button>
         </div>
         <div className="demo-row">
-          <span className="demo-label">TheMusicTreeByline</span>
-          <TheMusicTreeByline href={orgHref} />
+          <span className="demo-label">TheMusicTreeHorizontalLink → org</span>
+          <TheMusicTreeHorizontalLink href={orgHref} />
         </div>
         <div className="asset-strip-dark">
-          <span className="demo-label">TheMusicTreeByline on dark</span>
+          <span className="demo-label">Horizontal lockup on dark</span>
           <div className="demo-row">
-            <TheMusicTreeByline href={orgHref} variant="onDark" />
+            <TheMusicTreeHorizontalLink href={orgHref} variant="onDark" />
           </div>
         </div>
       </section>

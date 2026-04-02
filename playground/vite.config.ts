@@ -13,11 +13,21 @@ export default defineConfig(({ mode }) => {
       "NEXT_PUBLIC_DOMAIN_NAME is required. Copy playground/.env.example to playground/.env.",
     );
   }
+  const domainJson = JSON.stringify(domain);
   return {
     plugins: [react()],
     server: { port: 5174 },
     define: {
-      "process.env.NEXT_PUBLIC_DOMAIN_NAME": JSON.stringify(domain),
+      // App source only; deps from @behindthemusictree/assets do not get this reliably.
+      "import.meta.env.NEXT_PUBLIC_DOMAIN_NAME": domainJson,
+      "process.env.NEXT_PUBLIC_DOMAIN_NAME": domainJson,
+    },
+    optimizeDeps: {
+      esbuildOptions: {
+        define: {
+          "process.env.NEXT_PUBLIC_DOMAIN_NAME": domainJson,
+        },
+      },
     },
   };
 });

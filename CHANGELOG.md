@@ -46,12 +46,17 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ### Added
 
-- **Brand**: `src/brand/the-music-tree/the-music-tree-lockup-horizontal.svg` (interim copy of the mark until the official horizontal lockup ships).
-- **getOrgSiteHref**: reads **`NEXT_PUBLIC_DOMAIN_NAME`** and throws if missing so apps fail the build instead of using a fallback URL. Dev dependency **`@types/node`** added for `process.env` typing in declaration emit.
+- **TheMusicTreeHorizontalLink**: exported alias for the horizontal lockup link (same as **TheMusicTreeByline**); playground shows default and **`variant="onDark"`** demos.
+- **Brand**: `src/brand/the-music-tree/the-music-tree-lockup-horizontal.svg` and **`.png`** (interim copies until the official horizontal lockup ships).
+- **getOrgSiteHref** / **parseOrgSiteHref**: **`getOrgSiteHref()`** for Next.js; **`parseOrgSiteHref`** for Vite + **`import.meta.env`** (dependency code does not get reliable `process.env` replacement). Dev dependency **`@types/node`** added for `process.env` typing in declaration emit.
+
+### Fixed
+
+- **Playground (Vite)**: blank page — `getOrgSiteHref()` lives in a pre-bundled dependency where `process` is undefined; playground now uses **`parseOrgSiteHref(import.meta.env.NEXT_PUBLIC_DOMAIN_NAME)`** and **`vite.config`** `define` + **`optimizeDeps.esbuildOptions.define`**.
 
 ### Changed
 
-- **TheMusicTreeByline** (breaking): uses **only** `the-music-tree-lockup-horizontal.svg` as the image (no separate label). **`href` is required** — use **`getOrgSiteHref()`** (reads **`NEXT_PUBLIC_DOMAIN_NAME`**, mirroring GitHub **`DOMAIN_NAME`**). **No default URL**: missing env throws so the build fails. Default image height **36px**, width **auto**. **`variant="onDark"`** inverts the whole lockup for dark UIs.
+- **TheMusicTreeByline** (breaking): uses **only** `the-music-tree-lockup-horizontal.png` as the image (no separate label). **`href` is required** — **`getOrgSiteHref()`** (Next) or **`parseOrgSiteHref(…)`** (Vite + **`import.meta.env`**). **`NEXT_PUBLIC_DOMAIN_NAME`** mirrors GitHub **`DOMAIN_NAME`**. **No default URL**. Default image height **44px**, width **auto**. **`variant="onDark"`** inverts the whole lockup for dark UIs.
 
 ### Documentation
 

@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
-import lockupSvg from "../../brand/the-music-tree/the-music-tree-lockup-horizontal.svg";
+/** `src/brand/the-music-tree/the-music-tree-lockup-horizontal.png` — do not swap for another mark. */
+import theMusicTreeLockupHorizontal from "../../brand/the-music-tree/the-music-tree-lockup-horizontal.png";
 
 /**
  * Env var name for the org site (Next.js: must be `NEXT_PUBLIC_*`).
@@ -8,11 +9,11 @@ import lockupSvg from "../../brand/the-music-tree/the-music-tree-lockup-horizont
 export const ORG_URL = "NEXT_PUBLIC_DOMAIN_NAME" as const;
 
 /**
- * Resolves the org site URL from **`process.env[ORG_URL]`** (mirror GitHub **`DOMAIN_NAME`** into **`NEXT_PUBLIC_DOMAIN_NAME`** for Next).
- * Throws if unset so production builds fail instead of shipping a silent fallback.
+ * Build **`href`** from a hostname or full URL string. Throws if empty.
+ * In **Vite**, read the value from **`import.meta.env`** (with `define` in `vite.config`) — not **`getOrgSiteHref()`**, because dependency code often keeps `process.env` and **`process` is undefined** in the browser.
  */
-export function getOrgSiteHref(): string {
-  const raw = process.env[ORG_URL]?.trim();
+export function parseOrgSiteHref(value: string | undefined): string {
+  const raw = value?.trim();
   if (!raw) {
     throw new Error(
       `Missing required environment variable ${ORG_URL} (set from GitHub DOMAIN_NAME in CI).`,
@@ -23,16 +24,21 @@ export function getOrgSiteHref(): string {
     : `https://${raw.replace(/\/$/, "")}/`;
 }
 
+/** Reads **`NEXT_PUBLIC_DOMAIN_NAME`** via **`process.env`** (works with Next.js inlining). Vite: use **`parseOrgSiteHref`** instead. */
+export function getOrgSiteHref(): string {
+  return parseOrgSiteHref(process.env.NEXT_PUBLIC_DOMAIN_NAME);
+}
+
 /**
- * Clickable **the-music-tree-lockup-horizontal** only (no separate text node).
- * Pass **`href`** from the app, typically **`getOrgSiteHref()`** so missing env fails the build.
+ * Clickable **`the-music-tree-lockup-horizontal`** artwork only (no separate text node).
+ * **`href`** must be the organization site URL — use **`getOrgSiteHref()`** (Next) or **`parseOrgSiteHref(…)`** (Vite).
  */
 export type TheMusicTreeBylineProps = {
-  /** Portfolio / ecosystem URL. Apps: **`getOrgSiteHref()`** or equivalent (no default — env must be set). */
+  /** Organization site URL (no default — set **`NEXT_PUBLIC_DOMAIN_NAME`** / **`DOMAIN_NAME`**). */
   href: string;
   /** Applied to the outer `<a>`. */
   className?: string;
-  /** Lockup image sizing (default height **36px**, width **auto**). */
+  /** Lockup image sizing (default height **44px**, width **auto**). */
   imageClassName?: string;
   imageStyle?: CSSProperties;
   /**
@@ -50,7 +56,7 @@ const anchorStyle: CSSProperties = {
 
 const defaultImgStyle: CSSProperties = {
   display: "block",
-  height: "36px",
+  height: "44px",
   width: "auto",
 };
 
@@ -72,7 +78,7 @@ export function TheMusicTreeByline({
       aria-label="TheMusicTree — open ecosystem site"
     >
       <img
-        src={lockupSvg}
+        src={theMusicTreeLockupHorizontal}
         alt=""
         className={imageClassName}
         style={{
@@ -85,3 +91,12 @@ export function TheMusicTreeByline({
     </a>
   );
 }
+
+/**
+ * Horizontal **the-music-tree-lockup-horizontal** linking to the org site.
+ * Same implementation as {@link TheMusicTreeByline}; use whichever name fits your UI copy.
+ */
+export const TheMusicTreeHorizontalLink = TheMusicTreeByline;
+
+/** Props for {@link TheMusicTreeHorizontalLink} (same as {@link TheMusicTreeBylineProps}). */
+export type TheMusicTreeHorizontalLinkProps = TheMusicTreeBylineProps;

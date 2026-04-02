@@ -44,7 +44,9 @@ import { colors, spacing } from "@behindthemusictree/assets/tokens";
 import "@behindthemusictree/assets/styles";
 ```
 
-**TheMusicTreeByline** — single clickable image: **`the-music-tree-lockup-horizontal.svg`** only (no extra text node). Default display height **36px**, width **auto**. Pass **`href`** from **`getOrgSiteHref()`** (reads **`NEXT_PUBLIC_DOMAIN_NAME`**, which should mirror GitHub **`DOMAIN_NAME`**). There is **no default**: if the variable is unset, **`getOrgSiteHref()`** throws and the build fails. Use **`variant="onDark"`** only for monochrome/black lockups on dark surfaces (CSS invert); omit for full-color lockup artwork.
+**TheMusicTreeByline** — single clickable image: **`the-music-tree-lockup-horizontal.png`** only (no extra text node). Default display height **44px**, width **auto**. Pass **`href`** from **`getOrgSiteHref()`** (Next.js / Node) or **`parseOrgSiteHref(import.meta.env.NEXT_PUBLIC_DOMAIN_NAME)`** (Vite — see below). Set **`NEXT_PUBLIC_DOMAIN_NAME`** from GitHub **`DOMAIN_NAME`**. **No default:** missing values throw so the build fails. Use **`variant="onDark"`** only for monochrome/black lockups on dark surfaces (CSS invert); omit for full-color lockup artwork.
+
+**Next.js**
 
 ```tsx
 import { TheMusicTreeByline, getOrgSiteHref } from "@behindthemusictree/assets/components";
@@ -54,6 +56,14 @@ import { TheMusicTreeByline, getOrgSiteHref } from "@behindthemusictree/assets/c
   variant="onDark"
   className="border border-white/15 bg-white/5 p-2 hover:bg-white/10"
 />
+```
+
+**Vite** — `getOrgSiteHref()` runs inside `node_modules`; Vite often does **not** replace `process.env` there, so **`process` is undefined** in the browser. Use **`parseOrgSiteHref`** with **`import.meta.env`** and inject the value in **`vite.config.ts`** (see [`playground/vite.config.ts`](playground/vite.config.ts)):
+
+```tsx
+import { TheMusicTreeByline, parseOrgSiteHref } from "@behindthemusictree/assets/components";
+
+<TheMusicTreeByline href={parseOrgSiteHref(import.meta.env.NEXT_PUBLIC_DOMAIN_NAME)} />
 ```
 
 BehindTheMusicTree logos (PNG):
