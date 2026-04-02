@@ -7,6 +7,7 @@ Start here for naming, formats, and where specs live.
 - [Naming](#naming)
 - [Brand assets (marks and lockups)](#brand-assets-marks-and-lockups)
 - [Colocated READMEs](#colocated-readmes)
+- [Playground (local preview)](#playground-local-preview)
 - [Breaking change (icons → brand)](#breaking-change-icons-brand)
 - [Published package contents](#published-package-contents)
 
@@ -24,6 +25,10 @@ File naming for those assets follows [`asset-naming.md`](asset-naming.md).
 
 - Banners — [`src/banners/README.md`](../src/banners/README.md) (**one `src/banners/<project-slug>/` per product**, naming, hero vs social, platform export matrix)
 - Favicon bundles — [`src/favicons/README.md`](../src/favicons/README.md) (layout, import path, recommended files, PWA sizes)
+
+## Playground (local preview)
+
+The repo includes a dev-only Vite app under [`playground/`](../playground/) to preview components and files under `dist/` (not published on npm). Setup and commands: **[`CONTRIBUTING.md` — Component and asset preview (playground)](../CONTRIBUTING.md#component-and-asset-preview-playground)**.
 
 ## Breaking change (icons → brand)
 

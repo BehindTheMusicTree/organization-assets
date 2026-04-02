@@ -1,0 +1,46 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Watch library (tsup)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Playground (build + Vite)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "playground"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Playground (Vite only)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "playground:dev"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Open playground in Chrome",
+      "url": "http://localhost:5174",
+      "webRoot": "${workspaceFolder}/playground"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Playground + Chrome",
+      "configurations": ["Playground (build + Vite)", "Open playground in Chrome"],
+      "stopAll": true
+    }
+  ]
+}

@@ -13,6 +13,8 @@ This directory holds **static brand identity** assets: marks (`-mark`), wordmark
 - [Preferred formats (in order)](#preferred-formats-in-order)
 - [Extensions](#extensions)
 - [Dimensions and resolution](#dimensions-and-resolution)
+  - [Lockups (`-lockup`)](#lockups--lockup)
+  - [Enclosed lockup (badge or pill)](#enclosed-lockup-badge-or-pill)
 - [Color, transparency, and background](#color-transparency-and-background)
 - [File size (practical targets)](#file-size-practical-targets)
 - [Checklist for new brand files](#checklist-for-new-brand-files)
@@ -38,7 +40,7 @@ Use explicit roles when possible:
 
 - `-mark`: symbol-only asset
 - `-wordmark`: text-only project name
-- `-lockup`: symbol + text combined
+- `-lockup`: symbol + text combined (see [lockup layouts](#lockups--lockup) below)
 - `-logo`: deprecated legacy role kept only for historical references
 
 ## Preferred formats (in order)
@@ -75,9 +77,21 @@ Think in **CSS pixels** for layout and **intrinsic** bitmap size for clarity on 
 
 ### Lockups (`-lockup`)
 
-- **Horizontal lockup (`-lockup-horizontal`)**: use for nav bars and footers; same sizing as wordmarks above (**96–200px** typical display width, export at **2×** or long edge **512–800px**).
-- **Stacked lockup (`-lockup-stacked`)**: use when vertical space is available; common display widths are **72–140px** in cards/empty states, exported at **2×**.
+A lockup is **symbol + wordmark composed as one unit** (fixed spacing and alignment). It is not a `-mark` (symbol alone) or `-wordmark` (text alone).
+
+- **Horizontal lockup (`-lockup-horizontal`)**: type and symbol side by side (or symbol leading); use for nav bars and footers; same sizing as wordmarks above (**96–200px** typical display width, export at **2×** or long edge **512–800px**).
+- **Stacked lockup (`-lockup-stacked`)**: symbol above or below the wordmark; use when vertical space fits; common display widths are **72–140px** in cards/empty states, exported at **2×**.
+- **Open / knockout lockup**: transparent background around the type and symbol—the artwork floats on whatever surface the UI provides.
 - If shipping only one lockup orientation, use `-lockup` without orientation suffix.
+
+### Enclosed lockup (badge or pill)
+
+An **enclosed lockup** is still a `-lockup`: the symbol and wordmark sit **inside a defined container** (rounded rectangle, capsule/pill, chip). The fill, stroke, and corner radius are part of the approved identity—not something to recreate only in CSS unless guidelines say so.
+
+- Use the same **`-lockup`** role and **`-horizontal` / `-stacked`** orientation rules as open lockups.
+- When a project ships **both** an open (knockout) horizontal lockup and a pill-enclosed one, disambiguate in the filename with the **`…-badge`** variant (see [`asset-naming.md`](../../docs/asset-naming.md)): e.g. `the-music-tree-lockup-horizontal-badge.png` alongside `the-music-tree-lockup-horizontal.png`.
+- **Export the full container** in the file: rounded ends must not be clipped; include **safe padding** inside the canvas so the shape clears the image edges (see [Color, transparency, and background](#color-transparency-and-background)).
+- **Typical aspect ratios** for chips in headers are often moderately wide (for example **~3–4∶1** width∶height); size to the UI slot and export raster at **2×** for retina.
 
 ### Square marks (`-mark`, `-icon`)
 

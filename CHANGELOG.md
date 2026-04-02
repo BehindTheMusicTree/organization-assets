@@ -44,44 +44,22 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
-## [2.0.1] - 2026-04-02
-
-### CI
-
-- **GitHub Release**: The publish workflow now creates a **GitHub Release** for each `v*` tag (auto-generated notes plus a link to `CHANGELOG.md`) so repository watchers can get release notifications.
-
-## [2.0.0] - 2026-04-02
-
-### BREAKING CHANGE
-
-- **Brand export path**: Removed `./icons` subpath. Static brand assets are under `./brand` (source: `src/brand/`). Update imports from `@behindthemusictree/assets/icons/...` to `@behindthemusictree/assets/brand/...`. See [`docs/migrations/icons-to-brand.md`](docs/migrations/icons-to-brand.md). Release as **major** version.
-- **Brand folder layout**: Marks and lockups use **`./brand/<project-slug>/`** per product (aligned with favicon bundles), not a single umbrella folder mixing every product under `behind-the-music-tree/`. Example: `brand/audiometa/audiometa-mark.png` replaces `brand/behind-the-music-tree/audiometa-mark.png`. **Breaking** for consumers using umbrella paths; see migration doc.
-
-### Added
-
-- **Banners export**: `"./banners/*"` in `package.json`; build copies each `src/banners/<project-slug>/` into `dist/banners/` (parity with per-project `brand/` and `favicons/`).
-
 ### Changed
 
-- **Logo naming migration**: Renamed symbol-only assets from `*-logo.*` to `*-mark.*` under `src/brand/<project-slug>/` to align role semantics
+- **TheMusicTreeByline** (breaking): single rectangular clickable lockup — **24×24** mark + **“By TheMusicTree”** label, default **36px** min-height, **8px / 12px** padding, **8px** radius (~**170–200px** wide at 13px type). Removed `linkClassName` and `prefix`. Added **`variant="onDark"`** (inverts the black SVG on dark backgrounds).
 
 ### Documentation
 
+- **README**: Added table of contents to root [`README.md`](README.md).
+- **Brand**: [`src/brand/README.md`](src/brand/README.md) and [`docs/asset-naming.md`](docs/asset-naming.md) — enclosed (badge/pill) lockups vs open lockups; `…-lockup-horizontal-badge` when both variants ship.
+- **README**: TheMusicTreeByline dimensions and `variant` example.
 - **README**: Added ecosystem section with portfolio link (`themusictree.org`) and clarified portfolio source (`the-music-tree-frontend`) for this shared package.
-- **Logo naming docs and Cursor rules**: Clarified role semantics (`-mark` for symbol-only, `-lockup` for symbol+text, `-wordmark` for text-only) and deprecated legacy `-logo` naming
-- **Documentation index**: Added `docs/README.md` linking global guides and colocated `src/*/README.md` specs; removed redundant `docs/banner-assets.md` stub
-- **Banner docs and Cursor rules**: Canonical banner spec in `src/banners/README.md`; **one directory per project** under `src/banners/<project-slug>/`, import path `./banners/…`, documented alongside brand/favicons
-- **Banner platform standards**: Documented social media export sizes and platform-specific filename suffixes (X, LinkedIn, Facebook, Mastodon, Instagram)
-- **Brand folder and docs**: `src/brand/README.md`, migration guide `docs/migrations/icons-to-brand.md`; Cursor rule `static-assets-and-docs.mdc` (replaces `static-icons-and-docs.mdc`)
-- **Logo vs favicon docs**: `docs/logo-assets.md` scoped to `src/brand/` marks/lockups; favicon bundle layout and PWA sizes moved to `src/favicons/README.md`
-- **Documentation TOC**: Added GitHub-style **Table of contents** to multi-section Markdown across the repo (root `README.md`, `src/*/README.md`, `docs/`); Cursor rules and `CONTRIBUTING.md` note the requirement (`CHANGELOG.md` and one-section stubs exempt)
-- **Brand docs colocation**: Full mark/lockup format and dimension spec moved to `src/brand/README.md`; removed `docs/logo-assets.md`; brand overview and naming links live in [`docs/README.md`](docs/README.md) (`asset-naming.md` remains the detailed naming guide)
 
 ## [1.1.2] - 2026-04-01
 
 ### Added
 
-- **Audiometa greyscale logo**: `audiometa-mark-greyscale.svg` (sRGB luminance filter) for contexts that need a committed greyscale mark
+- **Audiometa greyscale logo**: `audiometa-logo-greyscale.svg` (sRGB luminance filter) for contexts that need a committed greyscale mark
 
 ### Documentation
 

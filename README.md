@@ -1,6 +1,6 @@
 # @behindthemusictree/assets
 
-Shared assets (components, design tokens, brand artwork, styles, hooks, utils) for React projects across the organization.
+Shared assets (components, design tokens, icons, styles, hooks, utils) for React projects across the organization.
 
 ## Table of contents
 
@@ -16,7 +16,7 @@ Shared assets (components, design tokens, brand artwork, styles, hooks, utils) f
 
 Built inside the **[BehindTheMusicTree](https://github.com/BehindTheMusicTree)** ecosystem.
 
-Want the big picture? Explore the full project universe on **[themusictree.org](https://themusictree.org)**. This package is **`@behindthemusictree/assets`** — the shared components, tokens, and brand assets used by our web apps.
+Want the big picture? Explore the full project universe on **[themusictree.org](https://themusictree.org)**. This package is **`@behindthemusictree/assets`** — the shared components, tokens, and icons used by our web apps.
 
 The portfolio website content lives in **[the-music-tree-frontend](https://github.com/BehindTheMusicTree/the-music-tree-frontend)**; this README focuses on developing, versioning, and publishing this package.
 
@@ -24,10 +24,8 @@ The portfolio website content lives in **[the-music-tree-frontend](https://githu
 
 - **components** – Reusable React components (e.g. `Button`)
 - **tokens** – Design tokens (colors, spacing, radius) as CSS vars and JS
-- **brand** – Static brand marks and lockups (`src/brand/`, canonical spec [`src/brand/README.md`](src/brand/README.md); naming [`docs/asset-naming.md`](docs/asset-naming.md))
-- **favicons** – Per-project favicon bundles (`src/favicons/<project>/`, [`src/favicons/README.md`](src/favicons/README.md))
-- **banners** – Optional hero/social artwork (`src/banners/<project>/`, [`src/banners/README.md`](src/banners/README.md))
-- **docs** – [Asset documentation index](docs/README.md): **naming** ([`asset-naming.md`](docs/asset-naming.md)), **brand overview** (marks/lockups → [`src/brand/README.md`](src/brand/README.md)), and links to colocated `src/*/README.md` specs
+- **icons** – Raster or SVG marks ([`docs/asset-naming.md`](docs/asset-naming.md), [`docs/logo-assets.md`](docs/logo-assets.md))
+- **favicons** – Per-project favicon bundles (`src/favicons/<project>/`)
 - **styles** – Global resets and shared CSS (import tokens)
 - **hooks** – Shared React hooks
 - **utils** – Helpers and constants
@@ -56,11 +54,21 @@ import { colors, spacing } from "@behindthemusictree/assets/tokens";
 import "@behindthemusictree/assets/styles";
 ```
 
-BehindTheMusicTree marks (PNG):
+**TheMusicTreeByline** — one clickable rectangle (logo + “By TheMusicTree”). Defaults: **36px** min height, **24×24px** mark, **8px / 12px** padding, **8px** corner radius, **~8px** gap — total width typically **~170–200px** at 13px label. Use **`variant="onDark"`** on dark headers so the black SVG mark is inverted and visible.
 
 ```tsx
-import orgLogo from "@behindthemusictree/assets/brand/behind-the-music-tree/behind-the-music-tree-mark.png";
-import productMark from "@behindthemusictree/assets/brand/audiometa/audiometa-mark.svg";
+import { TheMusicTreeByline } from "@behindthemusictree/assets/components";
+
+<TheMusicTreeByline
+  variant="onDark"
+  className="border border-white/15 bg-white/5 text-gray-200 hover:bg-white/10"
+/>
+```
+
+BehindTheMusicTree logos (PNG):
+
+```tsx
+import orgLogo from "@behindthemusictree/assets/icons/behind-the-music-tree/behind-the-music-tree-logo.png";
 ```
 
 Project favicon bundle:
@@ -69,13 +77,7 @@ Project favicon bundle:
 import faviconSvg from "@behindthemusictree/assets/favicons/behind-the-music-tree/favicon.svg";
 ```
 
-Banner (per-project folder under `./banners/`):
-
-```tsx
-import hero from "@behindthemusictree/assets/banners/grow-the-music-tree/grow-the-music-tree-banner-mobile.webp";
-```
-
-Asset naming and brand specs: start at [`docs/README.md`](docs/README.md); detailed naming in [`docs/asset-naming.md`](docs/asset-naming.md); mark/lockup formats in [`src/brand/README.md`](src/brand/README.md).
+Naming and logo export rules: [`docs/asset-naming.md`](docs/asset-naming.md), [`docs/logo-assets.md`](docs/logo-assets.md).
 
 Or from the main entry:
 

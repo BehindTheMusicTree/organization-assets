@@ -8,6 +8,7 @@ For banner-specific guidance, see [`src/banners/README.md`](../src/banners/READM
 ## Table of contents
 
 - [Rules](#rules)
+- [Lockup kinds (open vs enclosed)](#lockup-kinds-open-vs-enclosed)
 - [Examples](#examples)
 - [Placement for logo families](#placement-for-logo-families)
 - [Checklist for new assets](#checklist-for-new-assets)
@@ -21,7 +22,7 @@ For banner-specific guidance, see [`src/banners/README.md`](../src/banners/READM
 3. **Role before the extension** — Use a short, consistent suffix so the kind of asset is obvious:
    - `-mark` — Symbol-only / app icon style
    - `-wordmark` — Text-only project name
-   - `-lockup` — Symbol + text combined
+   - `-lockup` — Symbol + text combined (see [Lockup kinds](#lockup-kinds-open-vs-enclosed))
    - `-logo` — Deprecated legacy role (use only when documenting old paths)
    - `-icon` — Small UI glyph (toolbar, list row)
    - `-illustration` — Non-logo artwork
@@ -33,6 +34,7 @@ For banner-specific guidance, see [`src/banners/README.md`](../src/banners/READM
 5. **Variants** — When you add themes or densities, append before the extension:
    - Theme: `product-lockup-dark.png`, `product-lockup-light.png`
    - Orientation (only when both are shipped): `product-lockup-horizontal.svg`, `product-lockup-stacked.svg`
+   - **Badge / enclosed** (only when both an open and an enclosed lockup ship for the same orientation): `product-lockup-horizontal-badge.png` — pill, capsule, or rounded chip behind the mark + type (see [Lockup kinds](#lockup-kinds-open-vs-enclosed) and [`src/brand/README.md`](../src/brand/README.md#enclosed-lockup-badge-or-pill))
    - Greyscale (optional; only when a committed asset is required): `product-lockup-greyscale.svg` — see [`src/brand/README.md`](../src/brand/README.md) for when to add this versus using CSS.
    - Raster scale: `product-lockup@2x.png` (only if you ship multiple bitmaps; prefer SVG when possible)
 
@@ -43,6 +45,13 @@ For banner-specific guidance, see [`src/banners/README.md`](../src/banners/READM
 9. **Banners use dedicated folders** — Keep one banner set per project in `src/banners/<project-slug>/` (see [`src/banners/README.md`](../src/banners/README.md)).
 10. **Brand artwork formats** — Formats, dimensions, and greyscale rules for `src/brand/` are in [`src/brand/README.md`](../src/brand/README.md) (overview in [`docs/README.md`](README.md#brand-assets-marks-and-lockups)).
 
+## Lockup kinds (open vs enclosed)
+
+All of these use the **`-lockup`** role (plus **`-horizontal`** or **`-stacked`** when you ship more than one orientation).
+
+- **Open (knockout) lockup** — Symbol and wordmark on a **transparent** background; the UI supplies the surface color.
+- **Enclosed (badge / pill) lockup** — Same composition, but inside a **defined shape** (white or tinted pill, rounded rectangle, chip). The container is part of the asset. Filename: add the **`…-badge`** segment when both open and enclosed versions exist for that orientation (for example `the-music-tree-lockup-horizontal-badge.png` vs `the-music-tree-lockup-horizontal.png`). Full spec: [`src/brand/README.md`](../src/brand/README.md#enclosed-lockup-badge-or-pill).
+
 ## Examples
 
 | Good | Avoid |
@@ -51,6 +60,7 @@ For banner-specific guidance, see [`src/banners/README.md`](../src/banners/READM
 | `audiometa-lockup.svg` | `audiometa-logo-with-text.svg` |
 | `audiometa-wordmark.svg` | `audiometa-text.svg` |
 | `audiometa-lockup-horizontal.svg` | `audiometa-horizontal.svg` |
+| `the-music-tree-lockup-horizontal-badge.png` | `tmt-pill-logo.png` |
 | `behind-the-music-tree-mark.png` | `btmt-logo.png`, `BTMT.png` |
 | `grow-the-music-tree-mark.png` | `gtmt.png` |
 | `brand/hear-the-music-tree/hear-the-music-tree-mark.png` | `brand/cv/htmt.png` |
