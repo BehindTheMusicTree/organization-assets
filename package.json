@@ -60,9 +60,9 @@
     "src/brand/README.md"
   ],
   "scripts": {
-    "build": "tsup && cp src/tokens/*.css dist/tokens/ && cp -r src/styles dist/ && cp -r src/brand/audiometa src/brand/behind-the-music-tree src/brand/grow-the-music-tree src/brand/hear-the-music-tree src/brand/the-music-tree dist/brand/ && cp -r src/favicons dist/ && mkdir -p dist/banners && find src/banners -mindepth 1 -maxdepth 1 -type d -exec cp -r {} dist/banners/ \\;",
-    "dev": "tsup --watch",
-    "playground": "npm run build && npm run dev --prefix playground",
+    "build": "node scripts/assert-org-url.mjs && tsup && cp src/tokens/*.css dist/tokens/ && cp -r src/styles dist/ && cp -r src/brand/audiometa src/brand/behind-the-music-tree src/brand/grow-the-music-tree src/brand/hear-the-music-tree src/brand/the-music-tree dist/brand/ && cp -r src/favicons dist/ && mkdir -p dist/banners && find src/banners -mindepth 1 -maxdepth 1 -type d -exec cp -r {} dist/banners/ \\;",
+    "dev": "node scripts/assert-org-url.mjs && tsup --watch",
+    "playground": "node scripts/run-playground.mjs",
     "playground:dev": "npm run dev --prefix playground",
     "playground:install": "npm install --prefix playground",
     "test": "echo \"Error: no test specified\" && exit 1",

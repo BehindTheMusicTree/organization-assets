@@ -44,19 +44,21 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Changed
+
+- **TheMusicTreeByline** / **TheMusicTreeHorizontalLink** (breaking): **`href`** is no longer a prop; **`ORG_URL`** is **required only when building this package** (no default). **tsup `define`** embeds **`ORG_URL`** into published **`dist/`** so **consuming apps** need no org env. **`getOrgSiteHref`** removed; use **`resolveOrgSiteHref()`** if you need the same string outside the component. **`npm run build`** / **`npm run dev`** run **`scripts/assert-org-url.mjs`**; **`npm run playground`** uses **`scripts/run-playground.mjs`**. **Publish** workflow sets **`ORG_URL: ${{ vars.DOMAIN_NAME }}`**. **`DEFAULT_ORG_SITE_HREF`** removed.
+- **Brand (The Music Tree)**: **`the-music-tree-lockup-horizontal-dark.svg`** — explicit knockout metadata (**`fill="none"`** root, comment); same paths as before.
+- **Brand (The Music Tree)**: **`the-music-tree-lockup-horizontal.svg`** — same knockout header treatment as the dark SVG (explicit transparent background, **`fill="none"`** root).
+- **TheMusicTreeByline** / **TheMusicTreeHorizontalLink**: both variants use **SVG knockouts** (**`the-music-tree-lockup-horizontal.svg`** / **`-dark.svg`**) for a transparent plate; link and **`<img>`** set **`backgroundColor: transparent`**. Web-sized **PNG** knockouts remain for raster-only use.
+
 ### Documentation
 
-- **Playground**: explicit **Brand lockup PNGs** preview (default + dark knockout); **Vite** watches the linked **`@behindthemusictree/assets`** package so **`dist/`** changes refresh; intro text notes rebuild/restart when the catalog looks stale.
+- **Playground**: **TheMusicTreeHorizontalLink** variant grid (**default** vs **`onDark`**, checkerboard + dark tiles, code snippets); **Brand lockup PNG** raster row; **Vite** watches the linked package **`dist/`**; intro text notes rebuild/restart when the catalog looks stale.
 - **CONTRIBUTING** / **`.cursor/rules`**: new components and published assets **must** be reflected in the **`playground/`** catalog (same change as the feature); **`organization-assets-package.mdc`** documents the requirement.
 
 ### Added
 
 - **Brand (The Music Tree)**: **`the-music-tree-lockup-horizontal-dark.png`** — **800×250** RGBA knockout (light ink, transparent background), aligned with the web-sized default lockup PNG.
-
-### Changed
-
-- **Brand (The Music Tree)**: **`the-music-tree-lockup-horizontal-dark.svg`** — explicit knockout metadata (**`fill="none"`** root, comment); same paths as before.
-- **TheMusicTreeByline** / **TheMusicTreeHorizontalLink**: **`variant="onDark"`** uses the dark **PNG** (knockout raster) instead of the dark SVG data URL.
 
 ## [3.0.2] - 2026-04-03
 

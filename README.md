@@ -78,26 +78,15 @@ import { colors, spacing } from "@behindthemusictree/assets/tokens";
 import "@behindthemusictree/assets/styles";
 ```
 
-**TheMusicTreeByline** — single clickable image: **`the-music-tree-lockup-horizontal.png`** only (no extra text node). Default display height **56px**, width **auto**. Pass **`href`** from **`getOrgSiteHref()`** (Next.js / Node) or **`parseOrgSiteHref(import.meta.env.NEXT_PUBLIC_DOMAIN_NAME)`** (Vite — see below). Set **`NEXT_PUBLIC_DOMAIN_NAME`** from GitHub **`DOMAIN_NAME`**. **No default:** missing values throw so the build fails. Use **`variant="onDark"`** for dark surfaces — it uses **`the-music-tree-lockup-horizontal-dark.png`** (web-sized **RGBA** knockout: light ink only, transparent elsewhere). **`the-music-tree-lockup-horizontal-dark.svg`** ships for vector use.
-
-**Next.js**
+**TheMusicTreeByline** — single clickable **SVG knockout** (transparent outside logo + wordmark; link and image use **`backgroundColor: transparent`**). The **`href`** is **not a prop**: when **this package** is built for publish, **`ORG_URL`** (hostname or full **`https://`** URL) is read once and **embedded in `dist/`** via **tsup `define`**. **Consuming apps** normally need **no** **`ORG_URL`** env — they install a pre-built package from GitHub Packages. **Maintainers:** set **`ORG_URL`** when running **`npm run build`** / **`npm run dev`** here, and configure GitHub repository variable **`DOMAIN_NAME`** for **`.github/workflows/publish.yml`** (see **Publishing** below). **`resolveOrgSiteHref()`** and **`parseOrgSiteHref()`** are exported if you need the same URL string in app code. Default variant uses **`the-music-tree-lockup-horizontal.svg`**; **`variant="onDark"`** uses **`the-music-tree-lockup-horizontal-dark.svg`**. Default display height **56px**, width **auto**. **Web-sized PNGs** (**`the-music-tree-lockup-horizontal.png`** / **`-dark.png`**) ship for raster-only contexts (email, CMS); import from **`@behindthemusictree/assets/brand/the-music-tree/...`**.
 
 ```tsx
-import { TheMusicTreeByline, getOrgSiteHref } from "@behindthemusictree/assets/components";
+import { TheMusicTreeByline } from "@behindthemusictree/assets/components";
 
 <TheMusicTreeByline
-  href={getOrgSiteHref()}
   variant="onDark"
   className="border border-white/15 bg-white/5 p-2 hover:bg-white/10"
 />
-```
-
-**Vite** — `getOrgSiteHref()` runs inside `node_modules`; Vite often does **not** replace `process.env` there, so **`process` is undefined** in the browser. Use **`parseOrgSiteHref`** with **`import.meta.env`** and inject the value in **`vite.config.ts`** (see [`playground/vite.config.ts`](playground/vite.config.ts)):
-
-```tsx
-import { TheMusicTreeByline, parseOrgSiteHref } from "@behindthemusictree/assets/components";
-
-<TheMusicTreeByline href={parseOrgSiteHref(import.meta.env.NEXT_PUBLIC_DOMAIN_NAME)} />
 ```
 
 BehindTheMusicTree logos (PNG):
@@ -132,15 +121,19 @@ npm run release -- patch   # or minor / major
 
 This bumps the version, stamps the changelog, commits, tags, and pushes. Publishing starts automatically. See [CONTRIBUTING.md](CONTRIBUTING.md#6-releasing-for-maintainers) for details.
 
+The **Publish** workflow passes **`ORG_URL: ${{ vars.DOMAIN_NAME }}`** into **`npm run build`**. Define the **`DOMAIN_NAME`** repository variable on GitHub (hostname or URL) or the build step fails. **tsup** inlines that value into **`dist/`** as the org link target for **TheMusicTreeByline**.
+
 ## Build
 
 ```bash
 npm install
-npm run build
+ORG_URL=themusictree.org npm run build
 ```
 
-Output is in `dist/`.
+**`ORG_URL`** is required when building **this repository** (enforced by **`scripts/assert-org-url.mjs`**). It is **not** required in downstream apps that install the published package. Output is in **`dist/`**.
 
 ## Local development
 
-From this repo: `npm link`. In your React app: `npm link @behindthemusictree/assets`. Use `npm run dev` here for watch mode.
+From this repo: `npm link`. In your React app: `npm link @behindthemusictree/assets`. Use **`ORG_URL=… npm run dev`** for tsup watch (same **`assert-org-url`** gate as **`npm run build`**).
+
+**Playground:** `npm run playground` runs a full **`npm run build`** then the Vite dev server; it sets **`ORG_URL`** from your shell or from **`playground/.env`**. For a manual build: **`ORG_URL=… npm run build`**.

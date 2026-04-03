@@ -131,9 +131,11 @@ One-time setup after clone (or when `playground/package.json` dependencies chang
 npm run playground:install
 ```
 
-Copy `playground/.env.example` to `playground/.env` and set **`NEXT_PUBLIC_DOMAIN_NAME`** (same value you use for GitHub **`DOMAIN_NAME`**). The playground Vite config requires it; **`npm run dev`** / **`build`** in `playground/` fail if it is missing. The catalog uses **`parseOrgSiteHref(import.meta.env.NEXT_PUBLIC_DOMAIN_NAME)`** (not **`getOrgSiteHref()`**) so env is injected into app source; if the UI stays blank after changing env, remove **`playground/node_modules/.vite`** and restart the dev server.
+Copy `playground/.env.example` to `playground/.env` and set **`ORG_URL`** if you use **`npm run playground`** ( **`scripts/run-playground.mjs`** passes it into the root **`npm run build`**). The published **`@behindthemusictree/assets`** under **`node_modules/.../dist/`** already embeds the org URL from that build; the playground Vite config does **not** need **`ORG_URL`**. For **`npm run dev`** / **`build`** in `playground/` alone, **`ORG_URL`** is not read by Vite. If the UI stays blank after changing **`dist/`**, remove **`playground/node_modules/.vite`** and restart the dev server.
 
-Run a build and start the dev server (default port **5174**):
+**Maintainers:** define repository variable **`DOMAIN_NAME`** on GitHub so **`.github/workflows/publish.yml`** can pass **`ORG_URL`** into **`npm run build`** ( **tsup** inlines it into **`dist/`** ).
+
+Run a build and start the dev server (default port **5174**). **`npm run playground`** uses **`scripts/run-playground.mjs`**, which sets **`ORG_URL`** from your environment or from **`playground/.env`** before **`npm run build`**:
 
 ```bash
 npm run playground

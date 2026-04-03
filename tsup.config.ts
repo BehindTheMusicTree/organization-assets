@@ -1,5 +1,8 @@
 import { defineConfig } from "tsup";
 
+/** Inlined into published JS/CJS when this package is built (set ORG_URL / DOMAIN_NAME in CI). */
+const orgUrlLiteral = JSON.stringify(process.env.ORG_URL ?? "");
+
 export default defineConfig({
   entry: {
     index: "src/index.ts",
@@ -15,6 +18,9 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   external: ["react", "react-dom"],
+  define: {
+    "process.env.ORG_URL": orgUrlLiteral,
+  },
   loader: {
     ".svg": "dataurl",
     ".png": "dataurl",

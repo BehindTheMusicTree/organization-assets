@@ -3,9 +3,9 @@ export {
   type ButtonProps,
   TheMusicTreeByline,
   TheMusicTreeHorizontalLink,
-  getOrgSiteHref,
   ORG_URL,
   parseOrgSiteHref,
+  resolveOrgSiteHref,
   type TheMusicTreeBylineProps,
   type TheMusicTreeHorizontalLinkProps,
 } from "./components";

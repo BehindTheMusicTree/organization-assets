@@ -1,27 +1,26 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 /**
- * Web-sized rasters (`800×250`, RGBA knockout); full-resolution master: `the-music-tree-lockup-horizontal-full.png`.
- * Vector dark variant: `the-music-tree-lockup-horizontal-dark.svg`. Do not swap for another mark.
+ * Renders **SVG knockouts** (transparent outside the artwork). Raster exports for email/CMS: **`the-music-tree-lockup-horizontal.png`** / **`-dark.png`**; full master: **`the-music-tree-lockup-horizontal-full.png`**. Do not swap for another mark.
  */
-import theMusicTreeLockupHorizontalDark from "../../brand/the-music-tree/the-music-tree-lockup-horizontal-dark.png";
-import theMusicTreeLockupHorizontal from "../../brand/the-music-tree/the-music-tree-lockup-horizontal.png";
+import theMusicTreeLockupHorizontalDark from "../../brand/the-music-tree/the-music-tree-lockup-horizontal-dark.svg";
+import theMusicTreeLockupHorizontal from "../../brand/the-music-tree/the-music-tree-lockup-horizontal.svg";
 
 /**
- * Env var name for the org site (Next.js: must be `NEXT_PUBLIC_*`).
- * Mirror GitHub **`DOMAIN_NAME`** into **`NEXT_PUBLIC_DOMAIN_NAME`** for client bundles.
+ * Environment variable name read when **this package** is built (`npm run build` / publish).
+ * The value is **embedded in published `dist/`**; consuming apps do not set **`ORG_URL`** unless they bundle a **local checkout** of this repo without a normal build.
  */
-export const ORG_URL = "NEXT_PUBLIC_DOMAIN_NAME" as const;
+export const ORG_URL = "ORG_URL" as const;
 
 /**
- * Build **`href`** from a hostname or full URL string. Throws if empty.
- * In **Vite**, read the value from **`import.meta.env`** (with `define` in `vite.config`) — not **`getOrgSiteHref()`**, because dependency code often keeps `process.env` and **`process` is undefined** in the browser.
+ * Normalize a hostname or full URL to an **`https://…/`** href.
+ * Use **`resolveOrgSiteHref()`** for the link target; keep this for tests or custom strings.
  */
 export function parseOrgSiteHref(value: string | undefined): string {
   const raw = value?.trim();
   if (!raw) {
     throw new Error(
-      `Missing required environment variable ${ORG_URL} (set from GitHub DOMAIN_NAME in CI).`,
+      `Missing organization site URL: set environment variable ${ORG_URL} when building @behindthemusictree/assets (e.g. map GitHub repository variable DOMAIN_NAME into ORG_URL in the publish workflow).`,
     );
   }
   return raw.startsWith("http")
@@ -29,26 +28,33 @@ export function parseOrgSiteHref(value: string | undefined): string {
     : `https://${raw.replace(/\/$/, "")}/`;
 }
 
-/** Reads **`NEXT_PUBLIC_DOMAIN_NAME`** via **`process.env`** (works with Next.js inlining). Vite: use **`parseOrgSiteHref`** instead. */
-export function getOrgSiteHref(): string {
-  return parseOrgSiteHref(process.env.NEXT_PUBLIC_DOMAIN_NAME);
+function readOrgUrlFromProcess(): string | undefined {
+  // Use `process.env.ORG_URL` literally so tsup/esbuild can replace it when this package is built.
+  const v = process.env.ORG_URL?.trim();
+  return v || undefined;
+}
+
+/**
+ * Organization site **`href`**. In **published** installs the URL is already inlined from **`ORG_URL`** at package build time.
+ */
+export function resolveOrgSiteHref(): string {
+  return parseOrgSiteHref(readOrgUrlFromProcess());
 }
 
 /**
  * Clickable **`the-music-tree-lockup-horizontal`** artwork only (no separate text node).
- * **`href`** must be the organization site URL — use **`getOrgSiteHref()`** (Next) or **`parseOrgSiteHref(…)`** (Vite).
+ * **`href`** is fixed in published **`dist/`** (from **`ORG_URL`** when the package was built) — not a prop.
+ * Transparent knockout only — **`backgroundColor: transparent`** on the link and image so host CSS cannot paint a plate behind the lockup.
  * Hover and keyboard **`:focus-visible`** slightly change the image aspect (**`transform`**); focus uses a **2px** ring (**`currentColor`**).
  */
 export type TheMusicTreeBylineProps = {
-  /** Organization site URL (no default — set **`NEXT_PUBLIC_DOMAIN_NAME`** / **`DOMAIN_NAME`**). */
-  href: string;
   /** Applied to the outer `<a>`. */
   className?: string;
   /** Lockup image sizing (default height **56px**, width **auto**). */
   imageClassName?: string;
   imageStyle?: CSSProperties;
   /**
-   * `onDark`: light ink, transparent knockout (**`the-music-tree-lockup-horizontal-dark.png`**; SVG also ships).
+   * `onDark`: light ink, transparent knockout (**`the-music-tree-lockup-horizontal-dark.svg`**). Raster **`-dark.png`** ships for non-SVG contexts.
    */
   variant?: "default" | "onDark";
 };
@@ -58,6 +64,7 @@ const anchorStyle: CSSProperties = {
   lineHeight: 0,
   textDecoration: "none",
   borderRadius: "8px",
+  backgroundColor: "transparent",
 };
 
 const defaultImgStyle: CSSProperties = {
@@ -65,6 +72,7 @@ const defaultImgStyle: CSSProperties = {
   height: "56px",
   width: "auto",
   transformOrigin: "center",
+  backgroundColor: "transparent",
 };
 
 /** Slightly wider vs tall on hover/focus — non-uniform scale changes perceived aspect ratio. */
@@ -73,7 +81,6 @@ const imgTransformHover: CSSProperties = {
 };
 
 export function TheMusicTreeByline({
-  href,
   className,
   imageClassName,
   imageStyle,
@@ -81,6 +88,8 @@ export function TheMusicTreeByline({
 }: TheMusicTreeBylineProps) {
   const [hovered, setHovered] = useState(false);
   const [focusVisible, setFocusVisible] = useState(false);
+
+  const href = useMemo(() => resolveOrgSiteHref(), []);
 
   const src =
     variant === "onDark"

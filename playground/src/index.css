@@ -151,15 +151,89 @@ body {
   margin-top: 0.2rem;
 }
 
-.asset-strip-dark {
-  background: #1e1e1e;
-  padding: 1rem;
-  border-radius: var(--radius-md, 8px);
+.lockup-showcase {
   margin-bottom: 1rem;
 }
 
-.asset-strip-dark .demo-label {
-  color: #aaa;
+.lockup-showcase__intro {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted, #666);
+  max-width: 42rem;
+}
+
+.lockup-showcase__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 1rem;
+}
+
+.lockup-showcase__tile {
+  border-radius: var(--radius-md, 8px);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  align-items: flex-start;
+}
+
+/* Checkerboard shows knockout transparency on the default variant */
+.lockup-showcase__tile--light {
+  background-color: #f0f0f0;
+  background-image:
+    linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
+    linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
+    linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
+  background-size: 10px 10px;
+  background-position:
+    0 0,
+    0 5px,
+    5px -5px,
+    -5px 0;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.06);
+}
+
+.lockup-showcase__tile--dark {
+  background: #1e1e1e;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+}
+
+.lockup-showcase__tile-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.lockup-showcase__tile--light .lockup-showcase__tile-label {
+  color: #444;
+}
+
+.lockup-showcase__tile--dark .lockup-showcase__tile-label {
+  color: #c8c8c8;
+}
+
+.lockup-showcase__code {
+  display: block;
+  font-size: 0.65rem;
+  word-break: break-all;
+  color: var(--color-text-muted, #666);
+  padding: 0.35rem 0.5rem;
+  background: rgb(0 0 0 / 0.04);
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.lockup-showcase__tile--dark .lockup-showcase__code {
+  color: #bbb;
+  background: rgb(255 255 255 / 0.08);
+}
+
+.lockup-showcase__sample {
+  line-height: 0;
+  padding-top: 0.25rem;
 }
 
 .lockup-raster-preview__pair {

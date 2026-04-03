@@ -4,11 +4,7 @@ import {
   faviconAssets,
 } from "./distAssetGlobs";
 import { AssetFigure } from "./AssetFigure";
-import {
-  Button,
-  parseOrgSiteHref,
-  TheMusicTreeHorizontalLink,
-} from "@behindthemusictree/assets/components";
+import { Button, TheMusicTreeHorizontalLink } from "@behindthemusictree/assets/components";
 import lockupDarkPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal-dark.png?url";
 import lockupDefaultPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal.png?url";
 
@@ -47,7 +43,6 @@ export default function App() {
   const brandEntries = sortedEntries(brandAssets);
   const bannerEntries = sortedEntries(bannerAssets);
   const faviconEntries = sortedEntries(faviconAssets);
-  const orgHref = parseOrgSiteHref(import.meta.env.NEXT_PUBLIC_DOMAIN_NAME);
 
   return (
     <div className="playground">
@@ -57,8 +52,10 @@ export default function App() {
         <code>node_modules/…/dist/</code>. After changing brand files or the
         library build, run <code>npm run build</code> at the repo root, then
         refresh this app (or restart <code>npm run dev</code> if the catalog
-        still looks stale). Raster and SVG previews use each file’s natural
-        dimensions (wide assets scroll inside the card).
+        still looks stale). The org link target is **embedded in `dist/`** when you run{" "}
+        <code>npm run build</code> at the repo root (see <code>ORG_URL</code> in{" "}
+        <code>playground/.env</code> for <code>npm run playground</code>). Raster and SVG previews
+        use each file’s natural dimensions (wide assets scroll inside the card).
       </p>
 
       <section className="section" aria-labelledby="components-heading">
@@ -68,19 +65,44 @@ export default function App() {
           <Button variant="primary">Primary</Button>
           <Button variant="secondary">Secondary</Button>
         </div>
-        <div className="demo-row">
-          <span className="demo-label">TheMusicTreeHorizontalLink → org</span>
-          <TheMusicTreeHorizontalLink href={orgHref} />
-        </div>
-        <div className="asset-strip-dark">
-          <span className="demo-label">Horizontal lockup on dark</span>
-          <div className="demo-row">
-            <TheMusicTreeHorizontalLink href={orgHref} variant="onDark" />
+        <div className="lockup-showcase">
+          <span className="demo-label">
+            TheMusicTreeHorizontalLink (TheMusicTreeByline — same component)
+          </span>
+          <p className="lockup-showcase__intro">
+            SVG knockouts; <code>href</code> is baked into published <code>dist/</code> when
+            the package is built (not a prop). TheMusicTreeByline is an export alias with
+            the same props and behavior. Hover or tab for focus styles.
+          </p>
+          <div className="lockup-showcase__grid">
+            <div className="lockup-showcase__tile lockup-showcase__tile--light">
+              <span className="lockup-showcase__tile-label">
+                default — light UI
+              </span>
+              <code className="lockup-showcase__code">
+                &lt;TheMusicTreeHorizontalLink /&gt;
+              </code>
+              <div className="lockup-showcase__sample">
+                <TheMusicTreeHorizontalLink />
+              </div>
+            </div>
+            <div className="lockup-showcase__tile lockup-showcase__tile--dark">
+              <span className="lockup-showcase__tile-label">
+                variant onDark — dark UI
+              </span>
+              <code className="lockup-showcase__code">
+                variant=&quot;onDark&quot;
+              </code>
+              <div className="lockup-showcase__sample">
+                <TheMusicTreeHorizontalLink variant="onDark" />
+              </div>
+            </div>
           </div>
         </div>
+
         <div className="demo-row lockup-raster-preview">
           <span className="demo-label">
-            Brand lockup PNGs (from dist — knockout on transparent)
+            Brand lockup PNGs (dist — raster knockouts for non-React)
           </span>
           <div className="lockup-raster-preview__pair">
             <figure className="lockup-raster-preview__figure">
