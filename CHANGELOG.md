@@ -44,6 +44,16 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [4.1.0] - 2026-04-03
+
+### Added
+
+- **Components (social)**: SVG icons (**`IconBookOpen`**, **`IconGithub`**, **`IconPypi`**, **`IconLinkedIn`**, **`IconTwitter`**, **`IconMastodon`**, **`IconYouTube`**, **`IconEmail`**, **`IconWebsite`**, **`IconIssue`**, **`IconGitHubConversation`**, **`IconHeart`**) and **`socialLinkSizing`** utilities, exported from **`@behindthemusictree/assets/components`**.
+
+### Documentation
+
+- **Playground**: demo grid for social icons.
+
 ## [4.0.0] - 2026-04-03
 
 ### Changed
