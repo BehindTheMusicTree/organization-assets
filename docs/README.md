@@ -4,12 +4,17 @@ Start here for naming, formats, and where specs live.
 
 ## Table of contents
 
+- [Installing the package](#installing-the-package)
 - [Naming](#naming)
 - [Brand assets (marks and lockups)](#brand-assets-marks-and-lockups)
 - [Colocated READMEs](#colocated-readmes)
 - [Playground (local preview)](#playground-local-preview)
 - [Breaking change (icons → brand)](#breaking-change-icons-brand)
 - [Published package contents](#published-package-contents)
+
+## Installing the package
+
+**`@behindthemusictree/assets`** is published to GitHub Packages. Registry configuration, authentication (local machine and GitHub Actions), and **`npm install`** commands are documented in the repository root **[README — Install](../README.md#install)**.
 
 ## Naming
 

@@ -11,6 +11,7 @@ This project is currently maintained by a solo developer, but contributions, sug
 - [Development Workflow](#development-workflow)
   - [0. Fork & Clone](#0-fork--clone)
   - [1. Environment Setup](#1-environment-setup)
+    - [Installing the package in an app](#installing-the-package-in-an-app)
     - [Component and asset preview (playground)](#component-and-asset-preview-playground)
   - [2. Branching](#2-branching)
   - [3. Developing](#3-developing)
@@ -115,6 +116,10 @@ npm link
 # In your React app
 npm link @behindthemusictree/assets
 ```
+
+#### Installing the package in an app
+
+To depend on a **published** version from GitHub Packages (instead of `npm link`), configure npm scope + authentication, then install. Full steps: **[README — Install](README.md#install)**.
 
 #### Component and asset preview (playground)
 

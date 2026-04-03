@@ -44,6 +44,12 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Documentation
+
+- **README**: **Install** — step-by-step GitHub Packages setup (scope **`.npmrc`**, PAT / **`NODE_AUTH_TOKEN`**, CI, pinning, pnpm/Yarn).
+- **docs/README**: **Installing the package** — index entry linking to the root README **Install** section.
+- **CONTRIBUTING**: **Installing the package in an app** — points to the root **README** **Install** section for GitHub Packages when not using **`npm link`**.
+
 ## [3.0.1] - 2026-04-03
 
 ### Added

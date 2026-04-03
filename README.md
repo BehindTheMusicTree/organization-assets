@@ -22,17 +22,51 @@ The portfolio website content lives in **[the-music-tree-frontend](https://githu
 
 ## Install
 
-The package is published to [GitHub Packages](https://github.com/orgs/BehindTheMusicTree/packages). Consuming repos need an `.npmrc` that points the scope to GitHub's registry:
+The package is published to **[GitHub Packages](https://github.com/orgs/BehindTheMusicTree/packages)** under the scope **`@behindthemusictree`**. npm must use GitHub’s registry for that scope, and you must authenticate (GitHub does not allow anonymous installs for this registry the way the public npm registry does).
 
-```
+### 1. Point the scope at GitHub Packages
+
+In your **app repository root**, add or merge into **`.npmrc`**:
+
+```ini
 @behindthemusictree:registry=https://npm.pkg.github.com
 ```
 
-Then install normally:
+You can put the same line in **`~/.npmrc`** instead if every project on your machine should resolve this scope the same way.
+
+### 2. Provide a token
+
+Create a **[classic Personal Access Token](https://github.com/settings/tokens)** with the **`read:packages`** scope. If the package or its repository is private to the org, you may also need **`repo`** (see [GitHub’s npm docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry)).
+
+Add the token to **`.npmrc`** next to the line from step 1 (do **not** commit this file if it contains a raw token—use **[gitignore](https://git-scm.com/docs/gitignore)** or keep the token only in **`~/.npmrc`**):
+
+```ini
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN_HERE
+```
+
+Alternatively, keep secrets out of files and reference an environment variable (works well with **direnv**, CI, and local exports):
+
+```ini
+//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
+```
+
+Then export **`NODE_AUTH_TOKEN`** (or **`GITHUB_TOKEN`** in some setups) before running **`npm install`**.
+
+**GitHub Actions:** configure **`actions/setup-node`** with **`registry-url: 'https://npm.pkg.github.com'`** and pass **`NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}`** (or a PAT with **`read:packages`** in **`secrets`**) so the job can install dependencies that pull this package. See [Using packages in Actions](https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries).
+
+### 3. Install
 
 ```bash
 npm install @behindthemusictree/assets
 ```
+
+Pin a version when you want an explicit upgrade path:
+
+```bash
+npm install @behindthemusictree/assets@3.0.1
+```
+
+**pnpm** and **Yarn** can use the same **`@behindthemusictree:registry`** and host auth settings; see their docs for equivalent **`.npmrc`** / **`.yarnrc.yml`** layout if you do not use npm.
 
 ## Usage
 
