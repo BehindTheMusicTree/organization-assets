@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [4.2.1] - 2026-04-03
+
 ### Fixed
 
 - **Components (social)**: **`IconMastodon`** / **`IconMastodonColored`** — replaced truncated path with full **Simple Icons** (CC0) mark.
