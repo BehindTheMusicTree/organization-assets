@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [3.0.2] - 2026-04-03
+
 ### Documentation
 
 - **README**: **Install** — step-by-step GitHub Packages setup (scope **`.npmrc`**, PAT / **`NODE_AUTH_TOKEN`**, CI, pinning, pnpm/Yarn).
