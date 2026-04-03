@@ -121,7 +121,7 @@ npm run release -- patch   # or minor / major
 
 This bumps the version, stamps the changelog, commits, tags, and pushes. Publishing starts automatically. See [CONTRIBUTING.md](CONTRIBUTING.md#6-releasing-for-maintainers) for details.
 
-The **Publish** workflow passes every key in **`publish.yml`**’s **`npm run build`** **`env`** block ( **`ORG_URL`** from **`DOMAIN_NAME`**, **`ORG_SPONSOR_BUTTON_URL`**, and all playground social URLs—see **`playground/.env.example`**). Define the matching **GitHub repository variables** or the build fails. **tsup** inlines **`ORG_URL`** and **`ORG_SPONSOR_BUTTON_URL`** into **`dist/`**; the rest are required so **`scripts/assert-org-url.mjs`** and the playground catalog stay aligned.
+The **Publish** workflow passes every key in **`publish.yml`**’s **`npm run build`** **`env`** block ( **`ORG_URL`** from **`DOMAIN_NAME`**, **`ORG_SPONSOR_BUTTON_URL`**, and all playground social URLs—see **`playground/.env.example`**). Define the matching **GitHub repository variables** or the build fails. **tsup** inlines **`ORG_URL`**, **`ORG_SPONSOR_BUTTON_URL`**, and those social URLs into **`dist/`** (lockup, sponsor iframe, and **`Social*Link`** defaults); **`scripts/assert-org-url.mjs`** enforces the same keys locally and in CI.
 
 ## Build
 

@@ -12,7 +12,7 @@ Shared **React** library: components, tokens, brand artwork (static files), styl
 - **tsup** compiles TS entry points to `dist/` (ESM + CJS + `.d.ts`). Config: `tsup.config.ts`.
 - **Post-build copy:** `src/styles` → `dist/styles/`; brand asset folders → `dist/brand/...`; favicon bundles `src/favicons/...` → `dist/favicons/...`; each `src/banners/<project-slug>/` → `dist/banners/<project-slug>/` (see `package.json` `scripts.build`).
 - Run `npm run build` after structural changes; `dev` is tsup watch only (copies are not re-run each save—re-run full build when static files change).
-- **`ORG_URL`**, **`ORG_SPONSOR_BUTTON_URL`**, and **all playground social keys** in **`playground/.env.example`**: **required** for **`npm run build`** / **`npm run dev`** (see **`scripts/assert-org-url.mjs`**, which merges **`playground/.env`** with the shell). **tsup** inlines **`ORG_URL`** and **`ORG_SPONSOR_BUTTON_URL`** into the package; Vite inlines the social keys into the playground app. **Publish** workflow passes every key—**never treat publish-time env as optional** (see **`.cursor/rules/publish-workflow.mdc`**).
+- **`ORG_URL`**, **`ORG_SPONSOR_BUTTON_URL`**, and **all playground social keys** in **`playground/.env.example`**: **required** for **`npm run build`** / **`npm run dev`** (see **`scripts/assert-org-url.mjs`**, which merges **`playground/.env`** with the shell). **tsup** inlines those values into published **`dist/`** (lockup, sponsor iframe, **`Social*Link`** defaults, etc.). **Publish** workflow passes every key—**never treat publish-time env as optional** (see **`.cursor/rules/publish-workflow.mdc`**).
 
 ## Adding code or entries
 
@@ -36,7 +36,7 @@ The Vite app under **`playground/`** is the local catalog for published **`dist/
 2. **Components, hooks, or other TS** shipped from **`components`** / **`index`**: add or extend a **demo** in **`playground/src/App.tsx`** (or a colocated playground module)—props, variants, and any required **`playground/.env`** keys documented in **`playground/.env.example`** when applicable.
 3. **Static assets** (brand, favicons, banners, or anything else copied into **`dist/`**): the file must appear under the correct **tab** (**Components** demos vs **Brand** / **Banners** / **Favicons** grids). Grids use **`import.meta.glob`** in **`playground/src/distAssetGlobs.ts`** (paths under **`node_modules/@behindthemusictree/assets/dist/...`**). If assets live under a **new `dist/` subtree**, **extend those globs** or add an explicit **`?url` import** preview in **`App.tsx`** so the file is listed or shown.
 4. When the auto grid is not enough (e.g. light vs dark lockups), add a **labeled preview** alongside or instead of relying on the grid alone.
-5. **Workflow:** **`npm run build`**, then **`npm run dev --prefix playground`** or **`npm run playground`**. If the catalog looks stale, restart the dev server or clear **`playground/node_modules/.vite`**.
+5. **Workflow:** **`npm run build`** at the repo root, then **`npm run dev --prefix playground`** or **`npm run playground`**. Playground **`dev`** / **`build`** run **`scripts/assert-org-url.mjs`** first (same keys as root build). If the catalog looks stale, restart the dev server or clear **`playground/node_modules/.vite`**.
 
 Details: **`CONTRIBUTING.md`** (Component and asset preview — playground).
 

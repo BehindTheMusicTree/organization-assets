@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ComponentType } from "react";
 import {
   bannerAssets,
   brandAssets,
@@ -8,14 +8,48 @@ import { AssetFigure } from "./AssetFigure";
 import {
   BtmtSponsorButton,
   Button,
+  EmailSocialLink,
+  EmailSocialLinkColored,
+  GithubSocialLink,
+  GithubSocialLinkColored,
+  LinkedInSocialLink,
+  LinkedInSocialLinkColored,
+  MastodonSocialLink,
+  MastodonSocialLinkColored,
+  PypiSocialLink,
+  PypiSocialLinkColored,
   TheMusicTreeHorizontalLink,
+  WebsiteSocialLink,
+  WebsiteSocialLinkColored,
+  XSocialLink,
+  XSocialLinkColored,
+  YouTubeSocialLink,
+  YouTubeSocialLinkColored,
   socialBrandIconClass,
 } from "@behindthemusictree/assets/components";
 import lockupDarkPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal-dark.png?url";
 import lockupDefaultPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal.png?url";
-import { getPlaygroundSocialLinks } from "./playgroundSocialEnv";
-
 type CatalogTab = "components" | "brand" | "banners" | "favicons";
+
+type SocialLinkComponent = ComponentType<{
+  className?: string;
+  iconClassName?: string;
+}>;
+
+const SOCIAL_LINK_DEMO: {
+  key: string;
+  Link: SocialLinkComponent;
+  LinkColored: SocialLinkComponent;
+}[] = [
+  { key: "github", Link: GithubSocialLink, LinkColored: GithubSocialLinkColored },
+  { key: "pypi", Link: PypiSocialLink, LinkColored: PypiSocialLinkColored },
+  { key: "linkedin", Link: LinkedInSocialLink, LinkColored: LinkedInSocialLinkColored },
+  { key: "x", Link: XSocialLink, LinkColored: XSocialLinkColored },
+  { key: "mastodon", Link: MastodonSocialLink, LinkColored: MastodonSocialLinkColored },
+  { key: "youtube", Link: YouTubeSocialLink, LinkColored: YouTubeSocialLinkColored },
+  { key: "email", Link: EmailSocialLink, LinkColored: EmailSocialLinkColored },
+  { key: "website", Link: WebsiteSocialLink, LinkColored: WebsiteSocialLinkColored },
+];
 
 const TABS: { id: CatalogTab; label: string }[] = [
   { id: "components", label: "Components" },
@@ -57,7 +91,6 @@ function AssetGrid({
 
 export default function App() {
   const [tab, setTab] = useState<CatalogTab>("components");
-  const socialLinks = getPlaygroundSocialLinks();
   const brandEntries = sortedEntries(brandAssets);
   const bannerEntries = sortedEntries(bannerAssets);
   const faviconEntries = sortedEntries(faviconAssets);
@@ -72,11 +105,11 @@ export default function App() {
         refresh this app (or restart <code>npm run dev</code> if the catalog
         still looks stale). The org link target is **embedded in `dist/`** when you run{" "}
         <code>npm run build</code> at the repo root (see <code>ORG_URL</code> in{" "}
-        <code>playground/.env</code> for <code>npm run playground</code>). Social icon targets (
-        <code>ORG_GITHUB_URL</code>, <code>ORG_LINKEDIN_URL</code>, <code>ORG_MASTODON_URL</code>,{" "}
-        <code>CONTACT_EMAIL</code>, <code>ORG_PYPI_URL</code>, etc.) are required in{" "}
-        <code>playground/.env</code> (or the shell) for root <code>npm run build</code> and are
-        inlined by Vite for this catalog. **BtmtSponsorButton** uses <code>ORG_SPONSOR_BUTTON_URL</code>{" "}
+        <code>playground/.env</code> for <code>npm run playground</code>). Social link defaults (
+        <code>ORG_GITHUB_URL</code>, <code>ORG_LINKEDIN_URL</code>, <code>CONTACT_EMAIL</code>, etc.)
+        are inlined into <code>dist/</code> when you run root <code>npm run build</code> (same keys in{" "}
+        <code>playground/.env</code>); pass <code>href</code> / <code>text</code> props to override.
+        **BtmtSponsorButton** uses <code>ORG_SPONSOR_BUTTON_URL</code>{" "}
         from the package build. Raster and SVG previews use each file’s
         natural dimensions (wide assets scroll inside the card).
       </p>
@@ -125,35 +158,56 @@ export default function App() {
                   &lt;BtmtSponsorButton /&gt;
                 </code>
                 <p className="empty-note sponsor-demo__hint">
-                  If the iframe is missing, the linked package was built without{" "}
-                  <code>ORG_SPONSOR_BUTTON_URL</code>; set it in <code>playground/.env</code> and run{" "}
-                  <code>npm run build</code> at the repo root (or <code>npm run playground</code>),
-                  then refresh.
+                  Root <code>npm run build</code> and playground <code>npm run build</code> /{" "}
+                  <code>npm run dev</code> both run <code>scripts/assert-org-url.mjs</code> first—the
+                  build fails if <code>ORG_SPONSOR_BUTTON_URL</code> or any other required key is
+                  missing. If the iframe is still absent, <code>node_modules/@behindthemusictree/assets</code>{" "}
+                  is probably stale: run <code>npm run build</code> at the repo root, then{" "}
+                  <code>npm install --prefix playground</code>, and refresh.
                 </p>
               </div>
             </div>
             <div className="demo-row">
               <span className="demo-label">
-                SocialIcons — required URLs from <code>playground/.env</code> (Vite dev/build)
+                Social*Link (<code>currentColor</code>) — defaults from package build env; optional{" "}
+                <code>href</code> / <code>text</code> / <code>showText</code>
               </span>
               <div className="social-links-demo">
-                {socialLinks.map(({ key, href, label, Icon }) => {
-                  const external = !href.startsWith("mailto:");
-                  return (
-                    <a
-                      key={key}
-                      className="social-link-btn"
-                      href={href}
-                      {...(external
-                        ? { target: "_blank", rel: "noopener noreferrer" as const }
-                        : {})}
-                      aria-label={label}
-                      title={label}
-                    >
-                      <Icon className={socialBrandIconClass} />
-                    </a>
-                  );
-                })}
+                {SOCIAL_LINK_DEMO.map(({ key, Link }) => (
+                  <Link
+                    key={key}
+                    className="social-link-btn"
+                    iconClassName={socialBrandIconClass}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">
+                *SocialLinkColored — same props; brand-tinted icons
+              </span>
+              <div className="social-links-demo social-links-demo--colored">
+                {SOCIAL_LINK_DEMO.map(({ key, LinkColored }) => (
+                  <LinkColored
+                    key={key}
+                    className="social-link-btn"
+                    iconClassName={socialBrandIconClass}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">
+                Overrides — <code>href</code>, <code>text</code>, <code>showText</code>
+              </span>
+              <div className="social-links-demo">
+                <GithubSocialLink
+                  className="social-link-btn"
+                  iconClassName={socialBrandIconClass}
+                  href="https://github.com/octocat"
+                  text="Octocat (demo)"
+                  showText
+                />
               </div>
             </div>
             <div className="lockup-showcase">

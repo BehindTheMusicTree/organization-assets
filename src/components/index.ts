@@ -8,7 +8,10 @@ export {
   type TheMusicTreeBylineProps,
   type TheMusicTreeHorizontalLinkProps,
 } from "./TheMusicTreeByline";
+export * from "./social/socialBuildEnv";
 export * from "./social/SocialIcons";
+export * from "./social/SocialIconsColored";
+export * from "./social/SocialIconLinks";
 export * from "./social/socialLinkSizing";
 export {
   BtmtSponsorButton,

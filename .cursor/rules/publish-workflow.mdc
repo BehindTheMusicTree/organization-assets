@@ -15,14 +15,14 @@ Every variable in the **`npm run build`** **`env`** block is **required** for re
 | ------------------------------- | -------------------------------- | -------------------------------------------- |
 | **`ORG_URL`**                   | **`DOMAIN_NAME`**                | Organization site URL / TheMusicTreeByline   |
 | **`ORG_SPONSOR_BUTTON_URL`**    | **`ORG_SPONSOR_BUTTON_URL`**     | **`BtmtSponsorButton`** iframe `src`         |
-| **`ORG_GITHUB_URL`**            | **`ORG_GITHUB_URL`**             | Playground GitHub org/profile icon           |
-| **`ORG_PYPI_URL`**              | **`ORG_PYPI_URL`**               | Playground PyPI icon                         |
-| **`ORG_LINKEDIN_URL`**          | **`ORG_LINKEDIN_URL`**           | Playground LinkedIn icon                     |
-| **`ORG_X_URL`**                 | **`ORG_X_URL`**                  | Playground X icon                            |
-| **`ORG_MASTODON_URL`**          | **`ORG_MASTODON_URL`**           | Playground Mastodon icon                     |
-| **`ORG_YOUTUBE_URL`**           | **`ORG_YOUTUBE_URL`**            | Playground YouTube icon                      |
-| **`CONTACT_EMAIL`**             | **`CONTACT_EMAIL`**              | Playground email (**mailto:**)               |
+| **`ORG_GITHUB_URL`**            | **`ORG_GITHUB_URL`**             | **`GithubSocialLink`** default (playground)  |
+| **`ORG_PYPI_URL`**              | **`ORG_PYPI_URL`**               | **`PypiSocialLink`** default (playground)    |
+| **`ORG_LINKEDIN_URL`**          | **`ORG_LINKEDIN_URL`**           | **`LinkedInSocialLink`** default (playground)|
+| **`ORG_X_URL`**                 | **`ORG_X_URL`**                  | **`XSocialLink`** default (playground)       |
+| **`ORG_MASTODON_URL`**          | **`ORG_MASTODON_URL`**           | **`MastodonSocialLink`** default (playground)|
+| **`ORG_YOUTUBE_URL`**           | **`ORG_YOUTUBE_URL`**            | **`YouTubeSocialLink`** default (playground) |
+| **`CONTACT_EMAIL`**             | **`CONTACT_EMAIL`**              | **`EmailSocialLink`** default (**mailto:**)  |
 
-Local **`npm run build`** / **`npm run dev`**: **`scripts/assert-org-url.mjs`** merges **`playground/.env`** with **`process.env`** (shell wins), then requires every key above. **`ORG_SPONSOR_BUTTON_URL`** and all **`http(s)`** URLs except **`ORG_LINKEDIN_URL`** must be absolute **`https://`** (or **`http://`**). **`ORG_LINKEDIN_URL`** may omit the scheme (normalized in the playground). **`CONTACT_EMAIL`** must look like a valid email.
+Local **`npm run build`** / **`npm run dev`**: **`scripts/assert-org-url.mjs`** merges **`playground/.env`** with **`process.env`** (shell wins), then requires every key above. **`ORG_SPONSOR_BUTTON_URL`** and all **`http(s)`** URLs except **`ORG_LINKEDIN_URL`** must be absolute **`https://`** (or **`http://`**). **`ORG_LINKEDIN_URL`** may omit the scheme (normalized in **`Social*Link`**). **`CONTACT_EMAIL`** must look like a valid email.
 
-Adding a new inlined-at-build env var: extend **`assert-org-url.mjs`**, **`tsup.config.ts`** **`define`** (if used in the package), **`publish.yml`** **`env`**, **`playground/.env.example`**, **`playground/vite.config.ts`** **`define`**, and maintainer docs in the same change.
+Adding a new inlined-at-build env var: extend **`assert-org-url.mjs`**, **`tsup.config.ts`** **`define`**, **`publish.yml`** **`env`**, **`playground/.env.example`**, and maintainer docs in the same change.

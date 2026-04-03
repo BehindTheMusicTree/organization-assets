@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "dev": "node ../scripts/assert-org-url.mjs && vite",
+    "build": "node ../scripts/assert-org-url.mjs && tsc --noEmit && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

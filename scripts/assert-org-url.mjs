@@ -40,7 +40,7 @@ function requireHttpUrl(name) {
 requireNonEmpty("ORG_URL");
 requireHttpUrl("ORG_SPONSOR_BUTTON_URL");
 
-/** Playground social row — same names as **vite.config.ts** / **playground/.env.example**. */
+/** Social **`Social*Link`** defaults — same names as **`playground/.env.example`** / **`publish.yml`**. */
 requireHttpUrl("ORG_GITHUB_URL");
 requireHttpUrl("ORG_PYPI_URL");
 requireNonEmpty("ORG_LINKEDIN_URL");

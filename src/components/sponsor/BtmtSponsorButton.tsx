@@ -21,8 +21,10 @@ export type BtmtSponsorButtonProps = {
 
 /**
  * GitHub Sponsors (or other) embed **iframe**. **`src`** comes from **`ORG_SPONSOR_BUTTON_URL`**
- * at **package build** time, not from props. Building this repo **requires** that variable; if a
- * broken bundle inlined an empty string, this component renders **`null`**.
+ * at **package build** time, not from props. **`scripts/assert-org-url.mjs`** fails **`npm run build`**
+ * when that variable is missing, so published **`dist/`** should always include a non-empty URL; this
+ * component returns **`null`** only if a consumer bundles a non-standard build with an empty inlined
+ * value.
  */
 export function BtmtSponsorButton({
   title = "Sponsor BehindTheMusicTree",

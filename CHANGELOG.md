@@ -46,16 +46,19 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ### Added
 
+- **Components (social)**: **`Social*Link`** / **`*SocialLinkColored`** — anchor components with optional **`href`**, **`text`**, **`title`**, **`showText`**, **`className`**, **`iconClassName`**; defaults inlined at package build from **`ORG_GITHUB_URL`**, **`ORG_PYPI_URL`**, **`ORG_LINKEDIN_URL`**, **`ORG_X_URL`**, **`ORG_MASTODON_URL`**, **`ORG_YOUTUBE_URL`**, **`CONTACT_EMAIL`**, **`ORG_URL`** (website). **`socialBuildEnv`** exports matching env var name constants.
+- **Components (social)**: **`SocialIconsColored`** — **`IconGithubColored`**, **`IconPypiColored`**, **`IconLinkedInColored`**, **`IconTwitterColored`**, **`IconMastodonColored`**, **`IconYouTubeColored`**, **`IconEmailColored`**, **`IconWebsiteColored`** (fixed brand-tint fills/strokes, exported from **`@behindthemusictree/assets/components`**).
 - **BtmtSponsorButton**: GitHub Sponsors-style **iframe**; **`src`** is **`ORG_SPONSOR_BUTTON_URL`**, inlined at package build (**tsup**). **`ORG_SPONSOR_BUTTON_URL`** is **required** for **`npm run build`** / **`npm run dev`** (**`scripts/assert-org-url.mjs`**). **Publish** workflow passes **`vars.ORG_SPONSOR_BUTTON_URL`** (required alongside **`DOMAIN_NAME`**); **`run-playground.mjs`** merges **`playground/.env`** into the root build env.
 
 ### Changed
 
+- **Playground**: **`npm run dev`** and **`npm run build`** under **`playground/`** run **`scripts/assert-org-url.mjs`** first so a missing **`ORG_SPONSOR_BUTTON_URL`** or any other required key fails before Vite (aligned with root **`npm run build`**). **`run-playground.mjs`** relies on that assert instead of a separate **`ORG_URL`**-only check.
 - **Publish workflow / docs / Cursor rules**: **`publish.yml`** build **`env`** keys are documented as **required** (no “optional” wording). New **`.cursor/rules/publish-workflow.mdc`**; **`organization-assets-package.mdc`** publishing note aligned.
 - **Playground social URLs**: **`ORG_GITHUB_URL`**, **`ORG_LINKEDIN_URL`** (was **`LINKEDIN_URL`**), **`ORG_MASTODON_URL`** (was **`MASTODON_URL`**), **`ORG_PYPI_URL`**, **`ORG_X_URL`**, **`ORG_YOUTUBE_URL`**, etc. are **required** for **`npm run build`** / **`npm run dev`** ( **`scripts/assert-org-url.mjs`** + **`publish.yml`**). **`ORG_GITHUB_REPO`**, **`ORG_DOCS_URL`**, **`ORG_SUPPORT_URL`**, and related playground icons (Issues, Discussions, Documentation, Support/heart) removed.
 
 ### Documentation
 
-- **Playground**: tabbed catalog (**Components**, **Brand**, **Banners**, **Favicons**); social icon **link** buttons use required keys from **`playground/.env`** (see **`.env.example`**) inlined by Vite at dev/build time.
+- **Playground**: tabbed catalog (**Components**, **Brand**, **Banners**, **Favicons**); **`Social*Link`** demos (defaults from **`dist/`** after root **`npm run build`**); override row with **`href`** / **`text`** / **`showText`**. Removed Vite **`define`** for social env (no **`playgroundSocialEnv.ts`**).
 - **Cursor rules / CONTRIBUTING**: playground visibility for **every** new **`dist/`** surface is mandatory in the same PR; **`organization-assets-package.mdc`**, **`static-assets-and-docs.mdc`**, and Pre-PR **Build** checklist aligned.
 
 ## [4.1.0] - 2026-04-03
