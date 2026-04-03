@@ -26,15 +26,13 @@ import {
   YouTubeSocialLink,
   YouTubeSocialLinkColored,
   socialBrandIconClass,
+  type SocialIconLinkProps,
 } from "@behindthemusictree/assets/components";
 import lockupDarkPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal-dark.png?url";
 import lockupDefaultPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal.png?url";
 type CatalogTab = "components" | "brand" | "banners" | "favicons";
 
-type SocialLinkComponent = ComponentType<{
-  className?: string;
-  iconClassName?: string;
-}>;
+type SocialLinkComponent = ComponentType<SocialIconLinkProps>;
 
 const SOCIAL_LINK_DEMO: {
   key: string;
@@ -198,11 +196,43 @@ export default function App() {
             </div>
             <div className="demo-row">
               <span className="demo-label">
-                Overrides — <code>href</code>, <code>text</code>, <code>showText</code>
+                Social*Link + <code>showText</code> — pill chip (rounded border + icon + label) via{" "}
+                <code>social-link-btn--with-text</code> in <code>index.css</code>; SVG size there too
+                (no Tailwind)
+              </span>
+              <div className="social-links-demo">
+                {SOCIAL_LINK_DEMO.map(({ key, Link }) => (
+                  <Link
+                    key={key}
+                    className="social-link-btn social-link-btn--with-text"
+                    iconClassName={socialBrandIconClass}
+                    showText
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">
+                *SocialLinkColored + <code>showText</code> — same pill styling
+              </span>
+              <div className="social-links-demo social-links-demo--colored">
+                {SOCIAL_LINK_DEMO.map(({ key, LinkColored }) => (
+                  <LinkColored
+                    key={key}
+                    className="social-link-btn social-link-btn--with-text"
+                    iconClassName={socialBrandIconClass}
+                    showText
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">
+                Custom <code>href</code> + <code>text</code> + <code>showText</code>
               </span>
               <div className="social-links-demo">
                 <GithubSocialLink
-                  className="social-link-btn"
+                  className="social-link-btn social-link-btn--with-text"
                   iconClassName={socialBrandIconClass}
                   href="https://github.com/octocat"
                   text="Octocat (demo)"

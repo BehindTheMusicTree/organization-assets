@@ -44,6 +44,17 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Fixed
+
+- **Components (social)**: **`IconMastodon`** / **`IconMastodonColored`** — replaced truncated path with full **Simple Icons** (CC0) mark.
+- **Playground**: **`showText`** social rows — SVGs had no size (**`socialBrandIconClass`** is Tailwind-only); **`.social-link-btn svg`** now **1.5rem** in **`index.css`** so icon + label render together.
+
+### Documentation
+
+- **Playground**: **`social-link-btn--with-text`** — rounded pill (**`border-radius: 9999px`**), light border, white plate, subtle shadow; demo labels updated.
+- **Playground**: demo label clarifies Tailwind vs **`index.css`** for social SVG sizing.
+- **`socialLinkSizing`**: JSDoc notes Tailwind is required for **`social*IconClass`** strings.
+
 ## [4.2.0] - 2026-04-03
 
 ### Added
