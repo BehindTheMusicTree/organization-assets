@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [4.0.0] - 2026-04-03
+
 ### Changed
 
 - **TheMusicTreeByline** / **TheMusicTreeHorizontalLink** (breaking): **`href`** is no longer a prop; **`ORG_URL`** is **required only when building this package** (no default). **tsup `define`** embeds **`ORG_URL`** into published **`dist/`** so **consuming apps** need no org env. **`getOrgSiteHref`** removed; use **`resolveOrgSiteHref()`** if you need the same string outside the component. **`npm run build`** / **`npm run dev`** run **`scripts/assert-org-url.mjs`**; **`npm run playground`** uses **`scripts/run-playground.mjs`**. **Publish** workflow sets **`ORG_URL: ${{ vars.DOMAIN_NAME }}`**. **`DEFAULT_ORG_SITE_HREF`** removed.
