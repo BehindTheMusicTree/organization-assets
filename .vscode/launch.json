@@ -1,46 +1,51 @@
 {
+  // "Playground: build + Vite" runs `npm run playground` = root `npm run build` then playground `vite`.
+  // Library watch (`npm run dev` / tsup --watch) is separate; it does not start the UI.
   "version": "0.2.0",
   "configurations": [
     {
       "type": "node",
       "request": "launch",
-      "name": "Watch library (tsup)",
+      "name": "Playground: build + Vite (opens browser)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "playground"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "http://localhost:([0-9]+)",
+        "uriFormat": "http://localhost:%s/"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Playground: Vite only (opens browser)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "playground:dev"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "http://localhost:([0-9]+)",
+        "uriFormat": "http://localhost:%s/"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Library: tsup watch (no browser)",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal"
     },
     {
-      "type": "node",
-      "request": "launch",
-      "name": "Playground (build + Vite)",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "playground"],
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Playground (Vite only)",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "playground:dev"],
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal"
-    },
-    {
       "type": "chrome",
       "request": "launch",
-      "name": "Open playground in Chrome",
+      "name": "Chrome: playground (server already running)",
       "url": "http://localhost:5174",
       "webRoot": "${workspaceFolder}/playground"
-    }
-  ],
-  "compounds": [
-    {
-      "name": "Playground + Chrome",
-      "configurations": ["Playground (build + Vite)", "Open playground in Chrome"],
-      "stopAll": true
     }
   ]
 }

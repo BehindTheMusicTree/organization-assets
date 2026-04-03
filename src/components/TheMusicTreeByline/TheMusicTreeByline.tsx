@@ -38,7 +38,7 @@ export type TheMusicTreeBylineProps = {
   href: string;
   /** Applied to the outer `<a>`. */
   className?: string;
-  /** Lockup image sizing (default height **44px**, width **auto**). */
+  /** Lockup image sizing (default height **56px**, width **auto**). */
   imageClassName?: string;
   imageStyle?: CSSProperties;
   /**
@@ -56,7 +56,7 @@ const anchorStyle: CSSProperties = {
 
 const defaultImgStyle: CSSProperties = {
   display: "block",
-  height: "44px",
+  height: "56px",
   width: "auto",
 };
 

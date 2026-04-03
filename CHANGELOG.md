@@ -56,7 +56,7 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ### Changed
 
-- **TheMusicTreeByline** (breaking): uses **only** `the-music-tree-lockup-horizontal.png` as the image (no separate label). **`href` is required** — **`getOrgSiteHref()`** (Next) or **`parseOrgSiteHref(…)`** (Vite + **`import.meta.env`**). **`NEXT_PUBLIC_DOMAIN_NAME`** mirrors GitHub **`DOMAIN_NAME`**. **No default URL**. Default image height **44px**, width **auto**. **`variant="onDark"`** inverts the whole lockup for dark UIs.
+- **TheMusicTreeByline** (breaking): uses **only** `the-music-tree-lockup-horizontal.png` as the image (no separate label). **`href` is required** — **`getOrgSiteHref()`** (Next) or **`parseOrgSiteHref(…)`** (Vite + **`import.meta.env`**). **`NEXT_PUBLIC_DOMAIN_NAME`** mirrors GitHub **`DOMAIN_NAME`**. **No default URL**. Default image height **56px**, width **auto**. **`variant="onDark"`** inverts the whole lockup for dark UIs.
 
 ### Documentation
 
