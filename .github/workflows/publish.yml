@@ -23,8 +23,16 @@ jobs:
 
       - run: npm run build
         env:
-          # Repository variable DOMAIN_NAME → required for TheMusicTreeByline / assert-org-url
+          # Required repository variables — enforced by scripts/assert-org-url.mjs (CI: env only; local: merge with playground/.env)
           ORG_URL: ${{ vars.DOMAIN_NAME }}
+          ORG_SPONSOR_BUTTON_URL: ${{ vars.ORG_SPONSOR_BUTTON_URL }}
+          ORG_GITHUB_URL: ${{ vars.ORG_GITHUB_URL }}
+          ORG_PYPI_URL: ${{ vars.ORG_PYPI_URL }}
+          ORG_LINKEDIN_URL: ${{ vars.ORG_LINKEDIN_URL }}
+          ORG_X_URL: ${{ vars.ORG_X_URL }}
+          ORG_MASTODON_URL: ${{ vars.ORG_MASTODON_URL }}
+          ORG_YOUTUBE_URL: ${{ vars.ORG_YOUTUBE_URL }}
+          CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
 
       - run: npm publish
         env:

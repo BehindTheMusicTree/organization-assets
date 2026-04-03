@@ -352,3 +352,21 @@ body {
   color: var(--color-text-muted, #666);
   margin: 0;
 }
+
+.sponsor-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.sponsor-demo__code {
+  text-align: left;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.sponsor-demo__hint {
+  margin: 0;
+  max-width: 36rem;
+}

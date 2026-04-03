@@ -131,11 +131,11 @@ One-time setup after clone (or when `playground/package.json` dependencies chang
 npm run playground:install
 ```
 
-Copy `playground/.env.example` to `playground/.env` and set **`ORG_URL`** if you use **`npm run playground`** ( **`scripts/run-playground.mjs`** passes it into the root **`npm run build`**). The published **`@behindthemusictree/assets`** under **`node_modules/.../dist/`** embeds the org URL from that build. **`vite.config.ts`** loads **`playground/.env`** and inlines **`ORG_URL`** plus the social keys in **`playground/.env.example`** (**`BTMT_GITHUB_LINK`**, **`LINKEDIN_URL`**, **`MASTODON_URL`**, **`CONTACT_EMAIL`**, optional extras) into the playground bundle for the Components social row—restart **`npm run dev`** after editing **`.env`**. If the UI stays blank after changing **`dist/`**, remove **`playground/node_modules/.vite`** and restart the dev server.
+Copy **`playground/.env.example`** to **`playground/.env`** and set **every** key before **`npm run playground`** or **`npm run build`**. **`scripts/run-playground.mjs`** merges **`playground/.env`** into the environment for the root **`npm run build`** (shell overrides file). **`scripts/assert-org-url.mjs`** requires **`ORG_URL`**, **`ORG_SPONSOR_BUTTON_URL`**, and all playground social URLs (same names as **`publish.yml`** / **`.env.example`**). The published **`@behindthemusictree/assets`** under **`node_modules/.../dist/`** embeds **`ORG_URL`** and **`ORG_SPONSOR_BUTTON_URL`** from that build. **`vite.config.ts`** inlines the social keys into the playground bundle—restart **`npm run dev`** after editing **`.env`**. If the UI stays blank after changing **`dist/`**, remove **`playground/node_modules/.vite`** and restart the dev server.
 
-**Maintainers:** define repository variable **`DOMAIN_NAME`** on GitHub so **`.github/workflows/publish.yml`** can pass **`ORG_URL`** into **`npm run build`** ( **tsup** inlines it into **`dist/`** ).
+**Maintainers:** define **all** repository variables listed in **`.cursor/rules/publish-workflow.mdc`** ( **`DOMAIN_NAME`** maps to **`ORG_URL`**; other keys match **`publish.yml`**). Every workflow **`env`** entry is **required**.
 
-Run a build and start the dev server (default port **5174**). **`npm run playground`** uses **`scripts/run-playground.mjs`**, which sets **`ORG_URL`** from your environment or from **`playground/.env`** before **`npm run build`**:
+Run a build and start the dev server (default port **5174**). **`npm run playground`** uses **`scripts/run-playground.mjs`**, which merges **`playground/.env`** into the environment before **`npm run build`**:
 
 ```bash
 npm run playground
@@ -220,6 +220,7 @@ Before submitting a Pull Request:
 
 - `npm run build` completes successfully
 - New exports are accessible from the built package
+- **Playground (required):** Anything new or changed that ships in **`dist/`** (components, brand files, favicons, banners, or any new copied **`dist/`** tree) must be visible in **`playground/`** in this PR—update [`playground/src/distAssetGlobs.ts`](playground/src/distAssetGlobs.ts) and/or [`playground/src/App.tsx`](playground/src/App.tsx), run a full build, then confirm in the dev server. See [Component and asset preview (playground)](#component-and-asset-preview-playground).
 
 **3. Documentation**
 

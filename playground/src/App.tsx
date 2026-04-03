@@ -5,7 +5,12 @@ import {
   faviconAssets,
 } from "./distAssetGlobs";
 import { AssetFigure } from "./AssetFigure";
-import { Button, TheMusicTreeHorizontalLink, socialBrandIconClass } from "@behindthemusictree/assets/components";
+import {
+  BtmtSponsorButton,
+  Button,
+  TheMusicTreeHorizontalLink,
+  socialBrandIconClass,
+} from "@behindthemusictree/assets/components";
 import lockupDarkPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal-dark.png?url";
 import lockupDefaultPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal.png?url";
 import { getPlaygroundSocialLinks } from "./playgroundSocialEnv";
@@ -68,10 +73,12 @@ export default function App() {
         still looks stale). The org link target is **embedded in `dist/`** when you run{" "}
         <code>npm run build</code> at the repo root (see <code>ORG_URL</code> in{" "}
         <code>playground/.env</code> for <code>npm run playground</code>). Social icon targets (
-        <code>BTMT_GITHUB_LINK</code>, <code>LINKEDIN_URL</code>, <code>MASTODON_URL</code>,{" "}
-        <code>CONTACT_EMAIL</code>, etc.) are read from the same file by Vite when you start the
-        playground. Raster and SVG previews use each file’s natural dimensions (wide assets scroll
-        inside the card).
+        <code>ORG_GITHUB_URL</code>, <code>ORG_LINKEDIN_URL</code>, <code>ORG_MASTODON_URL</code>,{" "}
+        <code>CONTACT_EMAIL</code>, <code>ORG_PYPI_URL</code>, etc.) are required in{" "}
+        <code>playground/.env</code> (or the shell) for root <code>npm run build</code> and are
+        inlined by Vite for this catalog. **BtmtSponsorButton** uses <code>ORG_SPONSOR_BUTTON_URL</code>{" "}
+        from the package build. Raster and SVG previews use each file’s
+        natural dimensions (wide assets scroll inside the card).
       </p>
 
       <ul className="playground-tablist" role="tablist" aria-label="Catalog">
@@ -109,36 +116,45 @@ export default function App() {
             </div>
             <div className="demo-row">
               <span className="demo-label">
-                SocialIcons — URLs from <code>playground/.env</code> (embedded at dev/build)
+                BtmtSponsorButton — <code>ORG_SPONSOR_BUTTON_URL</code> inlined in{" "}
+                <code>dist/</code> at package build
               </span>
-              {socialLinks.length === 0 ? (
-                <p className="empty-note">
-                  Set <code>BTMT_GITHUB_LINK</code>, <code>LINKEDIN_URL</code>,{" "}
-                  <code>MASTODON_URL</code>, <code>CONTACT_EMAIL</code>, and/or optional keys in{" "}
-                  <code>playground/.env</code> (see <code>playground/.env.example</code>), then
-                  restart <code>npm run dev</code>.
+              <div className="sponsor-demo">
+                <BtmtSponsorButton />
+                <code className="lockup-showcase__code sponsor-demo__code">
+                  &lt;BtmtSponsorButton /&gt;
+                </code>
+                <p className="empty-note sponsor-demo__hint">
+                  If the iframe is missing, the linked package was built without{" "}
+                  <code>ORG_SPONSOR_BUTTON_URL</code>; set it in <code>playground/.env</code> and run{" "}
+                  <code>npm run build</code> at the repo root (or <code>npm run playground</code>),
+                  then refresh.
                 </p>
-              ) : (
-                <div className="social-links-demo">
-                  {socialLinks.map(({ key, href, label, Icon }) => {
-                    const external = !href.startsWith("mailto:");
-                    return (
-                      <a
-                        key={key}
-                        className="social-link-btn"
-                        href={href}
-                        {...(external
-                          ? { target: "_blank", rel: "noopener noreferrer" as const }
-                          : {})}
-                        aria-label={label}
-                        title={label}
-                      >
-                        <Icon className={socialBrandIconClass} />
-                      </a>
-                    );
-                  })}
-                </div>
-              )}
+              </div>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">
+                SocialIcons — required URLs from <code>playground/.env</code> (Vite dev/build)
+              </span>
+              <div className="social-links-demo">
+                {socialLinks.map(({ key, href, label, Icon }) => {
+                  const external = !href.startsWith("mailto:");
+                  return (
+                    <a
+                      key={key}
+                      className="social-link-btn"
+                      href={href}
+                      {...(external
+                        ? { target: "_blank", rel: "noopener noreferrer" as const }
+                        : {})}
+                      aria-label={label}
+                      title={label}
+                    >
+                      <Icon className={socialBrandIconClass} />
+                    </a>
+                  );
+                })}
+              </div>
             </div>
             <div className="lockup-showcase">
               <span className="demo-label">

@@ -2,6 +2,10 @@ import { defineConfig } from "tsup";
 
 /** Inlined into published JS/CJS when this package is built (set ORG_URL / DOMAIN_NAME in CI). */
 const orgUrlLiteral = JSON.stringify(process.env.ORG_URL ?? "");
+/** GitHub Sponsors button URL (or other iframe src) for **BtmtSponsorButton**; optional. */
+const sponsorButtonUrlLiteral = JSON.stringify(
+  process.env.ORG_SPONSOR_BUTTON_URL ?? "",
+);
 
 export default defineConfig({
   entry: {
@@ -20,6 +24,7 @@ export default defineConfig({
   external: ["react", "react-dom"],
   define: {
     "process.env.ORG_URL": orgUrlLiteral,
+    "process.env.ORG_SPONSOR_BUTTON_URL": sponsorButtonUrlLiteral,
   },
   loader: {
     ".svg": "dataurl",

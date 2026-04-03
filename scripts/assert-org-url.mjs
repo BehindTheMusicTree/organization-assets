@@ -1,14 +1,53 @@
 #!/usr/bin/env node
 /**
- * Ensures ORG_URL is set for `npm run build` (hostname or https URL).
- * CI should map GitHub repository variable DOMAIN_NAME into ORG_URL (see publish workflow).
+ * Ensures required build-time env is set for `npm run build` / `npm run dev`.
+ * Merges **`playground/.env`** then **`process.env`** (shell overrides file).
+ * **Publish** workflow must pass the same keys (see `.github/workflows/publish.yml`).
  */
-const v = process.env.ORG_URL?.trim();
-if (!v) {
-  console.error(
-    "Error: ORG_URL is required for this build (organization site hostname or URL).\n" +
-      "  Local:  ORG_URL=themusictree.org npm run build\n" +
-      "  GitHub: set repository variable DOMAIN_NAME and pass ORG_URL in the workflow env.",
-  );
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { loadPlaygroundDotenv } from "./load-playground-dotenv.mjs";
+
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const playgroundEnvPath = path.join(repoRoot, "playground", ".env");
+const merged = { ...loadPlaygroundDotenv(playgroundEnvPath), ...process.env };
+
+function fail(msg) {
+  console.error(msg);
   process.exit(1);
+}
+
+function requireNonEmpty(name) {
+  const v = merged[name]?.trim();
+  if (!v) {
+    fail(
+      `Error: ${name} is required for this build.\n` +
+        "  Set it in the shell or in playground/.env (see playground/.env.example).\n" +
+        "  CI: add the repository variable and publish.yml env entry (see .cursor/rules/publish-workflow.mdc).",
+    );
+  }
+  return v;
+}
+
+function requireHttpUrl(name) {
+  const v = requireNonEmpty(name);
+  if (!/^https?:\/\//i.test(v)) {
+    fail(`Error: ${name} must be an absolute http(s) URL.`);
+  }
+  return v;
+}
+
+requireNonEmpty("ORG_URL");
+requireHttpUrl("ORG_SPONSOR_BUTTON_URL");
+
+/** Playground social row — same names as **vite.config.ts** / **playground/.env.example**. */
+requireHttpUrl("ORG_GITHUB_URL");
+requireHttpUrl("ORG_PYPI_URL");
+requireNonEmpty("ORG_LINKEDIN_URL");
+requireHttpUrl("ORG_X_URL");
+requireHttpUrl("ORG_MASTODON_URL");
+requireHttpUrl("ORG_YOUTUBE_URL");
+const email = requireNonEmpty("CONTACT_EMAIL");
+if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  fail("Error: CONTACT_EMAIL must look like a valid email address.");
 }

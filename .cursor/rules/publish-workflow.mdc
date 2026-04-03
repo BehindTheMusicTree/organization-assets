@@ -1,0 +1,28 @@
+---
+description: GitHub publish workflow — required build env and repository variables
+globs:
+  - .github/workflows/**
+alwaysApply: false
+---
+
+# Publish workflow (`publish.yml`)
+
+## Required `npm run build` environment
+
+Every variable in the **`npm run build`** **`env`** block is **required** for release builds. **Do not** describe them as optional in workflow comments, CONTRIBUTING, or README—maintainers **must** define the matching **GitHub repository variables** (and map them in YAML).
+
+| Workflow `env` key              | Repository variable              | Purpose                                      |
+| ------------------------------- | -------------------------------- | -------------------------------------------- |
+| **`ORG_URL`**                   | **`DOMAIN_NAME`**                | Organization site URL / TheMusicTreeByline   |
+| **`ORG_SPONSOR_BUTTON_URL`**    | **`ORG_SPONSOR_BUTTON_URL`**     | **`BtmtSponsorButton`** iframe `src`         |
+| **`ORG_GITHUB_URL`**            | **`ORG_GITHUB_URL`**             | Playground GitHub org/profile icon           |
+| **`ORG_PYPI_URL`**              | **`ORG_PYPI_URL`**               | Playground PyPI icon                         |
+| **`ORG_LINKEDIN_URL`**          | **`ORG_LINKEDIN_URL`**           | Playground LinkedIn icon                     |
+| **`ORG_X_URL`**                 | **`ORG_X_URL`**                  | Playground X icon                            |
+| **`ORG_MASTODON_URL`**          | **`ORG_MASTODON_URL`**           | Playground Mastodon icon                     |
+| **`ORG_YOUTUBE_URL`**           | **`ORG_YOUTUBE_URL`**            | Playground YouTube icon                      |
+| **`CONTACT_EMAIL`**             | **`CONTACT_EMAIL`**              | Playground email (**mailto:**)               |
+
+Local **`npm run build`** / **`npm run dev`**: **`scripts/assert-org-url.mjs`** merges **`playground/.env`** with **`process.env`** (shell wins), then requires every key above. **`ORG_SPONSOR_BUTTON_URL`** and all **`http(s)`** URLs except **`ORG_LINKEDIN_URL`** must be absolute **`https://`** (or **`http://`**). **`ORG_LINKEDIN_URL`** may omit the scheme (normalized in the playground). **`CONTACT_EMAIL`** must look like a valid email.
+
+Adding a new inlined-at-build env var: extend **`assert-org-url.mjs`**, **`tsup.config.ts`** **`define`** (if used in the package), **`publish.yml`** **`env`**, **`playground/.env.example`**, **`playground/vite.config.ts`** **`define`**, and maintainer docs in the same change.

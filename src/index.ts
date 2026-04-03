@@ -1,4 +1,7 @@
 export {
+  ORG_SPONSOR_BUTTON_URL,
+  BtmtSponsorButton,
+  type BtmtSponsorButtonProps,
   Button,
   type ButtonProps,
   TheMusicTreeByline,

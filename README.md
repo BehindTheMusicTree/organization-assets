@@ -121,19 +121,20 @@ npm run release -- patch   # or minor / major
 
 This bumps the version, stamps the changelog, commits, tags, and pushes. Publishing starts automatically. See [CONTRIBUTING.md](CONTRIBUTING.md#6-releasing-for-maintainers) for details.
 
-The **Publish** workflow passes **`ORG_URL: ${{ vars.DOMAIN_NAME }}`** into **`npm run build`**. Define the **`DOMAIN_NAME`** repository variable on GitHub (hostname or URL) or the build step fails. **tsup** inlines that value into **`dist/`** as the org link target for **TheMusicTreeByline**.
+The **Publish** workflow passes every key in **`publish.yml`**’s **`npm run build`** **`env`** block ( **`ORG_URL`** from **`DOMAIN_NAME`**, **`ORG_SPONSOR_BUTTON_URL`**, and all playground social URLs—see **`playground/.env.example`**). Define the matching **GitHub repository variables** or the build fails. **tsup** inlines **`ORG_URL`** and **`ORG_SPONSOR_BUTTON_URL`** into **`dist/`**; the rest are required so **`scripts/assert-org-url.mjs`** and the playground catalog stay aligned.
 
 ## Build
 
 ```bash
 npm install
-ORG_URL=themusictree.org npm run build
+cp playground/.env.example playground/.env   # then edit values
+npm run build
 ```
 
-**`ORG_URL`** is required when building **this repository** (enforced by **`scripts/assert-org-url.mjs`**). It is **not** required in downstream apps that install the published package. Output is in **`dist/`**.
+**`scripts/assert-org-url.mjs`** requires **`playground/.env`** (or equivalent shell exports) to define **`ORG_URL`**, **`ORG_SPONSOR_BUTTON_URL`**, and every playground social key listed in **`playground/.env.example`**. None of these are needed in downstream apps that install the published package. Output is in **`dist/`**.
 
 ## Local development
 
-From this repo: `npm link`. In your React app: `npm link @behindthemusictree/assets`. Use **`ORG_URL=… npm run dev`** for tsup watch (same **`assert-org-url`** gate as **`npm run build`**).
+From this repo: `npm link`. In your React app: `npm link @behindthemusictree/assets`. Use a filled **`playground/.env`** (or export the same keys) for **`npm run dev`**—same **`assert-org-url`** gate as **`npm run build`**.
 
-**Playground:** `npm run playground` runs a full **`npm run build`** then the Vite dev server; it sets **`ORG_URL`** from your shell or from **`playground/.env`**. For a manual build: **`ORG_URL=… npm run build`**.
+**Playground:** `npm run playground` merges **`playground/.env`** into the environment for the root **`npm run build`**, then starts the Vite dev server. Every key in **`playground/.env.example`** is required for that root build.

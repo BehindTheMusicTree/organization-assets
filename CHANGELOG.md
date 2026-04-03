@@ -44,9 +44,19 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Added
+
+- **BtmtSponsorButton**: GitHub Sponsors-style **iframe**; **`src`** is **`ORG_SPONSOR_BUTTON_URL`**, inlined at package build (**tsup**). **`ORG_SPONSOR_BUTTON_URL`** is **required** for **`npm run build`** / **`npm run dev`** (**`scripts/assert-org-url.mjs`**). **Publish** workflow passes **`vars.ORG_SPONSOR_BUTTON_URL`** (required alongside **`DOMAIN_NAME`**); **`run-playground.mjs`** merges **`playground/.env`** into the root build env.
+
+### Changed
+
+- **Publish workflow / docs / Cursor rules**: **`publish.yml`** build **`env`** keys are documented as **required** (no “optional” wording). New **`.cursor/rules/publish-workflow.mdc`**; **`organization-assets-package.mdc`** publishing note aligned.
+- **Playground social URLs**: **`ORG_GITHUB_URL`**, **`ORG_LINKEDIN_URL`** (was **`LINKEDIN_URL`**), **`ORG_MASTODON_URL`** (was **`MASTODON_URL`**), **`ORG_PYPI_URL`**, **`ORG_X_URL`**, **`ORG_YOUTUBE_URL`**, etc. are **required** for **`npm run build`** / **`npm run dev`** ( **`scripts/assert-org-url.mjs`** + **`publish.yml`**). **`ORG_GITHUB_REPO`**, **`ORG_DOCS_URL`**, **`ORG_SUPPORT_URL`**, and related playground icons (Issues, Discussions, Documentation, Support/heart) removed.
+
 ### Documentation
 
-- **Playground**: tabbed catalog (**Components**, **Brand**, **Banners**, **Favicons**); social icon **link** buttons use **`playground/.env`** (**`BTMT_GITHUB_LINK`**, **`LINKEDIN_URL`**, **`MASTODON_URL`**, **`CONTACT_EMAIL`**, **`ORG_URL`**, optional keys) inlined by Vite at dev/build time.
+- **Playground**: tabbed catalog (**Components**, **Brand**, **Banners**, **Favicons**); social icon **link** buttons use required keys from **`playground/.env`** (see **`.env.example`**) inlined by Vite at dev/build time.
+- **Cursor rules / CONTRIBUTING**: playground visibility for **every** new **`dist/`** surface is mandatory in the same PR; **`organization-assets-package.mdc`**, **`static-assets-and-docs.mdc`**, and Pre-PR **Build** checklist aligned.
 
 ## [4.1.0] - 2026-04-03
 

@@ -12,8 +12,11 @@ Shared **React** library: components, tokens, brand artwork (static files), styl
 - **tsup** compiles TS entry points to `dist/` (ESM + CJS + `.d.ts`). Config: `tsup.config.ts`.
 - **Post-build copy:** `src/styles` → `dist/styles/`; brand asset folders → `dist/brand/...`; favicon bundles `src/favicons/...` → `dist/favicons/...`; each `src/banners/<project-slug>/` → `dist/banners/<project-slug>/` (see `package.json` `scripts.build`).
 - Run `npm run build` after structural changes; `dev` is tsup watch only (copies are not re-run each save—re-run full build when static files change).
+- **`ORG_URL`**, **`ORG_SPONSOR_BUTTON_URL`**, and **all playground social keys** in **`playground/.env.example`**: **required** for **`npm run build`** / **`npm run dev`** (see **`scripts/assert-org-url.mjs`**, which merges **`playground/.env`** with the shell). **tsup** inlines **`ORG_URL`** and **`ORG_SPONSOR_BUTTON_URL`** into the package; Vite inlines the social keys into the playground app. **Publish** workflow passes every key—**never treat publish-time env as optional** (see **`.cursor/rules/publish-workflow.mdc`**).
 
 ## Adding code or entries
+
+- **Playground (same PR, mandatory):** Anything you add below that ends up in **`dist/`** for consumers must be **visible in `playground/`** before merge. See [Playground (required for every new dist surface)](#playground-required-for-every-new-dist-surface).
 
 - New **TS surface**: add or extend an entry in `tsup.config.ts` and matching `exports` in `package.json`.
 - New **static brand assets** under `src/brand/<folder>/`: add `"./brand/<folder>/*": "./dist/brand/<folder>/*"` to `exports` and extend the build script `cp` so files land in `dist/brand/`. Optional **`…-mark-greyscale.svg`** / **`…-lockup-greyscale.svg`** variants live beside the color source in the same folder; see [`src/brand/README.md`](../../src/brand/README.md) — add them only when needed, not for every mark.
@@ -21,18 +24,25 @@ Shared **React** library: components, tokens, brand artwork (static files), styl
 - **Banners:** one folder per project under `src/banners/<project-slug>/` (same slug style as brand/favicons). Conventions in [`src/banners/README.md`](../../src/banners/README.md). Expose `"./banners/*": "./dist/banners/*"` (already in `package.json`); build copies all immediate subdirs of `src/banners/` into `dist/banners/`. The README ships in npm `files`. Full doc map: [`docs/README.md`](../../docs/README.md).
 - **TypeScript:** `tsconfig.json` uses `"moduleResolution": "bundler"`—keep it compatible with tsup.
 
-## Playground (required for new surfaces)
+## Playground (required for every new dist surface)
 
-The Vite app under **`playground/`** is the local catalog for published **`dist/`** output. **Any new component or asset shipped from this repo must be reflected there** in the same PR (or before merge), so consumers and reviewers can see it.
+The Vite app under **`playground/`** is the local catalog for published **`dist/`** output.
 
-- **New React components** (new exports from **`components`** or **`index`**): add a **demo** in **`playground/src/App.tsx`** (or a colocated playground module) showing the component’s intended usage—props, variants, and any required env (see **`playground/.env.example`**).
-- **New static assets** (brand, favicons, banners, or other files copied into **`dist/`**): after **`npm run build`** at the repo root, the asset must appear in the playground **Brand** / **Favicons** / **Banners** sections. The catalog uses **`import.meta.glob`** in **`playground/src/distAssetGlobs.ts`** pointing at **`node_modules/@behindthemusictree/assets/dist/...`**. If a new tree is not covered, **extend those globs** (or add an explicit **`?url` import** preview) so the file is listed or shown. For pairs that need context (e.g. light vs dark lockups), add a **labeled preview** alongside the auto grid when helpful.
-- **Workflow:** from repo root, **`npm run build`** then **`npm run dev --prefix playground`** (or **`npm run playground`**). If the catalog looks stale, restart the dev server or clear **`playground/node_modules/.vite`**.
+**Rule:** Whenever you add or change a **shipped surface**—a React export, a static file copied into **`dist/`**, or a **new `dist/` tree**—update the playground in the **same PR**. Do not merge asset or component work that is not reflected there.
+
+**Checklist**
+
+1. Run **`npm run build`** at the repo root (static copies and tsup output must be current).
+2. **Components, hooks, or other TS** shipped from **`components`** / **`index`**: add or extend a **demo** in **`playground/src/App.tsx`** (or a colocated playground module)—props, variants, and any required **`playground/.env`** keys documented in **`playground/.env.example`** when applicable.
+3. **Static assets** (brand, favicons, banners, or anything else copied into **`dist/`**): the file must appear under the correct **tab** (**Components** demos vs **Brand** / **Banners** / **Favicons** grids). Grids use **`import.meta.glob`** in **`playground/src/distAssetGlobs.ts`** (paths under **`node_modules/@behindthemusictree/assets/dist/...`**). If assets live under a **new `dist/` subtree**, **extend those globs** or add an explicit **`?url` import** preview in **`App.tsx`** so the file is listed or shown.
+4. When the auto grid is not enough (e.g. light vs dark lockups), add a **labeled preview** alongside or instead of relying on the grid alone.
+5. **Workflow:** **`npm run build`**, then **`npm run dev --prefix playground`** or **`npm run playground`**. If the catalog looks stale, restart the dev server or clear **`playground/node_modules/.vite`**.
 
 Details: **`CONTRIBUTING.md`** (Component and asset preview — playground).
 
 ## Publishing
 
+- **Workflow env is all required:** every key in **`publish.yml`**’s **`npm run build`** **`env`** block must be set from repository variables before a release succeeds. See **`.cursor/rules/publish-workflow.mdc`** when editing files under **`.github/workflows/`**.
 - Published to **GitHub Packages** via `.github/workflows/publish.yml` (triggers on `v*` tag push). The same workflow creates a **GitHub Release** so watchers can subscribe to release notifications (`Watch` → **Releases** on the repo).
 - `package.json` has `"publishConfig": { "registry": "https://npm.pkg.github.com" }`.
 - Release process: `npm run release -- patch|minor|major` (bumps version, stamps changelog, commits, tags, pushes). Publishing starts automatically. See `CONTRIBUTING.md` § "Releasing" for full steps.
