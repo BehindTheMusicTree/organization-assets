@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [3.0.1] - 2026-04-03
+
 ### Added
 
 - **Brand (The Music Tree)**: **`the-music-tree-lockup-horizontal-dark.svg`** — light ink on transparent for dark UIs (same geometry as **`the-music-tree-lockup-horizontal.svg`**).
