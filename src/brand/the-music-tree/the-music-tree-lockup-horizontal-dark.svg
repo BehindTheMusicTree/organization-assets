@@ -1,12 +1,15 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="1920.000000pt" height="600.000000pt" viewBox="0 0 1920.000000 600.000000"
- preserveAspectRatio="xMidYMid meet">
-
-<g transform="translate(0.000000,600.000000) scale(0.100000,-0.100000)"
-fill="#ffffff" stroke="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Knockout horizontal lockup for dark UIs: light ink (#fff) symbol + wordmark only.
+  No background rectangle — area outside the paths is transparent.
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1920 600"
+  fill="none"
+  preserveAspectRatio="xMidYMid meet"
+  role="img"
+  aria-label="The Music Tree horizontal lockup for dark backgrounds">
+<g transform="translate(0,600) scale(0.1,-0.1)" fill="#ffffff" stroke="none">
 <path d="M16675 5918 c-4 -18 -16 -48 -26 -66 -14 -24 -19 -53 -19 -108 0 -41
 -7 -100 -14 -132 -8 -31 -19 -77 -24 -102 l-9 -45 -21 45 c-17 35 -22 64 -22
 133 0 66 -3 88 -12 85 -7 -3 -15 -15 -16 -29 -2 -13 -8 -28 -12 -33 -5 -5 -6

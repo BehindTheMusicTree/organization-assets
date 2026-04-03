@@ -16,7 +16,14 @@ export default defineConfig(({ mode }) => {
   const domainJson = JSON.stringify(domain);
   return {
     plugins: [react()],
-    server: { port: 5174 },
+    server: {
+      port: 5174,
+      // `file:..` links `@behindthemusictree/assets`; default watcher ignores node_modules,
+      // so changes under dist/ would not refresh until restart without this.
+      watch: {
+        ignored: ["**/node_modules/**", "!**/node_modules/@behindthemusictree/assets/**"],
+      },
+    },
     define: {
       // App source only; deps from @behindthemusictree/assets do not get this reliably.
       "import.meta.env.NEXT_PUBLIC_DOMAIN_NAME": domainJson,

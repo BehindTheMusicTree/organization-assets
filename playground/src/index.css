@@ -162,6 +162,38 @@ body {
   color: #aaa;
 }
 
+.lockup-raster-preview__pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.lockup-raster-preview__figure {
+  margin: 0;
+}
+
+.lockup-raster-preview__plate {
+  line-height: 0;
+  padding: 0.5rem;
+  border-radius: var(--radius-md, 8px);
+}
+
+.lockup-raster-preview__plate--light {
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
+}
+
+.lockup-raster-preview__plate--dark {
+  background: #1e1e1e;
+}
+
+.lockup-raster-preview__plate img {
+  display: block;
+  width: auto;
+  height: 56px;
+}
+
 .empty-note {
   font-size: 0.9rem;
   color: var(--color-text-muted, #666);

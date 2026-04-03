@@ -44,6 +44,20 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Documentation
+
+- **Playground**: explicit **Brand lockup PNGs** preview (default + dark knockout); **Vite** watches the linked **`@behindthemusictree/assets`** package so **`dist/`** changes refresh; intro text notes rebuild/restart when the catalog looks stale.
+- **CONTRIBUTING** / **`.cursor/rules`**: new components and published assets **must** be reflected in the **`playground/`** catalog (same change as the feature); **`organization-assets-package.mdc`** documents the requirement.
+
+### Added
+
+- **Brand (The Music Tree)**: **`the-music-tree-lockup-horizontal-dark.png`** — **800×250** RGBA knockout (light ink, transparent background), aligned with the web-sized default lockup PNG.
+
+### Changed
+
+- **Brand (The Music Tree)**: **`the-music-tree-lockup-horizontal-dark.svg`** — explicit knockout metadata (**`fill="none"`** root, comment); same paths as before.
+- **TheMusicTreeByline** / **TheMusicTreeHorizontalLink**: **`variant="onDark"`** uses the dark **PNG** (knockout raster) instead of the dark SVG data URL.
+
 ## [3.0.2] - 2026-04-03
 
 ### Documentation

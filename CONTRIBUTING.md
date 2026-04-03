@@ -177,7 +177,7 @@ Refresh after `npm run build` at the repo root so new static assets appear.
 - **New favicons** under `src/favicons/<project>/`: expose via `"./favicons/*"` export and ensure the build copies them.
 - **Banner assets** under `src/banners/<project-slug>/`: add files in a project subfolder (not loose under `src/banners/`). `"./banners/*"` and the build’s `dist/banners/` copy pick up new folders automatically; run a full build after adding binaries.
 - **Components**: follow existing component patterns and import style; prefer minimal, focused diffs.
-- **Playground**: when adding components or static assets you want visible in the catalog, extend [`playground/src/App.tsx`](playground/src/App.tsx) or ensure new binaries are copied into `dist/` by the library build (globs in [`playground/src/distAssetGlobs.ts`](playground/src/distAssetGlobs.ts) pick up matching extensions under `dist/brand`, `dist/banners`, `dist/favicons`).
+- **Playground (required)**: any **new exported component** or **published static asset** must be visible in the playground in the same change (before merge). Add a demo in [`playground/src/App.tsx`](playground/src/App.tsx) for components. For assets, run a full [`npm run build`](README.md#build) so files land under `dist/`; the catalog globs in [`playground/src/distAssetGlobs.ts`](playground/src/distAssetGlobs.ts) list matching files under `dist/brand`, `dist/banners`, and `dist/favicons`. Extend those globs or add an explicit preview import if needed. See [Component and asset preview (playground)](#component-and-asset-preview-playground).
 - **TypeScript**: `tsconfig.json` uses `"moduleResolution": "bundler"` — keep it compatible with tsup.
 
 After structural changes, run a full build to verify:

@@ -9,6 +9,8 @@ import {
   parseOrgSiteHref,
   TheMusicTreeHorizontalLink,
 } from "@behindthemusictree/assets/components";
+import lockupDarkPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal-dark.png?url";
+import lockupDefaultPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal.png?url";
 
 function labelFromGlobKey(key: string): string {
   const normalized = key.replace(/^\.\.\//, "");
@@ -52,9 +54,11 @@ export default function App() {
       <h1>@behindthemusictree/assets</h1>
       <p>
         Local catalog: npm pack contents under{" "}
-        <code>node_modules/…/dist/</code>. Run <code>npm run build</code> at
-        the repo root, then refresh. Raster and SVG previews use each file’s
-        natural dimensions (wide assets scroll inside the card).
+        <code>node_modules/…/dist/</code>. After changing brand files or the
+        library build, run <code>npm run build</code> at the repo root, then
+        refresh this app (or restart <code>npm run dev</code> if the catalog
+        still looks stale). Raster and SVG previews use each file’s natural
+        dimensions (wide assets scroll inside the card).
       </p>
 
       <section className="section" aria-labelledby="components-heading">
@@ -72,6 +76,37 @@ export default function App() {
           <span className="demo-label">Horizontal lockup on dark</span>
           <div className="demo-row">
             <TheMusicTreeHorizontalLink href={orgHref} variant="onDark" />
+          </div>
+        </div>
+        <div className="demo-row lockup-raster-preview">
+          <span className="demo-label">
+            Brand lockup PNGs (from dist — knockout on transparent)
+          </span>
+          <div className="lockup-raster-preview__pair">
+            <figure className="lockup-raster-preview__figure">
+              <figcaption className="asset-card-title">
+                the-music-tree-lockup-horizontal.png
+              </figcaption>
+              <div className="lockup-raster-preview__plate lockup-raster-preview__plate--light">
+                <img
+                  src={lockupDefaultPng}
+                  alt=""
+                  decoding="async"
+                />
+              </div>
+            </figure>
+            <figure className="lockup-raster-preview__figure">
+              <figcaption className="asset-card-title">
+                the-music-tree-lockup-horizontal-dark.png
+              </figcaption>
+              <div className="lockup-raster-preview__plate lockup-raster-preview__plate--dark">
+                <img
+                  src={lockupDarkPng}
+                  alt=""
+                  decoding="async"
+                />
+              </div>
+            </figure>
           </div>
         </div>
       </section>

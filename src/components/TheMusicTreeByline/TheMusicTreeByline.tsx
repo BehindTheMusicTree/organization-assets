@@ -1,10 +1,10 @@
 import { useState } from "react";
 import type { CSSProperties } from "react";
 /**
- * Web-sized raster (`800×250`); full-resolution master: `the-music-tree-lockup-horizontal-full.png`.
- * Do not swap for another mark.
+ * Web-sized rasters (`800×250`, RGBA knockout); full-resolution master: `the-music-tree-lockup-horizontal-full.png`.
+ * Vector dark variant: `the-music-tree-lockup-horizontal-dark.svg`. Do not swap for another mark.
  */
-import theMusicTreeLockupHorizontalDark from "../../brand/the-music-tree/the-music-tree-lockup-horizontal-dark.svg";
+import theMusicTreeLockupHorizontalDark from "../../brand/the-music-tree/the-music-tree-lockup-horizontal-dark.png";
 import theMusicTreeLockupHorizontal from "../../brand/the-music-tree/the-music-tree-lockup-horizontal.png";
 
 /**
@@ -48,7 +48,7 @@ export type TheMusicTreeBylineProps = {
   imageClassName?: string;
   imageStyle?: CSSProperties;
   /**
-   * `onDark`: light ink on transparent (**`the-music-tree-lockup-horizontal-dark.svg`**). Omit for the default PNG lockup.
+   * `onDark`: light ink, transparent knockout (**`the-music-tree-lockup-horizontal-dark.png`**; SVG also ships).
    */
   variant?: "default" | "onDark";
 };

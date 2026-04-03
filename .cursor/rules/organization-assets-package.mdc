@@ -21,6 +21,16 @@ Shared **React** library: components, tokens, brand artwork (static files), styl
 - **Banners:** one folder per project under `src/banners/<project-slug>/` (same slug style as brand/favicons). Conventions in [`src/banners/README.md`](../../src/banners/README.md). Expose `"./banners/*": "./dist/banners/*"` (already in `package.json`); build copies all immediate subdirs of `src/banners/` into `dist/banners/`. The README ships in npm `files`. Full doc map: [`docs/README.md`](../../docs/README.md).
 - **TypeScript:** `tsconfig.json` uses `"moduleResolution": "bundler"`—keep it compatible with tsup.
 
+## Playground (required for new surfaces)
+
+The Vite app under **`playground/`** is the local catalog for published **`dist/`** output. **Any new component or asset shipped from this repo must be reflected there** in the same PR (or before merge), so consumers and reviewers can see it.
+
+- **New React components** (new exports from **`components`** or **`index`**): add a **demo** in **`playground/src/App.tsx`** (or a colocated playground module) showing the component’s intended usage—props, variants, and any required env (see **`playground/.env.example`**).
+- **New static assets** (brand, favicons, banners, or other files copied into **`dist/`**): after **`npm run build`** at the repo root, the asset must appear in the playground **Brand** / **Favicons** / **Banners** sections. The catalog uses **`import.meta.glob`** in **`playground/src/distAssetGlobs.ts`** pointing at **`node_modules/@behindthemusictree/assets/dist/...`**. If a new tree is not covered, **extend those globs** (or add an explicit **`?url` import** preview) so the file is listed or shown. For pairs that need context (e.g. light vs dark lockups), add a **labeled preview** alongside the auto grid when helpful.
+- **Workflow:** from repo root, **`npm run build`** then **`npm run dev --prefix playground`** (or **`npm run playground`**). If the catalog looks stale, restart the dev server or clear **`playground/node_modules/.vite`**.
+
+Details: **`CONTRIBUTING.md`** (Component and asset preview — playground).
+
 ## Publishing
 
 - Published to **GitHub Packages** via `.github/workflows/publish.yml` (triggers on `v*` tag push). The same workflow creates a **GitHub Release** so watchers can subscribe to release notifications (`Watch` → **Releases** on the repo).
