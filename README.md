@@ -44,7 +44,7 @@ import { colors, spacing } from "@behindthemusictree/assets/tokens";
 import "@behindthemusictree/assets/styles";
 ```
 
-**TheMusicTreeByline** — single clickable image: **`the-music-tree-lockup-horizontal.png`** only (no extra text node). Default display height **56px**, width **auto**. Pass **`href`** from **`getOrgSiteHref()`** (Next.js / Node) or **`parseOrgSiteHref(import.meta.env.NEXT_PUBLIC_DOMAIN_NAME)`** (Vite — see below). Set **`NEXT_PUBLIC_DOMAIN_NAME`** from GitHub **`DOMAIN_NAME`**. **No default:** missing values throw so the build fails. Use **`variant="onDark"`** only for monochrome/black lockups on dark surfaces (CSS invert); omit for full-color lockup artwork.
+**TheMusicTreeByline** — single clickable image: **`the-music-tree-lockup-horizontal.png`** only (no extra text node). Default display height **56px**, width **auto**. Pass **`href`** from **`getOrgSiteHref()`** (Next.js / Node) or **`parseOrgSiteHref(import.meta.env.NEXT_PUBLIC_DOMAIN_NAME)`** (Vite — see below). Set **`NEXT_PUBLIC_DOMAIN_NAME`** from GitHub **`DOMAIN_NAME`**. **No default:** missing values throw so the build fails. Use **`variant="onDark"`** for dark surfaces — it uses **`the-music-tree-lockup-horizontal-dark.svg`** (light ink on transparent).
 
 **Next.js**
 

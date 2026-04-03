@@ -1,5 +1,10 @@
+import { useState } from "react";
 import type { CSSProperties } from "react";
-/** `src/brand/the-music-tree/the-music-tree-lockup-horizontal.png` — do not swap for another mark. */
+/**
+ * Web-sized raster (`800×250`); full-resolution master: `the-music-tree-lockup-horizontal-full.png`.
+ * Do not swap for another mark.
+ */
+import theMusicTreeLockupHorizontalDark from "../../brand/the-music-tree/the-music-tree-lockup-horizontal-dark.svg";
 import theMusicTreeLockupHorizontal from "../../brand/the-music-tree/the-music-tree-lockup-horizontal.png";
 
 /**
@@ -32,6 +37,7 @@ export function getOrgSiteHref(): string {
 /**
  * Clickable **`the-music-tree-lockup-horizontal`** artwork only (no separate text node).
  * **`href`** must be the organization site URL — use **`getOrgSiteHref()`** (Next) or **`parseOrgSiteHref(…)`** (Vite).
+ * Hover and keyboard **`:focus-visible`** slightly change the image aspect (**`transform`**); focus uses a **2px** ring (**`currentColor`**).
  */
 export type TheMusicTreeBylineProps = {
   /** Organization site URL (no default — set **`NEXT_PUBLIC_DOMAIN_NAME`** / **`DOMAIN_NAME`**). */
@@ -42,7 +48,7 @@ export type TheMusicTreeBylineProps = {
   imageClassName?: string;
   imageStyle?: CSSProperties;
   /**
-   * `onDark`: invert monochrome/black lockups for dark backgrounds. Omit for full-color lockup artwork.
+   * `onDark`: light ink on transparent (**`the-music-tree-lockup-horizontal-dark.svg`**). Omit for the default PNG lockup.
    */
   variant?: "default" | "onDark";
 };
@@ -58,6 +64,12 @@ const defaultImgStyle: CSSProperties = {
   display: "block",
   height: "56px",
   width: "auto",
+  transformOrigin: "center",
+};
+
+/** Slightly wider vs tall on hover/focus — non-uniform scale changes perceived aspect ratio. */
+const imgTransformHover: CSSProperties = {
+  transform: "scale(1.06, 1.025)",
 };
 
 export function TheMusicTreeByline({
@@ -67,24 +79,44 @@ export function TheMusicTreeByline({
   imageStyle,
   variant = "default",
 }: TheMusicTreeBylineProps) {
-  const filter =
-    variant === "onDark" ? "brightness(0) invert(1)" : undefined;
+  const [hovered, setHovered] = useState(false);
+  const [focusVisible, setFocusVisible] = useState(false);
+
+  const src =
+    variant === "onDark"
+      ? theMusicTreeLockupHorizontalDark
+      : theMusicTreeLockupHorizontal;
+
+  const transformActive = hovered || focusVisible;
 
   return (
     <a
       href={href}
       className={className}
-      style={anchorStyle}
+      style={{
+        ...anchorStyle,
+        outline: "none",
+        boxShadow: focusVisible ? "0 0 0 2px currentColor" : undefined,
+      }}
       aria-label="TheMusicTree — open ecosystem site"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={(e) => {
+        if (e.currentTarget.matches(":focus-visible")) {
+          setFocusVisible(true);
+        }
+      }}
+      onBlur={() => setFocusVisible(false)}
     >
       <img
-        src={theMusicTreeLockupHorizontal}
+        src={src}
         alt=""
         className={imageClassName}
         style={{
           ...defaultImgStyle,
           ...imageStyle,
-          ...(filter ? { filter } : {}),
+          ...(transformActive ? imgTransformHover : {}),
+          transition: "transform 0.2s ease",
         }}
         aria-hidden
       />

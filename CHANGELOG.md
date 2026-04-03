@@ -44,6 +44,19 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Added
+
+- **Brand (The Music Tree)**: **`the-music-tree-lockup-horizontal-dark.svg`** — light ink on transparent for dark UIs (same geometry as **`the-music-tree-lockup-horizontal.svg`**).
+
+### Changed
+
+- **Brand (The Music Tree)**: `the-music-tree-lockup-horizontal.png` is now a web-sized raster (**800×250**); the previous **1920×600** file ships as **`the-music-tree-lockup-horizontal-full.png`** for large displays or print.
+- **TheMusicTreeByline** / **TheMusicTreeHorizontalLink**: **`variant="onDark"`** now uses the dark SVG instead of a CSS **`filter`** on the PNG.
+
+### Improved
+
+- **TheMusicTreeByline** / **TheMusicTreeHorizontalLink**: hover (and **`:focus-visible`** keyboard focus) slightly change the lockup aspect via **`transform: scale`**; focus shows a **2px** ring using **`currentColor`**.
+
 ## [3.0.0] - 2026-04-03
 
 ### Added
