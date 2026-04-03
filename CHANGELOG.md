@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-04-03
+
 ### Added
 
 - **TheMusicTreeHorizontalLink**: exported alias for the horizontal lockup link (same as **TheMusicTreeByline**); playground shows default and **`variant="onDark"`** demos.
