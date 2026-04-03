@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [4.2.0] - 2026-04-03
+
 ### Added
 
 - **Components (social)**: **`Social*Link`** / **`*SocialLinkColored`** — anchor components with optional **`href`**, **`text`**, **`title`**, **`showText`**, **`className`**, **`iconClassName`**; defaults inlined at package build from **`ORG_GITHUB_URL`**, **`ORG_PYPI_URL`**, **`ORG_LINKEDIN_URL`**, **`ORG_X_URL`**, **`ORG_MASTODON_URL`**, **`ORG_YOUTUBE_URL`**, **`CONTACT_EMAIL`**, **`ORG_URL`** (website). **`socialBuildEnv`** exports matching env var name constants.
