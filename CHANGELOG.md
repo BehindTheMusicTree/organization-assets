@@ -44,6 +44,10 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Documentation
+
+- **Playground**: tabbed catalog (**Components**, **Brand**, **Banners**, **Favicons**); social icon **link** buttons use **`playground/.env`** (**`BTMT_GITHUB_LINK`**, **`LINKEDIN_URL`**, **`MASTODON_URL`**, **`CONTACT_EMAIL`**, **`ORG_URL`**, optional keys) inlined by Vite at dev/build time.
+
 ## [4.1.0] - 2026-04-03
 
 ### Added

@@ -35,6 +35,85 @@ body {
   font-size: 0.9rem;
 }
 
+.playground-tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0 0 1.75rem;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-text-muted, #888) 35%, transparent);
+}
+
+.playground-tab {
+  margin: 0 0 -1px;
+  padding: 0.55rem 1rem;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--color-text-muted, #555);
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: var(--radius-md, 8px) var(--radius-md, 8px) 0 0;
+  cursor: pointer;
+}
+
+.playground-tab:hover {
+  color: var(--color-text, #1a1a1a);
+  background: rgb(0 0 0 / 0.04);
+}
+
+.playground-tab[aria-selected="true"] {
+  color: var(--color-text, #1a1a1a);
+  font-weight: 600;
+  background: #fff;
+  border-color: color-mix(in srgb, var(--color-text-muted, #888) 35%, transparent);
+  border-bottom-color: #fff;
+  box-shadow: 0 1px 0 #fff;
+}
+
+.playground-panel:focus {
+  outline: none;
+}
+
+.social-links-demo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.35rem;
+}
+
+.social-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  color: var(--color-text, #1a1a1a);
+  background: #fff;
+  border: 1px solid color-mix(in srgb, var(--color-text-muted, #888) 45%, transparent);
+  border-radius: var(--radius-md, 8px);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.06);
+  text-decoration: none;
+  transition:
+    background 0.12s ease,
+    border-color 0.12s ease,
+    color 0.12s ease;
+}
+
+.social-link-btn:hover {
+  background: color-mix(in srgb, var(--color-surface, #f6f6f6) 70%, #fff);
+  border-color: color-mix(in srgb, var(--color-text-muted, #888) 65%, transparent);
+  color: var(--color-text, #1a1a1a);
+}
+
+.social-link-btn:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-text, #1a1a1a) 55%, transparent);
+  outline-offset: 2px;
+}
+
 .section {
   margin-bottom: 2.5rem;
 }

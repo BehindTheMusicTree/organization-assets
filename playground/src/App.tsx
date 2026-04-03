@@ -1,19 +1,23 @@
+import { useState } from "react";
 import {
   bannerAssets,
   brandAssets,
   faviconAssets,
 } from "./distAssetGlobs";
 import { AssetFigure } from "./AssetFigure";
-import {
-  Button,
-  IconBookOpen,
-  IconGithub,
-  IconPypi,
-  TheMusicTreeHorizontalLink,
-  socialBrandIconClass,
-} from "@behindthemusictree/assets/components";
+import { Button, TheMusicTreeHorizontalLink, socialBrandIconClass } from "@behindthemusictree/assets/components";
 import lockupDarkPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal-dark.png?url";
 import lockupDefaultPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal.png?url";
+import { getPlaygroundSocialLinks } from "./playgroundSocialEnv";
+
+type CatalogTab = "components" | "brand" | "banners" | "favicons";
+
+const TABS: { id: CatalogTab; label: string }[] = [
+  { id: "components", label: "Components" },
+  { id: "brand", label: "Brand" },
+  { id: "banners", label: "Banners" },
+  { id: "favicons", label: "Favicons" },
+];
 
 function labelFromGlobKey(key: string): string {
   const normalized = key.replace(/^\.\.\//, "");
@@ -47,6 +51,8 @@ function AssetGrid({
 }
 
 export default function App() {
+  const [tab, setTab] = useState<CatalogTab>("components");
+  const socialLinks = getPlaygroundSocialLinks();
   const brandEntries = sortedEntries(brandAssets);
   const bannerEntries = sortedEntries(bannerAssets);
   const faviconEntries = sortedEntries(faviconAssets);
@@ -61,129 +67,212 @@ export default function App() {
         refresh this app (or restart <code>npm run dev</code> if the catalog
         still looks stale). The org link target is **embedded in `dist/`** when you run{" "}
         <code>npm run build</code> at the repo root (see <code>ORG_URL</code> in{" "}
-        <code>playground/.env</code> for <code>npm run playground</code>). Raster and SVG previews
-        use each file’s natural dimensions (wide assets scroll inside the card).
+        <code>playground/.env</code> for <code>npm run playground</code>). Social icon targets (
+        <code>BTMT_GITHUB_LINK</code>, <code>LINKEDIN_URL</code>, <code>MASTODON_URL</code>,{" "}
+        <code>CONTACT_EMAIL</code>, etc.) are read from the same file by Vite when you start the
+        playground. Raster and SVG previews use each file’s natural dimensions (wide assets scroll
+        inside the card).
       </p>
 
-      <section className="section" aria-labelledby="components-heading">
-        <h2 id="components-heading">Components</h2>
-        <div className="demo-row">
-          <span className="demo-label">Button</span>
-          <Button variant="primary">Primary</Button>
-          <Button variant="secondary">Secondary</Button>
-        </div>
-        <div className="demo-row">
-          <span className="demo-label">SocialIcons (sample)</span>
-          <span className="inline-flex items-center gap-3 text-[#333]">
-            <IconBookOpen className={socialBrandIconClass} />
-            <IconGithub className={socialBrandIconClass} />
-            <IconPypi className={socialBrandIconClass} />
-          </span>
-        </div>
-        <div className="lockup-showcase">
-          <span className="demo-label">
-            TheMusicTreeHorizontalLink (TheMusicTreeByline — same component)
-          </span>
-          <p className="lockup-showcase__intro">
-            SVG knockouts; <code>href</code> is baked into published <code>dist/</code> when
-            the package is built (not a prop). TheMusicTreeByline is an export alias with
-            the same props and behavior. Hover or tab for focus styles.
-          </p>
-          <div className="lockup-showcase__grid">
-            <div className="lockup-showcase__tile lockup-showcase__tile--light">
-              <span className="lockup-showcase__tile-label">
-                default — light UI
+      <ul className="playground-tablist" role="tablist" aria-label="Catalog">
+        {TABS.map(({ id, label }) => (
+          <li key={id} role="presentation">
+            <button
+              type="button"
+              role="tab"
+              id={`tab-${id}`}
+              aria-selected={tab === id}
+              aria-controls={`panel-${id}`}
+              tabIndex={0}
+              className="playground-tab"
+              onClick={() => setTab(id)}
+            >
+              {label}
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      {tab === "components" && (
+        <div
+          className="playground-panel"
+          role="tabpanel"
+          id="panel-components"
+          aria-labelledby="tab-components"
+        >
+          <section className="section" aria-labelledby="components-heading">
+            <h2 id="components-heading">Components</h2>
+            <div className="demo-row">
+              <span className="demo-label">Button</span>
+              <Button variant="primary">Primary</Button>
+              <Button variant="secondary">Secondary</Button>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">
+                SocialIcons — URLs from <code>playground/.env</code> (embedded at dev/build)
               </span>
-              <code className="lockup-showcase__code">
-                &lt;TheMusicTreeHorizontalLink /&gt;
-              </code>
-              <div className="lockup-showcase__sample">
-                <TheMusicTreeHorizontalLink />
+              {socialLinks.length === 0 ? (
+                <p className="empty-note">
+                  Set <code>BTMT_GITHUB_LINK</code>, <code>LINKEDIN_URL</code>,{" "}
+                  <code>MASTODON_URL</code>, <code>CONTACT_EMAIL</code>, and/or optional keys in{" "}
+                  <code>playground/.env</code> (see <code>playground/.env.example</code>), then
+                  restart <code>npm run dev</code>.
+                </p>
+              ) : (
+                <div className="social-links-demo">
+                  {socialLinks.map(({ key, href, label, Icon }) => {
+                    const external = !href.startsWith("mailto:");
+                    return (
+                      <a
+                        key={key}
+                        className="social-link-btn"
+                        href={href}
+                        {...(external
+                          ? { target: "_blank", rel: "noopener noreferrer" as const }
+                          : {})}
+                        aria-label={label}
+                        title={label}
+                      >
+                        <Icon className={socialBrandIconClass} />
+                      </a>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+            <div className="lockup-showcase">
+              <span className="demo-label">
+                TheMusicTreeHorizontalLink (TheMusicTreeByline — same component)
+              </span>
+              <p className="lockup-showcase__intro">
+                SVG knockouts; <code>href</code> is baked into published <code>dist/</code> when
+                the package is built (not a prop). TheMusicTreeByline is an export alias with
+                the same props and behavior. Hover or tab for focus styles.
+              </p>
+              <div className="lockup-showcase__grid">
+                <div className="lockup-showcase__tile lockup-showcase__tile--light">
+                  <span className="lockup-showcase__tile-label">
+                    default — light UI
+                  </span>
+                  <code className="lockup-showcase__code">
+                    &lt;TheMusicTreeHorizontalLink /&gt;
+                  </code>
+                  <div className="lockup-showcase__sample">
+                    <TheMusicTreeHorizontalLink />
+                  </div>
+                </div>
+                <div className="lockup-showcase__tile lockup-showcase__tile--dark">
+                  <span className="lockup-showcase__tile-label">
+                    variant onDark — dark UI
+                  </span>
+                  <code className="lockup-showcase__code">
+                    variant=&quot;onDark&quot;
+                  </code>
+                  <div className="lockup-showcase__sample">
+                    <TheMusicTreeHorizontalLink variant="onDark" />
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="lockup-showcase__tile lockup-showcase__tile--dark">
-              <span className="lockup-showcase__tile-label">
-                variant onDark — dark UI
+
+            <div className="demo-row lockup-raster-preview">
+              <span className="demo-label">
+                Brand lockup PNGs (dist — raster knockouts for non-React)
               </span>
-              <code className="lockup-showcase__code">
-                variant=&quot;onDark&quot;
-              </code>
-              <div className="lockup-showcase__sample">
-                <TheMusicTreeHorizontalLink variant="onDark" />
+              <div className="lockup-raster-preview__pair">
+                <figure className="lockup-raster-preview__figure">
+                  <figcaption className="asset-card-title">
+                    the-music-tree-lockup-horizontal.png
+                  </figcaption>
+                  <div className="lockup-raster-preview__plate lockup-raster-preview__plate--light">
+                    <img
+                      src={lockupDefaultPng}
+                      alt=""
+                      decoding="async"
+                    />
+                  </div>
+                </figure>
+                <figure className="lockup-raster-preview__figure">
+                  <figcaption className="asset-card-title">
+                    the-music-tree-lockup-horizontal-dark.png
+                  </figcaption>
+                  <div className="lockup-raster-preview__plate lockup-raster-preview__plate--dark">
+                    <img
+                      src={lockupDarkPng}
+                      alt=""
+                      decoding="async"
+                    />
+                  </div>
+                </figure>
               </div>
             </div>
-          </div>
+          </section>
         </div>
+      )}
 
-        <div className="demo-row lockup-raster-preview">
-          <span className="demo-label">
-            Brand lockup PNGs (dist — raster knockouts for non-React)
-          </span>
-          <div className="lockup-raster-preview__pair">
-            <figure className="lockup-raster-preview__figure">
-              <figcaption className="asset-card-title">
-                the-music-tree-lockup-horizontal.png
-              </figcaption>
-              <div className="lockup-raster-preview__plate lockup-raster-preview__plate--light">
-                <img
-                  src={lockupDefaultPng}
-                  alt=""
-                  decoding="async"
-                />
-              </div>
-            </figure>
-            <figure className="lockup-raster-preview__figure">
-              <figcaption className="asset-card-title">
-                the-music-tree-lockup-horizontal-dark.png
-              </figcaption>
-              <div className="lockup-raster-preview__plate lockup-raster-preview__plate--dark">
-                <img
-                  src={lockupDarkPng}
-                  alt=""
-                  decoding="async"
-                />
-              </div>
-            </figure>
-          </div>
+      {tab === "brand" && (
+        <div
+          className="playground-panel"
+          role="tabpanel"
+          id="panel-brand"
+          aria-labelledby="tab-brand"
+        >
+          <section className="section" aria-labelledby="brand-heading">
+            <h2 id="brand-heading">Brand (dist/brand)</h2>
+            {brandEntries.length === 0 ? (
+              <p className="empty-note">
+                No files matched. Run <code>npm run build</code> at the repository
+                root so <code>dist/brand</code> exists.
+              </p>
+            ) : (
+              <AssetGrid entries={brandEntries} variant="brand" />
+            )}
+          </section>
         </div>
-      </section>
+      )}
 
-      <section className="section" aria-labelledby="brand-heading">
-        <h2 id="brand-heading">Brand (dist/brand)</h2>
-        {brandEntries.length === 0 ? (
-          <p className="empty-note">
-            No files matched. Run <code>npm run build</code> at the repository
-            root so <code>dist/brand</code> exists.
-          </p>
-        ) : (
-          <AssetGrid entries={brandEntries} variant="brand" />
-        )}
-      </section>
+      {tab === "banners" && (
+        <div
+          className="playground-panel"
+          role="tabpanel"
+          id="panel-banners"
+          aria-labelledby="tab-banners"
+        >
+          <section className="section" aria-labelledby="banners-heading">
+            <h2 id="banners-heading">Banners (dist/banners)</h2>
+            {bannerEntries.length === 0 ? (
+              <p className="empty-note">
+                No banner files in dist yet. Add rasters under{" "}
+                <code>src/banners/&lt;project-slug&gt;/</code>, run a full library
+                build, then refresh.
+              </p>
+            ) : (
+              <AssetGrid entries={bannerEntries} variant="banners" />
+            )}
+          </section>
+        </div>
+      )}
 
-      <section className="section" aria-labelledby="banners-heading">
-        <h2 id="banners-heading">Banners (dist/banners)</h2>
-        {bannerEntries.length === 0 ? (
-          <p className="empty-note">
-            No banner files in dist yet. Add rasters under{" "}
-            <code>src/banners/&lt;project-slug&gt;/</code>, run a full library
-            build, then refresh.
-          </p>
-        ) : (
-          <AssetGrid entries={bannerEntries} variant="banners" />
-        )}
-      </section>
-
-      <section className="section" aria-labelledby="favicons-heading">
-        <h2 id="favicons-heading">Favicons (dist/favicons)</h2>
-        {faviconEntries.length === 0 ? (
-          <p className="empty-note">
-            No favicon files matched. Run <code>npm run build</code> at the
-            repository root.
-          </p>
-        ) : (
-          <AssetGrid entries={faviconEntries} variant="favicons" />
-        )}
-      </section>
+      {tab === "favicons" && (
+        <div
+          className="playground-panel"
+          role="tabpanel"
+          id="panel-favicons"
+          aria-labelledby="tab-favicons"
+        >
+          <section className="section" aria-labelledby="favicons-heading">
+            <h2 id="favicons-heading">Favicons (dist/favicons)</h2>
+            {faviconEntries.length === 0 ? (
+              <p className="empty-note">
+                No favicon files matched. Run <code>npm run build</code> at the
+                repository root.
+              </p>
+            ) : (
+              <AssetGrid entries={faviconEntries} variant="favicons" />
+            )}
+          </section>
+        </div>
+      )}
     </div>
   );
 }
