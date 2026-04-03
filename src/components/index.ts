@@ -8,3 +8,5 @@ export {
   type TheMusicTreeBylineProps,
   type TheMusicTreeHorizontalLinkProps,
 } from "./TheMusicTreeByline";
+export * from "./social/SocialIcons";
+export * from "./social/socialLinkSizing";

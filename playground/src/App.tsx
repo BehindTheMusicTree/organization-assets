@@ -4,7 +4,14 @@ import {
   faviconAssets,
 } from "./distAssetGlobs";
 import { AssetFigure } from "./AssetFigure";
-import { Button, TheMusicTreeHorizontalLink } from "@behindthemusictree/assets/components";
+import {
+  Button,
+  IconBookOpen,
+  IconGithub,
+  IconPypi,
+  TheMusicTreeHorizontalLink,
+  socialBrandIconClass,
+} from "@behindthemusictree/assets/components";
 import lockupDarkPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal-dark.png?url";
 import lockupDefaultPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal.png?url";
 
@@ -64,6 +71,14 @@ export default function App() {
           <span className="demo-label">Button</span>
           <Button variant="primary">Primary</Button>
           <Button variant="secondary">Secondary</Button>
+        </div>
+        <div className="demo-row">
+          <span className="demo-label">SocialIcons (sample)</span>
+          <span className="inline-flex items-center gap-3 text-[#333]">
+            <IconBookOpen className={socialBrandIconClass} />
+            <IconGithub className={socialBrandIconClass} />
+            <IconPypi className={socialBrandIconClass} />
+          </span>
         </div>
         <div className="lockup-showcase">
           <span className="demo-label">
