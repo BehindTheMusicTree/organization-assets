@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [6.1.0] - 2026-04-04
+
 ### Added
 
 - **Components (links)**: **`DiscussionLink`** / **`DiscussionLinkColored`** and **`InformationLink`** / **`InformationLinkColored`** — same behavior as **`DocLink`** (**`href`** required; no package-build default). Icons: **`IconGitHubConversation`** / **`IconGitHubConversationColored`**, **`IconIssue`** / **`IconIssueColored`**.
