@@ -15,6 +15,10 @@ const mail = "#1A73E8";
 const web = "#6366F1";
 /** Docs / book-open accent (not a platform brand). */
 const docs = "#2563EB";
+/** Discussion / conversation bubble accent (not a platform brand). */
+const discussion = "#7C3AED";
+/** Information / info-circle accent (not a platform brand). */
+const information = "#0284C7";
 
 export function IconGithubColored({ className }: { className?: string }) {
   return (
@@ -139,6 +143,47 @@ export function IconWebsiteColored({ className }: { className?: string }) {
       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
       <path d="M15 3h6v6" />
       <path d="M10 14 21 3" />
+    </svg>
+  );
+}
+
+/** Same paths as **`IconGitHubConversation`**. */
+export function IconGitHubConversationColored({
+  className,
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={discussion}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </svg>
+  );
+}
+
+/** Same paths as **`IconIssue`** (info-in-circle). */
+export function IconIssueColored({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={information}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 8v4M12 16h.01" />
     </svg>
   );
 }

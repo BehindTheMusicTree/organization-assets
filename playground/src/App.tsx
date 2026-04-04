@@ -9,12 +9,16 @@ import {
   BTMT_ICON_LINK_DARK_CLASS,
   BtmtSponsorButton,
   Button,
+  DiscussionLink,
+  DiscussionLinkColored,
   DocLink,
   DocLinkColored,
   EmailSocialLink,
   EmailSocialLinkColored,
   GithubSocialLink,
   GithubSocialLinkColored,
+  InformationLink,
+  InformationLinkColored,
   LinkedInSocialLink,
   LinkedInSocialLinkColored,
   MastodonSocialLink,
@@ -114,7 +118,8 @@ export default function App() {
         <code>CONTACT_EMAIL</code>, etc.)
         are inlined into <code>dist/</code> when you run root <code>npm run build</code> (same keys in{" "}
         <code>playground/.env</code>); pass <code>href</code> / <code>text</code> props to override.{" "}
-        <strong>DocLink</strong> has no build default — supply <code>href</code>.
+        <strong>DocLink</strong>, <strong>DiscussionLink</strong>, and{" "}
+        <strong>InformationLink</strong> have no build default — supply <code>href</code>.
         **BtmtSponsorButton** and **SponsorSocialLink** use <code>ORG_SPONSOR_BUTTON_URL</code>{" "}
         from the package build. Raster and SVG previews use each file’s
         natural dimensions (wide assets scroll inside the card).
@@ -295,8 +300,8 @@ export default function App() {
             </div>
             <div className="demo-row">
               <span className="demo-label">
-                DocLink — no package-build default; requires <code>href</code> (open-book icon;
-                demo URL is arbitrary)
+                DocLink, DiscussionLink, InformationLink — no package-build default; require{" "}
+                <code>href</code> (demo URLs are arbitrary)
               </span>
               <div className="social-links-demo">
                 <DocLink
@@ -309,6 +314,30 @@ export default function App() {
                   iconClassName={socialBrandIconClass}
                   href="https://example.com/docs"
                   text="Documentation (demo)"
+                  showText
+                />
+                <DiscussionLink
+                  iconClassName={socialBrandIconClass}
+                  href="https://example.com/discuss"
+                  text="Discussion (demo)"
+                  showText
+                />
+                <DiscussionLinkColored
+                  iconClassName={socialBrandIconClass}
+                  href="https://example.com/discuss"
+                  text="Discussion (demo)"
+                  showText
+                />
+                <InformationLink
+                  iconClassName={socialBrandIconClass}
+                  href="https://example.com/info"
+                  text="Information (demo)"
+                  showText
+                />
+                <InformationLinkColored
+                  iconClassName={socialBrandIconClass}
+                  href="https://example.com/info"
+                  text="Information (demo)"
                   showText
                 />
               </div>

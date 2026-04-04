@@ -3,7 +3,9 @@ import {
   IconBookOpen,
   IconEmail,
   IconGithub,
+  IconGitHubConversation,
   IconGitHubSponsors,
+  IconIssue,
   IconLinkedIn,
   IconMastodon,
   IconPypi,
@@ -15,7 +17,9 @@ import {
   IconBookOpenColored,
   IconEmailColored,
   IconGithubColored,
+  IconGitHubConversationColored,
   IconGitHubSponsorsColored,
+  IconIssueColored,
   IconLinkedInColored,
   IconMastodonColored,
   IconPypiColored,
@@ -43,8 +47,8 @@ export type SocialIconLinkProps = {
   /**
    * Link target. When omitted, uses the URL or email **inlined at package build** from the
    * matching **`ORG_*`**, **`CONTACT_EMAIL`**, or **`ORG_URL`** env var.
-   * **`DocLink`** / **`DocLinkColored`** have no build default; without **`href`** they
-   * render nothing.
+   * **`DocLink`**, **`DiscussionLink`**, **`InformationLink`**, and their **`Colored`** variants
+   * have no build default; without **`href`** they render nothing.
    */
   href?: string;
   /**
@@ -258,4 +262,34 @@ export const DocLinkColored = createSocialIconLink(
   () => undefined,
   "Documentation",
   IconBookOpenColored,
+);
+
+/** Discussion link; **`href`** must be supplied (no env default at package build). */
+export const DiscussionLink = createSocialIconLink(
+  "http",
+  () => undefined,
+  "Discussion",
+  IconGitHubConversation,
+);
+
+export const DiscussionLinkColored = createSocialIconLink(
+  "http",
+  () => undefined,
+  "Discussion",
+  IconGitHubConversationColored,
+);
+
+/** Information link; **`href`** must be supplied (no env default at package build). */
+export const InformationLink = createSocialIconLink(
+  "http",
+  () => undefined,
+  "Information",
+  IconIssue,
+);
+
+export const InformationLinkColored = createSocialIconLink(
+  "http",
+  () => undefined,
+  "Information",
+  IconIssueColored,
 );

@@ -44,8 +44,14 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Added
+
+- **Components (links)**: **`DiscussionLink`** / **`DiscussionLinkColored`** and **`InformationLink`** / **`InformationLinkColored`** — same behavior as **`DocLink`** (**`href`** required; no package-build default). Icons: **`IconGitHubConversation`** / **`IconGitHubConversationColored`**, **`IconIssue`** / **`IconIssueColored`**.
+
 ### Documentation
 
+- **README**: Document **`DiscussionLink`** and **`InformationLink`** with required **`href`**; remove title shield badges.
+- **Playground**: Demo **`DiscussionLink`** and **`InformationLink`** alongside **`DocLink`** (explicit **`href`**, no shields).
 - **README (Install)**: Recommend committing scope **registry** in the consumer repo **`.npmrc`** and keeping the **token** in a separate file (typically **`~/.npmrc`**), with **`NODE_AUTH_TOKEN`** and gitignored alternatives noted.
 
 ## [6.0.1] - 2026-04-04

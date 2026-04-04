@@ -1,6 +1,7 @@
 /**
  * Canonical styling for icon+label links from `@behindthemusictree/assets/components`
- * (e.g. **Social*Link**, **DocLink**, and colored variants). Add **`btmt-icon-link--dark`**
+ * (e.g. **Social*Link**, **DocLink**, **DiscussionLink**, **InformationLink**, and colored
+ * variants). Add **`btmt-icon-link--dark`**
  * (see **`BTMT_ICON_LINK_DARK_CLASS`**) on dark surfaces.
  * Import once in your app: `import '@behindthemusictree/assets/styles/icon-links.css'`
  * (or use the **`unstyled`** prop on those links to skip these defaults).

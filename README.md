@@ -107,6 +107,21 @@ import faviconSvg from "@behindthemusictree/assets/favicons/behind-the-music-tre
 
 Naming and logo export rules: [`docs/asset-naming.md`](docs/asset-naming.md), [`docs/logo-assets.md`](docs/logo-assets.md).
 
+**DocLink**, **DiscussionLink**, and **InformationLink** (and `*Colored` variants) are styled icon links for documentation, discussion, and general information. They have **no URL baked in at package build** — pass **`href`** (and optional **`text`**, **`showText`**) from your app. Import **`@behindthemusictree/assets/styles/icon-links.css`** once for the default tile and pill styles.
+
+```tsx
+import {
+  DiscussionLink,
+  DocLink,
+  InformationLink,
+} from "@behindthemusictree/assets/components";
+import "@behindthemusictree/assets/styles/icon-links.css";
+
+<DocLink href="https://example.com/docs" showText />
+<DiscussionLink href="https://github.com/org/repo/discussions" showText />
+<InformationLink href="https://example.com/about" showText />
+```
+
 Or from the main entry:
 
 ```tsx
