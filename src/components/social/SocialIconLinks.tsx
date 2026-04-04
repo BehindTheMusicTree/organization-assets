@@ -25,11 +25,23 @@ import {
 } from "./SocialIconsColored";
 import { normalizeHttpUrl, normalizeMailtoHref } from "./socialHrefUtils";
 
+/** Shipped in **`@behindthemusictree/assets/styles/icon-links.css`**. */
+export const BTMT_ICON_LINK_CLASS = "btmt-icon-link";
+/** Modifier when **`showText`** is true (pill + label). */
+export const BTMT_ICON_LINK_WITH_TEXT_CLASS = "btmt-icon-link--with-text";
+
+function joinClassNames(
+  ...parts: (string | undefined | null | false)[]
+): string | undefined {
+  const s = parts.filter(Boolean).join(" ").trim();
+  return s || undefined;
+}
+
 export type SocialIconLinkProps = {
   /**
    * Link target. When omitted, uses the URL or email **inlined at package build** from the
    * matching **`ORG_*`**, **`CONTACT_EMAIL`**, or **`ORG_URL`** env var.
-   * **`DocSocialLink`** / **`DocSocialLinkColored`** have no build default; without **`href`** they
+   * **`DocLink`** / **`DocLinkColored`** have no build default; without **`href`** they
    * render nothing.
    */
   href?: string;
@@ -44,6 +56,12 @@ export type SocialIconLinkProps = {
   showText?: boolean;
   /** Overrides the tooltip; defaults to the resolved accessible name. */
   title?: string;
+  /**
+   * When **`false`** (default), the anchor uses canonical classes; import
+   * **`@behindthemusictree/assets/styles/icon-links.css`** once in your app for the
+   * intended look. When **`true`**, no default classes are applied—only **`className`** (if any).
+   */
+  unstyled?: boolean;
 };
 
 type Kind = "http" | "mailto";
@@ -61,6 +79,7 @@ function createSocialIconLink(
     iconClassName,
     showText = false,
     title: titleProp,
+    unstyled = false,
   }: SocialIconLinkProps) {
     const raw = (hrefProp?.trim() || readDefaultRaw()?.trim()) ?? "";
     if (!raw) return null;
@@ -73,21 +92,20 @@ function createSocialIconLink(
     const linkTitle = titleProp?.trim() || label;
     const external = !href.startsWith("mailto:");
 
+    const defaultClasses = unstyled
+      ? undefined
+      : joinClassNames(
+          BTMT_ICON_LINK_CLASS,
+          showText ? BTMT_ICON_LINK_WITH_TEXT_CLASS : null,
+        );
+    const mergedClassName = joinClassNames(defaultClasses, className);
+
     return (
       <a
         href={href}
-        className={className}
+        className={mergedClassName}
         aria-label={label}
         title={linkTitle}
-        style={
-          showText
-            ? {
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.375rem",
-              }
-            : undefined
-        }
         {...(external
           ? { target: "_blank" as const, rel: "noopener noreferrer" as const }
           : {})}
@@ -226,14 +244,14 @@ export const WebsiteSocialLinkColored = createSocialIconLink(
 );
 
 /** Documentation link; **`href`** must be supplied (no env default at package build). */
-export const DocSocialLink = createSocialIconLink(
+export const DocLink = createSocialIconLink(
   "http",
   () => undefined,
   "Documentation",
   IconBookOpen,
 );
 
-export const DocSocialLinkColored = createSocialIconLink(
+export const DocLinkColored = createSocialIconLink(
   "http",
   () => undefined,
   "Documentation",

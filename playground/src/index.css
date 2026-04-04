@@ -84,78 +84,13 @@ body {
   margin-top: 0.35rem;
 }
 
-.social-link-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  padding: 0;
-  color: var(--color-text, #1a1a1a);
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  text-decoration: none;
-  transition: color 0.12s ease, opacity 0.12s ease;
-}
-
-/*
- * **`socialBrandIconClass`** is Tailwind (`h-6 w-6 shrink-0`). This app has no Tailwind, so without
- * explicit SVG size, icon+text rows collapse the glyph (flex); icon-only rows still look OK inside
- * the fixed 2.75rem square.
- */
-.social-link-btn svg {
-  width: 1.5rem;
-  height: 1.5rem;
-  flex-shrink: 0;
-}
-
-.social-link-btn:hover {
-  color: var(--color-text-muted, #666);
-}
-
-.social-links-demo--colored .social-link-btn:hover {
+/* Colored-icon rows: keep brand tint on hover (canonical CSS uses text-color hover) */
+.social-links-demo--colored .btmt-icon-link:hover {
   color: inherit;
   opacity: 0.85;
 }
 
-.social-link-btn:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--color-text, #1a1a1a) 55%, transparent);
-  outline-offset: 2px;
-}
-
-.social-link-btn--with-text {
-  width: auto;
-  min-height: 2.75rem;
-  height: auto;
-  padding: 0.35rem 0.75rem;
-  justify-content: flex-start;
-  border-radius: 9999px;
-  border: 1px solid color-mix(in srgb, var(--color-text-muted, #888) 38%, transparent);
-  background: #fff;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
-  transition:
-    color 0.12s ease,
-    opacity 0.12s ease,
-    border-color 0.12s ease,
-    background 0.12s ease,
-    box-shadow 0.12s ease;
-}
-
-.social-link-btn--with-text:hover {
-  border-color: color-mix(in srgb, var(--color-text-muted, #888) 55%, transparent);
-  background: color-mix(in srgb, var(--color-surface, #f6f6f6) 65%, #fff);
-  box-shadow: 0 1px 3px rgb(0 0 0 / 0.07);
-}
-
-.social-link-btn--with-text span {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: inherit;
-  white-space: nowrap;
-}
-
-.social-links-demo--colored .social-link-btn--with-text:hover {
+.social-links-demo--colored .btmt-icon-link--with-text:hover {
   color: inherit;
   opacity: 0.88;
   border-color: color-mix(in srgb, var(--color-text-muted, #888) 38%, transparent);

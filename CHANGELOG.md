@@ -44,6 +44,18 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Breaking
+
+- **DocSocialLink** / **DocSocialLinkColored** renamed to **`DocLink`** / **`DocLinkColored`**.
+
+### Added
+
+- **Styles**: **`@behindthemusictree/assets/styles/icon-links.css`** — canonical styling for icon+label links (**`Social*Link`**, **`DocLink`**, and colored variants: icon tile + pill-with-text). Exported constants **`BTMT_ICON_LINK_CLASS`** and **`BTMT_ICON_LINK_WITH_TEXT_CLASS`** for overrides or host CSS.
+
+### Changed
+
+- **Components (links)**: **`Social*Link`** / **`DocLink`** (and colored variants) apply canonical **`btmt-icon-link`** classes by default; import **`icon-links.css`** once for the intended look. Use **`unstyled`** for the previous bare-anchor behavior without default classes.
+
 ## [5.0.1] - 2026-04-04
 
 ### Fixed

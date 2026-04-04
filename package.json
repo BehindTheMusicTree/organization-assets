@@ -42,6 +42,7 @@
       "require": "./dist/tokens/index.cjs"
     },
     "./styles": "./dist/styles/index.css",
+    "./styles/icon-links.css": "./dist/styles/icon-links.css",
     "./hooks": {
       "types": "./dist/hooks/index.d.ts",
       "import": "./dist/hooks/index.js",

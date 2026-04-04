@@ -8,8 +8,8 @@ import { AssetFigure } from "./AssetFigure";
 import {
   BtmtSponsorButton,
   Button,
-  DocSocialLink,
-  DocSocialLinkColored,
+  DocLink,
+  DocLinkColored,
   EmailSocialLink,
   EmailSocialLinkColored,
   GithubSocialLink,
@@ -113,7 +113,7 @@ export default function App() {
         <code>CONTACT_EMAIL</code>, etc.)
         are inlined into <code>dist/</code> when you run root <code>npm run build</code> (same keys in{" "}
         <code>playground/.env</code>); pass <code>href</code> / <code>text</code> props to override.{" "}
-        <strong>DocSocialLink</strong> has no build default — supply <code>href</code>.
+        <strong>DocLink</strong> has no build default — supply <code>href</code>.
         **BtmtSponsorButton** and **SponsorSocialLink** use <code>ORG_SPONSOR_BUTTON_URL</code>{" "}
         from the package build. Raster and SVG previews use each file’s
         natural dimensions (wide assets scroll inside the card).
@@ -179,11 +179,7 @@ export default function App() {
               </span>
               <div className="social-links-demo">
                 {SOCIAL_LINK_DEMO.map(({ key, Link }) => (
-                  <Link
-                    key={key}
-                    className="social-link-btn"
-                    iconClassName={socialBrandIconClass}
-                  />
+                  <Link key={key} iconClassName={socialBrandIconClass} />
                 ))}
               </div>
             </div>
@@ -193,28 +189,19 @@ export default function App() {
               </span>
               <div className="social-links-demo social-links-demo--colored">
                 {SOCIAL_LINK_DEMO.map(({ key, LinkColored }) => (
-                  <LinkColored
-                    key={key}
-                    className="social-link-btn"
-                    iconClassName={socialBrandIconClass}
-                  />
+                  <LinkColored key={key} iconClassName={socialBrandIconClass} />
                 ))}
               </div>
             </div>
             <div className="demo-row">
               <span className="demo-label">
-                Social*Link + <code>showText</code> — pill chip (rounded border + icon + label) via{" "}
-                <code>social-link-btn--with-text</code> in <code>index.css</code>; SVG size there too
-                (no Tailwind)
+                Social*Link + <code>showText</code> — canonical pill from{" "}
+                <code>@behindthemusictree/assets/styles/icon-links.css</code> (imported in{" "}
+                <code>main.tsx</code>); SVG size in that sheet when not using Tailwind on icons
               </span>
               <div className="social-links-demo">
                 {SOCIAL_LINK_DEMO.map(({ key, Link }) => (
-                  <Link
-                    key={key}
-                    className="social-link-btn social-link-btn--with-text"
-                    iconClassName={socialBrandIconClass}
-                    showText
-                  />
+                  <Link key={key} iconClassName={socialBrandIconClass} showText />
                 ))}
               </div>
             </div>
@@ -224,12 +211,7 @@ export default function App() {
               </span>
               <div className="social-links-demo social-links-demo--colored">
                 {SOCIAL_LINK_DEMO.map(({ key, LinkColored }) => (
-                  <LinkColored
-                    key={key}
-                    className="social-link-btn social-link-btn--with-text"
-                    iconClassName={socialBrandIconClass}
-                    showText
-                  />
+                  <LinkColored key={key} iconClassName={socialBrandIconClass} showText />
                 ))}
               </div>
             </div>
@@ -239,7 +221,6 @@ export default function App() {
               </span>
               <div className="social-links-demo">
                 <GithubSocialLink
-                  className="social-link-btn social-link-btn--with-text"
                   iconClassName={socialBrandIconClass}
                   href="https://github.com/octocat"
                   text="Octocat (demo)"
@@ -249,19 +230,17 @@ export default function App() {
             </div>
             <div className="demo-row">
               <span className="demo-label">
-                DocSocialLink — no package-build default; requires <code>href</code> (open-book icon;
+                DocLink — no package-build default; requires <code>href</code> (open-book icon;
                 demo URL is arbitrary)
               </span>
               <div className="social-links-demo">
-                <DocSocialLink
-                  className="social-link-btn social-link-btn--with-text"
+                <DocLink
                   iconClassName={socialBrandIconClass}
                   href="https://example.com/docs"
                   text="Documentation (demo)"
                   showText
                 />
-                <DocSocialLinkColored
-                  className="social-link-btn social-link-btn--with-text"
+                <DocLinkColored
                   iconClassName={socialBrandIconClass}
                   href="https://example.com/docs"
                   text="Documentation (demo)"
