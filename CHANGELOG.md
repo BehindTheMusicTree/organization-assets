@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [5.0.0] - 2026-04-04
+
 ### Breaking
 
 - **`socialBuildEnv`**: removed **`ORG_SPONSORS_URL`**. **`SponsorSocialLink`** / **`SponsorSocialLinkColored`** default URL is **`ORG_SPONSOR_BUTTON_URL`** only (same as **`BtmtSponsorButton`**). Drop the **`ORG_SPONSORS_URL`** repository variable from CI if present.
