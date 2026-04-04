@@ -6,6 +6,7 @@ import {
 } from "./distAssetGlobs";
 import { AssetFigure } from "./AssetFigure";
 import {
+  BTMT_ICON_LINK_DARK_CLASS,
   BtmtSponsorButton,
   Button,
   DocLink,
@@ -212,6 +213,70 @@ export default function App() {
               <div className="social-links-demo social-links-demo--colored">
                 {SOCIAL_LINK_DEMO.map(({ key, LinkColored }) => (
                   <LinkColored key={key} iconClassName={socialBrandIconClass} showText />
+                ))}
+              </div>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">
+                Dark surface — <code>{`className={BTMT_ICON_LINK_DARK_CLASS}`}</code> +{" "}
+                <code>currentColor</code> icons
+              </span>
+              <div
+                className="social-links-demo social-links-demo--on-dark"
+                aria-label="Social links on dark background"
+              >
+                {SOCIAL_LINK_DEMO.map(({ key, Link }) => (
+                  <Link
+                    key={key}
+                    className={BTMT_ICON_LINK_DARK_CLASS}
+                    iconClassName={socialBrandIconClass}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">
+                Dark surface — <code>*SocialLinkColored</code> +{" "}
+                <code>{`className={BTMT_ICON_LINK_DARK_CLASS}`}</code>
+              </span>
+              <div className="social-links-demo social-links-demo--on-dark social-links-demo--colored">
+                {SOCIAL_LINK_DEMO.map(({ key, LinkColored }) => (
+                  <LinkColored
+                    key={key}
+                    className={BTMT_ICON_LINK_DARK_CLASS}
+                    iconClassName={socialBrandIconClass}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">
+                Dark surface + <code>showText</code> — dark pill from{" "}
+                <code>icon-links.css</code>
+              </span>
+              <div className="social-links-demo social-links-demo--on-dark">
+                {SOCIAL_LINK_DEMO.map(({ key, Link }) => (
+                  <Link
+                    key={key}
+                    className={BTMT_ICON_LINK_DARK_CLASS}
+                    iconClassName={socialBrandIconClass}
+                    showText
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">
+                Dark surface — colored + <code>showText</code>
+              </span>
+              <div className="social-links-demo social-links-demo--on-dark social-links-demo--colored">
+                {SOCIAL_LINK_DEMO.map(({ key, LinkColored }) => (
+                  <LinkColored
+                    key={key}
+                    className={BTMT_ICON_LINK_DARK_CLASS}
+                    iconClassName={socialBrandIconClass}
+                    showText
+                  />
                 ))}
               </div>
             </div>

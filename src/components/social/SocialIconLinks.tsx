@@ -29,6 +29,8 @@ import { normalizeHttpUrl, normalizeMailtoHref } from "./socialHrefUtils";
 export const BTMT_ICON_LINK_CLASS = "btmt-icon-link";
 /** Modifier when **`showText`** is true (pill + label). */
 export const BTMT_ICON_LINK_WITH_TEXT_CLASS = "btmt-icon-link--with-text";
+/** Light text + dark pill on dark backgrounds; combine with **`BTMT_ICON_LINK_CLASS`**. */
+export const BTMT_ICON_LINK_DARK_CLASS = "btmt-icon-link--dark";
 
 function joinClassNames(
   ...parts: (string | undefined | null | false)[]

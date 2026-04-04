@@ -44,6 +44,14 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Added
+
+- **Styles**: **`btmt-icon-link--dark`** in **`icon-links.css`** for light-on-dark icon links and pills; exported **`BTMT_ICON_LINK_DARK_CLASS`**.
+
+### Fixed
+
+- **Social icons (colored)**: GitHub and X marks stay light on **`btmt-icon-link--dark`** (they use near-black brand fills by default).
+
 ## [6.0.0] - 2026-04-04
 
 ### Breaking

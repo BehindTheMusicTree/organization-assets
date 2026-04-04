@@ -1,6 +1,7 @@
 /**
  * Canonical styling for icon+label links from `@behindthemusictree/assets/components`
- * (e.g. **Social*Link**, **DocLink**, and colored variants).
+ * (e.g. **Social*Link**, **DocLink**, and colored variants). Add **`btmt-icon-link--dark`**
+ * (see **`BTMT_ICON_LINK_DARK_CLASS`**) on dark surfaces.
  * Import once in your app: `import '@behindthemusictree/assets/styles/icon-links.css'`
  * (or use the **`unstyled`** prop on those links to skip these defaults).
  */
@@ -66,4 +67,40 @@
   font-weight: 500;
   color: inherit;
   white-space: nowrap;
+}
+
+/* Dark UI: add with `btmt-icon-link` (and `btmt-icon-link--with-text` when using showText). */
+.btmt-icon-link--dark {
+  color: rgb(255 255 255 / 0.92);
+}
+
+.btmt-icon-link--dark:hover {
+  color: rgb(255 255 255 / 0.72);
+}
+
+.btmt-icon-link--dark:focus-visible {
+  outline: 2px solid color-mix(in srgb, #fff 50%, transparent);
+  outline-offset: 2px;
+}
+
+.btmt-icon-link--dark.btmt-icon-link--with-text {
+  border-color: rgb(255 255 255 / 0.22);
+  background: rgb(30 30 30);
+  color: rgb(255 255 255 / 0.92);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
+}
+
+.btmt-icon-link--dark.btmt-icon-link--with-text:hover {
+  border-color: rgb(255 255 255 / 0.32);
+  background: rgb(42 42 42);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.45);
+}
+
+/*
+ * Brand marks that default to black/near-black fills need a light fill on dark UI
+ * (see **`data-btmt-social`** on **`SocialIconsColored`**).
+ */
+.btmt-icon-link--dark svg[data-btmt-social="github"],
+.btmt-icon-link--dark svg[data-btmt-social="x"] {
+  fill: rgb(255 255 255 / 0.92);
 }
