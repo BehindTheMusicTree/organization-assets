@@ -4,6 +4,7 @@
  * **`ORG_SPONSOR_BUTTON_URL`**).
  */
 export const ORG_GITHUB_URL = "ORG_GITHUB_URL" as const;
+export const ORG_SPONSORS_URL = "ORG_SPONSORS_URL" as const;
 export const ORG_PYPI_URL = "ORG_PYPI_URL" as const;
 export const ORG_LINKEDIN_URL = "ORG_LINKEDIN_URL" as const;
 export const ORG_X_URL = "ORG_X_URL" as const;

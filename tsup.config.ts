@@ -1,19 +1,47 @@
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "tsup";
 
-/** Inlined into published JS/CJS when this package is built (set ORG_URL / DOMAIN_NAME in CI). */
-const orgUrlLiteral = JSON.stringify(process.env.ORG_URL ?? "");
-/** GitHub Sponsors button URL (or other iframe src) for **BtmtSponsorButton**; **required** at build (**`assert-org-url.mjs`**). */
+function loadPlaygroundDotenv(filePath: string): Record<string, string> {
+  if (!fs.existsSync(filePath)) return {};
+  const out: Record<string, string> = {};
+  for (const rawLine of fs.readFileSync(filePath, "utf8").split("\n")) {
+    const line = rawLine.replace(/^\uFEFF/, "").trim();
+    if (!line || line.startsWith("#")) continue;
+    const m = /^([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$/.exec(line);
+    if (!m) continue;
+    let v = m[2].trim();
+    if (
+      (v.startsWith('"') && v.endsWith('"')) ||
+      (v.startsWith("'") && v.endsWith("'"))
+    ) {
+      v = v.slice(1, -1);
+    }
+    out[m[1]] = v;
+  }
+  return out;
+}
+
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)));
+const buildEnv = {
+  ...loadPlaygroundDotenv(path.join(repoRoot, "playground", ".env")),
+  ...process.env,
+};
+
+/** Same merge order as **`scripts/assert-org-url.mjs`** (file then shell). */
+const orgUrlLiteral = JSON.stringify(buildEnv.ORG_URL ?? "");
 const sponsorButtonUrlLiteral = JSON.stringify(
-  process.env.ORG_SPONSOR_BUTTON_URL ?? "",
+  buildEnv.ORG_SPONSOR_BUTTON_URL ?? "",
 );
-/** Defaults for **`Social*Link`** (same env as **`playground/.env`** / publish workflow). */
-const orgGithubUrlLiteral = JSON.stringify(process.env.ORG_GITHUB_URL ?? "");
-const orgPypiUrlLiteral = JSON.stringify(process.env.ORG_PYPI_URL ?? "");
-const orgLinkedinUrlLiteral = JSON.stringify(process.env.ORG_LINKEDIN_URL ?? "");
-const orgXUrlLiteral = JSON.stringify(process.env.ORG_X_URL ?? "");
-const orgMastodonUrlLiteral = JSON.stringify(process.env.ORG_MASTODON_URL ?? "");
-const orgYoutubeUrlLiteral = JSON.stringify(process.env.ORG_YOUTUBE_URL ?? "");
-const contactEmailLiteral = JSON.stringify(process.env.CONTACT_EMAIL ?? "");
+const orgGithubUrlLiteral = JSON.stringify(buildEnv.ORG_GITHUB_URL ?? "");
+const orgSponsorsUrlLiteral = JSON.stringify(buildEnv.ORG_SPONSORS_URL ?? "");
+const orgPypiUrlLiteral = JSON.stringify(buildEnv.ORG_PYPI_URL ?? "");
+const orgLinkedinUrlLiteral = JSON.stringify(buildEnv.ORG_LINKEDIN_URL ?? "");
+const orgXUrlLiteral = JSON.stringify(buildEnv.ORG_X_URL ?? "");
+const orgMastodonUrlLiteral = JSON.stringify(buildEnv.ORG_MASTODON_URL ?? "");
+const orgYoutubeUrlLiteral = JSON.stringify(buildEnv.ORG_YOUTUBE_URL ?? "");
+const contactEmailLiteral = JSON.stringify(buildEnv.CONTACT_EMAIL ?? "");
 
 export default defineConfig({
   entry: {
@@ -34,6 +62,7 @@ export default defineConfig({
     "process.env.ORG_URL": orgUrlLiteral,
     "process.env.ORG_SPONSOR_BUTTON_URL": sponsorButtonUrlLiteral,
     "process.env.ORG_GITHUB_URL": orgGithubUrlLiteral,
+    "process.env.ORG_SPONSORS_URL": orgSponsorsUrlLiteral,
     "process.env.ORG_PYPI_URL": orgPypiUrlLiteral,
     "process.env.ORG_LINKEDIN_URL": orgLinkedinUrlLiteral,
     "process.env.ORG_X_URL": orgXUrlLiteral,

@@ -8,6 +8,8 @@ import { AssetFigure } from "./AssetFigure";
 import {
   BtmtSponsorButton,
   Button,
+  DocSocialLink,
+  DocSocialLinkColored,
   EmailSocialLink,
   EmailSocialLinkColored,
   GithubSocialLink,
@@ -18,6 +20,8 @@ import {
   MastodonSocialLinkColored,
   PypiSocialLink,
   PypiSocialLinkColored,
+  SponsorSocialLink,
+  SponsorSocialLinkColored,
   TheMusicTreeHorizontalLink,
   WebsiteSocialLink,
   WebsiteSocialLinkColored,
@@ -40,6 +44,7 @@ const SOCIAL_LINK_DEMO: {
   LinkColored: SocialLinkComponent;
 }[] = [
   { key: "github", Link: GithubSocialLink, LinkColored: GithubSocialLinkColored },
+  { key: "sponsors", Link: SponsorSocialLink, LinkColored: SponsorSocialLinkColored },
   { key: "pypi", Link: PypiSocialLink, LinkColored: PypiSocialLinkColored },
   { key: "linkedin", Link: LinkedInSocialLink, LinkColored: LinkedInSocialLinkColored },
   { key: "x", Link: XSocialLink, LinkColored: XSocialLinkColored },
@@ -104,9 +109,11 @@ export default function App() {
         still looks stale). The org link target is **embedded in `dist/`** when you run{" "}
         <code>npm run build</code> at the repo root (see <code>ORG_URL</code> in{" "}
         <code>playground/.env</code> for <code>npm run playground</code>). Social link defaults (
-        <code>ORG_GITHUB_URL</code>, <code>ORG_LINKEDIN_URL</code>, <code>CONTACT_EMAIL</code>, etc.)
+        <code>ORG_GITHUB_URL</code>, <code>ORG_SPONSORS_URL</code>, <code>ORG_LINKEDIN_URL</code>,{" "}
+        <code>CONTACT_EMAIL</code>, etc.)
         are inlined into <code>dist/</code> when you run root <code>npm run build</code> (same keys in{" "}
-        <code>playground/.env</code>); pass <code>href</code> / <code>text</code> props to override.
+        <code>playground/.env</code>); pass <code>href</code> / <code>text</code> props to override.{" "}
+        <strong>DocSocialLink</strong> has no build default — supply <code>href</code>.
         **BtmtSponsorButton** uses <code>ORG_SPONSOR_BUTTON_URL</code>{" "}
         from the package build. Raster and SVG previews use each file’s
         natural dimensions (wide assets scroll inside the card).
@@ -236,6 +243,28 @@ export default function App() {
                   iconClassName={socialBrandIconClass}
                   href="https://github.com/octocat"
                   text="Octocat (demo)"
+                  showText
+                />
+              </div>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">
+                DocSocialLink — no package-build default; requires <code>href</code> (open-book icon;
+                demo URL is arbitrary)
+              </span>
+              <div className="social-links-demo">
+                <DocSocialLink
+                  className="social-link-btn social-link-btn--with-text"
+                  iconClassName={socialBrandIconClass}
+                  href="https://example.com/docs"
+                  text="Documentation (demo)"
+                  showText
+                />
+                <DocSocialLinkColored
+                  className="social-link-btn social-link-btn--with-text"
+                  iconClassName={socialBrandIconClass}
+                  href="https://example.com/docs"
+                  text="Documentation (demo)"
                   showText
                 />
               </div>

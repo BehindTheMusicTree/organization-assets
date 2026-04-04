@@ -1,7 +1,9 @@
 import type { ComponentType } from "react";
 import {
+  IconBookOpen,
   IconEmail,
   IconGithub,
+  IconGitHubSponsors,
   IconLinkedIn,
   IconMastodon,
   IconPypi,
@@ -10,8 +12,10 @@ import {
   IconYouTube,
 } from "./SocialIcons";
 import {
+  IconBookOpenColored,
   IconEmailColored,
   IconGithubColored,
+  IconGitHubSponsorsColored,
   IconLinkedInColored,
   IconMastodonColored,
   IconPypiColored,
@@ -25,6 +29,8 @@ export type SocialIconLinkProps = {
   /**
    * Link target. When omitted, uses the URL or email **inlined at package build** from the
    * matching **`ORG_*`**, **`CONTACT_EMAIL`**, or **`ORG_URL`** env var.
+   * **`DocSocialLink`** / **`DocSocialLinkColored`** have no build default; without **`href`** they
+   * render nothing.
    */
   href?: string;
   /**
@@ -105,6 +111,20 @@ export const GithubSocialLinkColored = createSocialIconLink(
   () => process.env.ORG_GITHUB_URL?.trim() || undefined,
   "GitHub",
   IconGithubColored,
+);
+
+export const SponsorSocialLink = createSocialIconLink(
+  "http",
+  () => process.env.ORG_SPONSORS_URL?.trim() || undefined,
+  "GitHub Sponsors",
+  IconGitHubSponsors,
+);
+
+export const SponsorSocialLinkColored = createSocialIconLink(
+  "http",
+  () => process.env.ORG_SPONSORS_URL?.trim() || undefined,
+  "GitHub Sponsors",
+  IconGitHubSponsorsColored,
 );
 
 export const PypiSocialLink = createSocialIconLink(
@@ -203,4 +223,19 @@ export const WebsiteSocialLinkColored = createSocialIconLink(
   () => process.env.ORG_URL?.trim() || undefined,
   "Website",
   IconWebsiteColored,
+);
+
+/** Documentation link; **`href`** must be supplied (no env default at package build). */
+export const DocSocialLink = createSocialIconLink(
+  "http",
+  () => undefined,
+  "Documentation",
+  IconBookOpen,
+);
+
+export const DocSocialLinkColored = createSocialIconLink(
+  "http",
+  () => undefined,
+  "Documentation",
+  IconBookOpenColored,
 );

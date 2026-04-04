@@ -44,6 +44,15 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Added
+
+- **Components (social)**: **`DocSocialLink`** / **`DocSocialLinkColored`** — documentation link with open-book icon; **no** build-time URL default (**`href`** required). **`IconBookOpenColored`** in **`SocialIconsColored`**.
+
+### Improved
+
+- **Playground**: **`SponsorSocialLink`** / **`SponsorSocialLinkColored`** — included in social link demo rows (**`ORG_SPONSORS_URL`** default).
+- **Playground**: **`DocSocialLink`** demo row with explicit **`href`**.
+
 ## [4.2.1] - 2026-04-03
 
 ### Fixed
