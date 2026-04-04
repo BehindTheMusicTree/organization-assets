@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [6.0.1] - 2026-04-04
+
 ### Added
 
 - **Styles**: **`btmt-icon-link--dark`** in **`icon-links.css`** for light-on-dark icon links and pills; exported **`BTMT_ICON_LINK_DARK_CLASS`**.
