@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [4.3.0] - 2026-04-04
+
 ### Added
 
 - **Components (social)**: **`DocSocialLink`** / **`DocSocialLinkColored`** — documentation link with open-book icon; **no** build-time URL default (**`href`** required). **`IconBookOpenColored`** in **`SocialIconsColored`**.
