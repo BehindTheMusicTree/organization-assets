@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [6.0.0] - 2026-04-04
+
 ### Breaking
 
 - **DocSocialLink** / **DocSocialLinkColored** renamed to **`DocLink`** / **`DocLinkColored`**.
