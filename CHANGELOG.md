@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [5.0.1] - 2026-04-04
+
 ### Fixed
 
 - **Publish**: **`5.0.1`** republish so **`dist/`** matches source: **`SponsorSocialLink`** / **`SponsorSocialLinkColored`** inline **`ORG_SPONSOR_BUTTON_URL`** only (no **`ORG_SPONSORS_URL`**). Upgrade if installed **`5.0.0`** still contained the old key in compiled output.
