@@ -35,7 +35,6 @@ const sponsorButtonUrlLiteral = JSON.stringify(
   buildEnv.ORG_SPONSOR_BUTTON_URL ?? "",
 );
 const orgGithubUrlLiteral = JSON.stringify(buildEnv.ORG_GITHUB_URL ?? "");
-const orgSponsorsUrlLiteral = JSON.stringify(buildEnv.ORG_SPONSORS_URL ?? "");
 const orgPypiUrlLiteral = JSON.stringify(buildEnv.ORG_PYPI_URL ?? "");
 const orgLinkedinUrlLiteral = JSON.stringify(buildEnv.ORG_LINKEDIN_URL ?? "");
 const orgXUrlLiteral = JSON.stringify(buildEnv.ORG_X_URL ?? "");
@@ -62,7 +61,6 @@ export default defineConfig({
     "process.env.ORG_URL": orgUrlLiteral,
     "process.env.ORG_SPONSOR_BUTTON_URL": sponsorButtonUrlLiteral,
     "process.env.ORG_GITHUB_URL": orgGithubUrlLiteral,
-    "process.env.ORG_SPONSORS_URL": orgSponsorsUrlLiteral,
     "process.env.ORG_PYPI_URL": orgPypiUrlLiteral,
     "process.env.ORG_LINKEDIN_URL": orgLinkedinUrlLiteral,
     "process.env.ORG_X_URL": orgXUrlLiteral,

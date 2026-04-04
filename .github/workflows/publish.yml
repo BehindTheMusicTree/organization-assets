@@ -27,7 +27,6 @@ jobs:
           ORG_URL: ${{ vars.DOMAIN_NAME }}
           ORG_SPONSOR_BUTTON_URL: ${{ vars.ORG_SPONSOR_BUTTON_URL }}
           ORG_GITHUB_URL: ${{ vars.ORG_GITHUB_URL }}
-          ORG_SPONSORS_URL: ${{ vars.ORG_SPONSORS_URL }}
           ORG_PYPI_URL: ${{ vars.ORG_PYPI_URL }}
           ORG_LINKEDIN_URL: ${{ vars.ORG_LINKEDIN_URL }}
           ORG_X_URL: ${{ vars.ORG_X_URL }}

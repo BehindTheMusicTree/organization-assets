@@ -14,9 +14,8 @@ Every variable in the **`npm run build`** **`env`** block is **required** for re
 | Workflow `env` key              | Repository variable              | Purpose                                      |
 | ------------------------------- | -------------------------------- | -------------------------------------------- |
 | **`ORG_URL`**                   | **`DOMAIN_NAME`**                | Organization site URL / TheMusicTreeByline   |
-| **`ORG_SPONSOR_BUTTON_URL`**    | **`ORG_SPONSOR_BUTTON_URL`**     | **`BtmtSponsorButton`** iframe `src`         |
+| **`ORG_SPONSOR_BUTTON_URL`**    | **`ORG_SPONSOR_BUTTON_URL`**     | **`BtmtSponsorButton`** iframe `src`; **`SponsorSocialLink`** default |
 | **`ORG_GITHUB_URL`**            | **`ORG_GITHUB_URL`**             | **`GithubSocialLink`** default (playground)  |
-| **`ORG_SPONSORS_URL`**          | **`ORG_SPONSORS_URL`**           | **`SponsorSocialLink`** default (playground) |
 | **`ORG_PYPI_URL`**              | **`ORG_PYPI_URL`**               | **`PypiSocialLink`** default (playground)    |
 | **`ORG_LINKEDIN_URL`**          | **`ORG_LINKEDIN_URL`**           | **`LinkedInSocialLink`** default (playground)|
 | **`ORG_X_URL`**                 | **`ORG_X_URL`**                  | **`XSocialLink`** default (playground)       |

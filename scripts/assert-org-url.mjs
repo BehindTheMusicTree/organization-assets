@@ -42,7 +42,6 @@ requireHttpUrl("ORG_SPONSOR_BUTTON_URL");
 
 /** Social **`Social*Link`** defaults — same names as **`playground/.env.example`** / **`publish.yml`**. */
 requireHttpUrl("ORG_GITHUB_URL");
-requireHttpUrl("ORG_SPONSORS_URL");
 requireHttpUrl("ORG_PYPI_URL");
 requireNonEmpty("ORG_LINKEDIN_URL");
 requireHttpUrl("ORG_X_URL");

@@ -109,12 +109,12 @@ export default function App() {
         still looks stale). The org link target is **embedded in `dist/`** when you run{" "}
         <code>npm run build</code> at the repo root (see <code>ORG_URL</code> in{" "}
         <code>playground/.env</code> for <code>npm run playground</code>). Social link defaults (
-        <code>ORG_GITHUB_URL</code>, <code>ORG_SPONSORS_URL</code>, <code>ORG_LINKEDIN_URL</code>,{" "}
+        <code>ORG_GITHUB_URL</code>, <code>ORG_LINKEDIN_URL</code>,{" "}
         <code>CONTACT_EMAIL</code>, etc.)
         are inlined into <code>dist/</code> when you run root <code>npm run build</code> (same keys in{" "}
         <code>playground/.env</code>); pass <code>href</code> / <code>text</code> props to override.{" "}
         <strong>DocSocialLink</strong> has no build default — supply <code>href</code>.
-        **BtmtSponsorButton** uses <code>ORG_SPONSOR_BUTTON_URL</code>{" "}
+        **BtmtSponsorButton** and **SponsorSocialLink** use <code>ORG_SPONSOR_BUTTON_URL</code>{" "}
         from the package build. Raster and SVG previews use each file’s
         natural dimensions (wide assets scroll inside the card).
       </p>
