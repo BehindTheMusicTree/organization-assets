@@ -26,31 +26,35 @@ The package is published to **[GitHub Packages](https://github.com/orgs/BehindTh
 
 ### 1. Point the scope at GitHub Packages
 
-In your **app repository root**, add or merge into **`.npmrc`**:
+Put the **registry mapping** in your **consumer app repository** so teammates and CI get the same scope resolution. In the **app repo root**, add or merge into **`.npmrc`**:
 
 ```ini
 @behindthemusictree:registry=https://npm.pkg.github.com
 ```
 
-You can put the same line in **`~/.npmrc`** instead if every project on your machine should resolve this scope the same way.
+That line has no secrets — **commit** it. Keep tokens out of this file (step 2).
+
+If you truly do not want a committed **`.npmrc`**, you can put only that registry line in **`~/.npmrc`** instead, but then every environment must repeat the same scope config.
 
 ### 2. Provide a token
 
 Create a **[classic Personal Access Token](https://github.com/settings/tokens)** with the **`read:packages`** scope. If the package or its repository is private to the org, you may also need **`repo`** (see [GitHub’s npm docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry)).
 
-Add the token to **`.npmrc`** next to the line from step 1 (do **not** commit this file if it contains a raw token—use **[gitignore](https://git-scm.com/docs/gitignore)** or keep the token only in **`~/.npmrc`**):
+Put the **token in a different config file** than the app repo’s **`.npmrc`**, so it never gets committed. The usual choice is your **user-level** **`~/.npmrc`** (npm merges project + user **`.npmrc`**):
 
 ```ini
 //npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN_HERE
 ```
 
-Alternatively, keep secrets out of files and reference an environment variable (works well with **direnv**, CI, and local exports):
+To avoid a literal token in any file, use an environment variable (works well with **direnv**, local shell exports, and CI) — still typically in **`~/.npmrc`**:
 
 ```ini
 //npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
 ```
 
 Then export **`NODE_AUTH_TOKEN`** (or **`GITHUB_TOKEN`** in some setups) before running **`npm install`**.
+
+If you cannot use **`~/.npmrc`**, a **gitignored** **`.npmrc`** in the app repo that contains **only** the **`_authToken`** line is possible, but splitting **registry (committed repo)** and **token (user home or secret store)** is the safer default.
 
 **GitHub Actions:** configure **`actions/setup-node`** with **`registry-url: 'https://npm.pkg.github.com'`** and pass **`NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}`** (or a PAT with **`read:packages`** in **`secrets`**) so the job can install dependencies that pull this package. See [Using packages in Actions](https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries).
 

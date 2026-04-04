@@ -44,6 +44,10 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Documentation
+
+- **README (Install)**: Recommend committing scope **registry** in the consumer repo **`.npmrc`** and keeping the **token** in a separate file (typically **`~/.npmrc`**), with **`NODE_AUTH_TOKEN`** and gitignored alternatives noted.
+
 ## [6.0.1] - 2026-04-04
 
 ### Added
