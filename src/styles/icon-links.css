@@ -29,6 +29,34 @@
   flex-shrink: 0;
 }
 
+/*
+ * Raster marks: same box as SVGs. `min-width: 0` avoids flex `min-width: auto` using
+ * intrinsic width and blowing up pills.
+ */
+.btmt-icon-link img {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  min-width: 0;
+  object-fit: contain;
+}
+
+/* Tipeee: wordmark sits in a wider inline-flex slot (see **`IconTipeee`**); fill that slot. */
+.btmt-icon-link img[data-btmt-social="tipeee"],
+.btmt-icon-link img[data-btmt-social="tipeee-mono"] {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+/* Icon-only links are `2.75rem` square; let the wordmark slot widen the hit target slightly. */
+.btmt-icon-link:not(.btmt-icon-link--with-text):has(img[data-btmt-social="tipeee"]),
+.btmt-icon-link:not(.btmt-icon-link--with-text):has(img[data-btmt-social="tipeee-mono"]) {
+  width: auto;
+  min-width: 2.75rem;
+  padding-inline: 0.25rem;
+}
+
 .btmt-icon-link:hover {
   color: var(--color-text-muted, #666);
 }
@@ -104,4 +132,9 @@
 .btmt-icon-link--dark svg[data-btmt-social="github"],
 .btmt-icon-link--dark svg[data-btmt-social="x"] {
   fill: rgb(255 255 255 / 0.92);
+}
+
+/* Monochrome Tipeee raster: black on light (`brightness(0)` on the img); light on dark UI. */
+.btmt-icon-link--dark img[data-btmt-social="tipeee-mono"] {
+  filter: brightness(0) invert(1) !important;
 }

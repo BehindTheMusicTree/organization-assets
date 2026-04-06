@@ -44,6 +44,18 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Changed
+
+- **Components (social)**: **`IconTipeee`** / **`IconTipeeeColored`** use **`icons/tipeee-mark.svg`** (wordmark) instead of a heart glyph.
+
+### Fixed
+
+- **Styles (`icon-links.css`)**: Raster social icons — avoid flex intrinsic **`min-width`** blow-ups; size **`img`** like SVGs; Tipeee wordmark slot and icon-only link width.
+
+### Improved
+
+- **Components (social)**: Tipeee — tighter SVG **`viewBox`**, wider slot for the horizontal mark, monochrome **`IconTipeee`** forced black (**`filter`**) with **`btmt-icon-link--dark`** invert for dark surfaces.
+
 ## [6.4.0] - 2026-04-06
 
 ### Added

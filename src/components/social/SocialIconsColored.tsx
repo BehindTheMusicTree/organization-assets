@@ -4,6 +4,8 @@
  * `SocialIcons.tsx` when icons should follow text/theme color.
  */
 
+import tipeeeMarkUrl from "./icons/tipeee-mark.svg";
+
 const gh = "#181717";
 const githubSponsors = "#EA4AAA";
 const pypi = "#3775A9";
@@ -13,8 +15,6 @@ const mastodon = "#6364FF";
 const yt = "#FF0000";
 const spotify = "#1DB954";
 const discord = "#5865F2";
-/** Tipeee brand red (see Wikimedia Commons “Tipeee logo.svg”). */
-const tipeee = "#d8485a";
 const mail = "#1A73E8";
 const web = "#6366F1";
 /** Docs / book-open accent (not a platform brand). */
@@ -125,22 +125,39 @@ export function IconDiscordColored({ className }: { className?: string }) {
   );
 }
 
-/** Same paths as **`IconTipeee`**; stroke uses Tipeee brand red. */
+/** Same asset as **`IconTipeee`** (`./icons/tipeee-mark.svg`). */
 export function IconTipeeeColored({ className }: { className?: string }) {
   return (
-    <svg
+    <span
       className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={tipeee}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
       aria-hidden
-      data-btmt-social="tipeee"
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        boxSizing: "border-box",
+        width: "4.75rem",
+        height: "1.5rem",
+        minWidth: 0,
+        flexShrink: 0,
+      }}
     >
-      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-    </svg>
+      <img
+        src={tipeeeMarkUrl}
+        alt=""
+        aria-hidden
+        decoding="async"
+        data-btmt-social="tipeee"
+        style={{
+          display: "block",
+          maxWidth: "100%",
+          maxHeight: "100%",
+          width: "auto",
+          height: "auto",
+          objectFit: "contain",
+        }}
+      />
+    </span>
   );
 }
 

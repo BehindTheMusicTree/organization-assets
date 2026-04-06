@@ -1,3 +1,5 @@
+import tipeeeMarkUrl from "./icons/tipeee-mark.svg";
+
 export function IconBookOpen({ className }: { className?: string }) {
   return (
     <svg
@@ -123,21 +125,43 @@ export function IconDiscord({ className }: { className?: string }) {
   );
 }
 
-/** Tipeee (tipping) — heart glyph (support); no Simple Icons entry for Tipeee. */
+/**
+ * Tipeee wordmark (monochrome): raster is forced to black via **`filter`**; on dark icon links,
+ * **`icon-links.css`** inverts it to match other **`currentColor`** marks.
+ */
 export function IconTipeee({ className }: { className?: string }) {
   return (
-    <svg
+    <span
       className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
       aria-hidden
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        boxSizing: "border-box",
+        width: "4.75rem",
+        height: "1.5rem",
+        minWidth: 0,
+        flexShrink: 0,
+      }}
     >
-      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-    </svg>
+      <img
+        src={tipeeeMarkUrl}
+        alt=""
+        aria-hidden
+        decoding="async"
+        data-btmt-social="tipeee-mono"
+        style={{
+          display: "block",
+          maxWidth: "100%",
+          maxHeight: "100%",
+          width: "auto",
+          height: "auto",
+          objectFit: "contain",
+          filter: "brightness(0)",
+        }}
+      />
+    </span>
   );
 }
 
