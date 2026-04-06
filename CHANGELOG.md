@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [6.3.0] - 2026-04-06
+
 ### Added
 
 - **Components (social)**: **`SpotifySocialLink`** / **`SpotifySocialLinkColored`** and **`IconSpotify`** / **`IconSpotifyColored`** — default **`href`** from **`ORG_SPOTIFY_URL`** at package build; **`socialBuildEnv.ORG_SPOTIFY_URL`**.
