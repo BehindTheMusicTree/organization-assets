@@ -43,5 +43,7 @@ jobs:
           ORG_X_URL: ${{ vars.ORG_X_URL }}
           ORG_MASTODON_URL: ${{ vars.ORG_MASTODON_URL }}
           ORG_YOUTUBE_URL: ${{ vars.ORG_YOUTUBE_URL }}
+          ORG_SPOTIFY_URL: ${{ vars.ORG_SPOTIFY_URL }}
+          ORG_DISCORD_URL: ${{ vars.ORG_DISCORD_URL }}
           CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
         run: node scripts/sync-vercel-playground-env.mjs

@@ -40,6 +40,8 @@ const orgLinkedinUrlLiteral = JSON.stringify(buildEnv.ORG_LINKEDIN_URL ?? "");
 const orgXUrlLiteral = JSON.stringify(buildEnv.ORG_X_URL ?? "");
 const orgMastodonUrlLiteral = JSON.stringify(buildEnv.ORG_MASTODON_URL ?? "");
 const orgYoutubeUrlLiteral = JSON.stringify(buildEnv.ORG_YOUTUBE_URL ?? "");
+const orgSpotifyUrlLiteral = JSON.stringify(buildEnv.ORG_SPOTIFY_URL ?? "");
+const orgDiscordUrlLiteral = JSON.stringify(buildEnv.ORG_DISCORD_URL ?? "");
 const contactEmailLiteral = JSON.stringify(buildEnv.CONTACT_EMAIL ?? "");
 
 export default defineConfig({
@@ -66,6 +68,8 @@ export default defineConfig({
     "process.env.ORG_X_URL": orgXUrlLiteral,
     "process.env.ORG_MASTODON_URL": orgMastodonUrlLiteral,
     "process.env.ORG_YOUTUBE_URL": orgYoutubeUrlLiteral,
+    "process.env.ORG_SPOTIFY_URL": orgSpotifyUrlLiteral,
+    "process.env.ORG_DISCORD_URL": orgDiscordUrlLiteral,
     "process.env.CONTACT_EMAIL": contactEmailLiteral,
   },
   loader: {

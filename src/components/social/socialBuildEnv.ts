@@ -10,4 +10,8 @@ export const ORG_LINKEDIN_URL = "ORG_LINKEDIN_URL" as const;
 export const ORG_X_URL = "ORG_X_URL" as const;
 export const ORG_MASTODON_URL = "ORG_MASTODON_URL" as const;
 export const ORG_YOUTUBE_URL = "ORG_YOUTUBE_URL" as const;
+/** Inlined at package build for **`SpotifySocialLink`** / **`SpotifySocialLinkColored`** defaults. */
+export const ORG_SPOTIFY_URL = "ORG_SPOTIFY_URL" as const;
+/** Inlined at package build for **`DiscordSocialLink`** / **`DiscordSocialLinkColored`** defaults. */
+export const ORG_DISCORD_URL = "ORG_DISCORD_URL" as const;
 export const CONTACT_EMAIL = "CONTACT_EMAIL" as const;

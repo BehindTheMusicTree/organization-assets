@@ -9,6 +9,8 @@ import {
   IconLinkedIn,
   IconMastodon,
   IconPypi,
+  IconDiscord,
+  IconSpotify,
   IconTwitter,
   IconWebsite,
   IconYouTube,
@@ -23,6 +25,8 @@ import {
   IconLinkedInColored,
   IconMastodonColored,
   IconPypiColored,
+  IconDiscordColored,
+  IconSpotifyColored,
   IconTwitterColored,
   IconWebsiteColored,
   IconYouTubeColored,
@@ -219,6 +223,34 @@ export const YouTubeSocialLinkColored = createSocialIconLink(
   () => process.env.ORG_YOUTUBE_URL?.trim() || undefined,
   "YouTube",
   IconYouTubeColored,
+);
+
+export const SpotifySocialLink = createSocialIconLink(
+  "http",
+  () => process.env.ORG_SPOTIFY_URL?.trim() || undefined,
+  "Spotify",
+  IconSpotify,
+);
+
+export const SpotifySocialLinkColored = createSocialIconLink(
+  "http",
+  () => process.env.ORG_SPOTIFY_URL?.trim() || undefined,
+  "Spotify",
+  IconSpotifyColored,
+);
+
+export const DiscordSocialLink = createSocialIconLink(
+  "http",
+  () => process.env.ORG_DISCORD_URL?.trim() || undefined,
+  "Discord",
+  IconDiscord,
+);
+
+export const DiscordSocialLinkColored = createSocialIconLink(
+  "http",
+  () => process.env.ORG_DISCORD_URL?.trim() || undefined,
+  "Discord",
+  IconDiscordColored,
 );
 
 export const EmailSocialLink = createSocialIconLink(

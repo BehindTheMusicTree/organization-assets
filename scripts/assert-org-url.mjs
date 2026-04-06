@@ -47,6 +47,8 @@ requireNonEmpty("ORG_LINKEDIN_URL");
 requireHttpUrl("ORG_X_URL");
 requireHttpUrl("ORG_MASTODON_URL");
 requireHttpUrl("ORG_YOUTUBE_URL");
+requireHttpUrl("ORG_SPOTIFY_URL");
+requireHttpUrl("ORG_DISCORD_URL");
 const email = requireNonEmpty("CONTACT_EMAIL");
 if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
   fail("Error: CONTACT_EMAIL must look like a valid email address.");
