@@ -7,6 +7,11 @@ alwaysApply: false
 
 # Publish workflow (`publish.yml`)
 
+## Table of contents
+
+- [Required `npm run build` environment](#required-npm-run-build-environment)
+- [Vercel playground env sync](#vercel-playground-env-sync)
+
 ## Required `npm run build` environment
 
 Every variable in the **`npm run build`** **`env`** block is **required** for release builds. **Do not** describe them as optional in workflow comments, CONTRIBUTING, or README—maintainers **must** define the matching **GitHub repository variables** (and map them in YAML).
@@ -25,4 +30,15 @@ Every variable in the **`npm run build`** **`env`** block is **required** for re
 
 Local **`npm run build`** / **`npm run dev`**: **`scripts/assert-org-url.mjs`** merges **`playground/.env`** with **`process.env`** (shell wins), then requires every key above. **`ORG_SPONSOR_BUTTON_URL`** and all **`http(s)`** URLs except **`ORG_LINKEDIN_URL`** must be absolute **`https://`** (or **`http://`**). **`ORG_LINKEDIN_URL`** may omit the scheme (normalized in **`Social*Link`**). **`CONTACT_EMAIL`** must look like a valid email.
 
-Adding a new inlined-at-build env var: extend **`assert-org-url.mjs`**, **`tsup.config.ts`** **`define`**, **`publish.yml`** **`env`**, **`playground/.env.example`**, and maintainer docs in the same change.
+Adding a new inlined-at-build env var: extend **`assert-org-url.mjs`**, **`tsup.config.ts`** **`define`**, **`publish.yml`** **`env`**, **`playground/.env.example`**, **`.github/workflows/vercel-playground-env.yml`** **`env`**, **`scripts/sync-vercel-playground-env.mjs`** **`KEYS`**, and maintainer docs in the same change.
+
+## Vercel playground env sync
+
+**`vercel-playground-env.yml`** pushes the same repository variables to the Vercel project used for **`playground/`** (targets **production**, **preview**, and **development**). **`scripts/sync-vercel-playground-env.mjs`** requires every playground key and fails if any value is empty.
+
+| Item | Source |
+| ---- | ------ |
+| **`VERCEL_TOKEN`** | Repository **secret** |
+| **`VERCEL_PROJECT_ID`** | Repository **variable** |
+| **`VERCEL_TEAM_ID`** | Optional repository **variable** (omit for personal-scope projects; set when the project is under a Vercel team) |
+| Playground keys (`DOMAIN_NAME` → **`ORG_URL`**, plus the same names as **`publish.yml`**) | Repository **variables** — same table as above |

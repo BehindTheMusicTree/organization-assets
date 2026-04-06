@@ -1,0 +1,50 @@
+# Syncs GitHub repository variables to the Vercel project used for `playground/`.
+# Runs on manual dispatch and on push to `main` (canonical repo only; forks skip).
+#
+# Configure in the repo:
+#   Secrets:  VERCEL_TOKEN — Vercel token with project env access
+#   Variables: VERCEL_PROJECT_ID — Vercel project id (e.g. prj_…)
+#   Optional variables: VERCEL_TEAM_ID — required when the project lives under a Vercel team
+#
+# Same keys as `publish.yml` / `scripts/assert-org-url.mjs`. ORG_URL is set from DOMAIN_NAME.
+
+name: Sync playground env to Vercel
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: vercel-playground-env
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    if: github.repository == 'BehindTheMusicTree/organization-assets'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Upsert env on Vercel project
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          VERCEL_TEAM_ID: ${{ vars.VERCEL_TEAM_ID }}
+          ORG_URL: ${{ vars.DOMAIN_NAME }}
+          ORG_SPONSOR_BUTTON_URL: ${{ vars.ORG_SPONSOR_BUTTON_URL }}
+          ORG_GITHUB_URL: ${{ vars.ORG_GITHUB_URL }}
+          ORG_PYPI_URL: ${{ vars.ORG_PYPI_URL }}
+          ORG_LINKEDIN_URL: ${{ vars.ORG_LINKEDIN_URL }}
+          ORG_X_URL: ${{ vars.ORG_X_URL }}
+          ORG_MASTODON_URL: ${{ vars.ORG_MASTODON_URL }}
+          ORG_YOUTUBE_URL: ${{ vars.ORG_YOUTUBE_URL }}
+          CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
+        run: node scripts/sync-vercel-playground-env.mjs
