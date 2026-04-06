@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [6.4.0] - 2026-04-06
+
 ### Added
 
 - **Components (social)**: **`TipeeeSocialLink`** / **`TipeeeSocialLinkColored`** and **`IconTipeee`** / **`IconTipeeeColored`** — default **`href`** from **`ORG_TIPEEE_URL`** at package build; **`socialBuildEnv.ORG_TIPEEE_URL`**.
