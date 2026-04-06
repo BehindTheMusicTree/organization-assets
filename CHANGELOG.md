@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [6.4.1] - 2026-04-06
+
 ### Changed
 
 - **Components (social)**: **`IconTipeee`** / **`IconTipeeeColored`** use **`icons/tipeee-mark.svg`** (wordmark) instead of a heart glyph.
