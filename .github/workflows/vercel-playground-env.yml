@@ -45,5 +45,6 @@ jobs:
           ORG_YOUTUBE_URL: ${{ vars.ORG_YOUTUBE_URL }}
           ORG_SPOTIFY_URL: ${{ vars.ORG_SPOTIFY_URL }}
           ORG_DISCORD_URL: ${{ vars.ORG_DISCORD_URL }}
+          ORG_TIPEEE_URL: ${{ vars.ORG_TIPEEE_URL }}
           CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
         run: node scripts/sync-vercel-playground-env.mjs

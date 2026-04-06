@@ -42,6 +42,7 @@ const orgMastodonUrlLiteral = JSON.stringify(buildEnv.ORG_MASTODON_URL ?? "");
 const orgYoutubeUrlLiteral = JSON.stringify(buildEnv.ORG_YOUTUBE_URL ?? "");
 const orgSpotifyUrlLiteral = JSON.stringify(buildEnv.ORG_SPOTIFY_URL ?? "");
 const orgDiscordUrlLiteral = JSON.stringify(buildEnv.ORG_DISCORD_URL ?? "");
+const orgTipeeeUrlLiteral = JSON.stringify(buildEnv.ORG_TIPEEE_URL ?? "");
 const contactEmailLiteral = JSON.stringify(buildEnv.CONTACT_EMAIL ?? "");
 
 export default defineConfig({
@@ -70,6 +71,7 @@ export default defineConfig({
     "process.env.ORG_YOUTUBE_URL": orgYoutubeUrlLiteral,
     "process.env.ORG_SPOTIFY_URL": orgSpotifyUrlLiteral,
     "process.env.ORG_DISCORD_URL": orgDiscordUrlLiteral,
+    "process.env.ORG_TIPEEE_URL": orgTipeeeUrlLiteral,
     "process.env.CONTACT_EMAIL": contactEmailLiteral,
   },
   loader: {

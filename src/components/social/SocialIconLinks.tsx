@@ -11,6 +11,7 @@ import {
   IconPypi,
   IconDiscord,
   IconSpotify,
+  IconTipeee,
   IconTwitter,
   IconWebsite,
   IconYouTube,
@@ -27,6 +28,7 @@ import {
   IconPypiColored,
   IconDiscordColored,
   IconSpotifyColored,
+  IconTipeeeColored,
   IconTwitterColored,
   IconWebsiteColored,
   IconYouTubeColored,
@@ -251,6 +253,20 @@ export const DiscordSocialLinkColored = createSocialIconLink(
   () => process.env.ORG_DISCORD_URL?.trim() || undefined,
   "Discord",
   IconDiscordColored,
+);
+
+export const TipeeeSocialLink = createSocialIconLink(
+  "http",
+  () => process.env.ORG_TIPEEE_URL?.trim() || undefined,
+  "Tipeee",
+  IconTipeee,
+);
+
+export const TipeeeSocialLinkColored = createSocialIconLink(
+  "http",
+  () => process.env.ORG_TIPEEE_URL?.trim() || undefined,
+  "Tipeee",
+  IconTipeeeColored,
 );
 
 export const EmailSocialLink = createSocialIconLink(

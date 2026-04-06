@@ -29,6 +29,8 @@ import {
   SponsorSocialLinkColored,
   DiscordSocialLink,
   DiscordSocialLinkColored,
+  TipeeeSocialLink,
+  TipeeeSocialLinkColored,
   SpotifySocialLink,
   SpotifySocialLinkColored,
   TheMusicTreeHorizontalLink,
@@ -61,6 +63,7 @@ const SOCIAL_LINK_DEMO: {
   { key: "youtube", Link: YouTubeSocialLink, LinkColored: YouTubeSocialLinkColored },
   { key: "spotify", Link: SpotifySocialLink, LinkColored: SpotifySocialLinkColored },
   { key: "discord", Link: DiscordSocialLink, LinkColored: DiscordSocialLinkColored },
+  { key: "tipeee", Link: TipeeeSocialLink, LinkColored: TipeeeSocialLinkColored },
   { key: "email", Link: EmailSocialLink, LinkColored: EmailSocialLinkColored },
   { key: "website", Link: WebsiteSocialLink, LinkColored: WebsiteSocialLinkColored },
 ];
