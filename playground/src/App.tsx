@@ -1,4 +1,4 @@
-import { useState, type ComponentType } from "react";
+import { useEffect, useMemo, useState, type ComponentType } from "react";
 import {
   bannerAssets,
   brandAssets,
@@ -80,6 +80,42 @@ function sortedEntries(map: Record<string, string>) {
     .sort((a, b) => a.label.localeCompare(b.label));
 }
 
+type AssetEntry = { key: string; url: string; label: string };
+
+/** First path segment under `dist/brand/` (project slug). */
+function projectSlugFromBrandKey(key: string): string {
+  const normalized = key.replace(/^\.\.\//, "");
+  const marker = "/dist/brand/";
+  const idx = normalized.indexOf(marker);
+  if (idx === -1) return "_other";
+  const rest = normalized.slice(idx + marker.length);
+  const slash = rest.indexOf("/");
+  if (slash === -1) return rest || "_other";
+  return rest.slice(0, slash) || "_other";
+}
+
+function groupBrandEntriesByProject(entries: AssetEntry[]): Map<string, AssetEntry[]> {
+  const map = new Map<string, AssetEntry[]>();
+  for (const entry of entries) {
+    const slug = projectSlugFromBrandKey(entry.key);
+    const list = map.get(slug) ?? [];
+    list.push(entry);
+    map.set(slug, list);
+  }
+  for (const list of map.values()) {
+    list.sort((a, b) => a.label.localeCompare(b.label));
+  }
+  return map;
+}
+
+function formatProjectTabLabel(slug: string): string {
+  if (slug === "_other") return "Other";
+  return slug
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
 function AssetGrid({
   entries,
   variant,
@@ -99,9 +135,25 @@ function AssetGrid({
 
 export default function App() {
   const [tab, setTab] = useState<CatalogTab>("components");
+  const [brandProject, setBrandProject] = useState<string>("");
   const brandEntries = sortedEntries(brandAssets);
+  const brandByProject = useMemo(
+    () => groupBrandEntriesByProject(brandEntries),
+    [brandEntries],
+  );
+  const brandProjectSlugs = useMemo(
+    () => [...brandByProject.keys()].sort((a, b) => a.localeCompare(b)),
+    [brandByProject],
+  );
   const bannerEntries = sortedEntries(bannerAssets);
   const faviconEntries = sortedEntries(faviconAssets);
+
+  useEffect(() => {
+    if (brandProjectSlugs.length === 0) return;
+    setBrandProject((prev) =>
+      prev && brandProjectSlugs.includes(prev) ? prev : brandProjectSlugs[0],
+    );
+  }, [brandProjectSlugs]);
 
   return (
     <div className="playground">
@@ -427,7 +479,42 @@ export default function App() {
                 root so <code>dist/brand</code> exists.
               </p>
             ) : (
-              <AssetGrid entries={brandEntries} variant="brand" />
+              <>
+                <ul
+                  className="playground-subtablist"
+                  role="tablist"
+                  aria-label="Brand project"
+                >
+                  {brandProjectSlugs.map((slug) => (
+                    <li key={slug} role="presentation">
+                      <button
+                        type="button"
+                        role="tab"
+                        id={`tab-brand-${slug}`}
+                        aria-selected={brandProject === slug}
+                        aria-controls="panel-brand-project"
+                        tabIndex={0}
+                        className="playground-subtab"
+                        onClick={() => setBrandProject(slug)}
+                      >
+                        {formatProjectTabLabel(slug)}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+                <div
+                  role="tabpanel"
+                  id="panel-brand-project"
+                  aria-labelledby={
+                    brandProject ? `tab-brand-${brandProject}` : undefined
+                  }
+                >
+                  <AssetGrid
+                    entries={brandByProject.get(brandProject) ?? []}
+                    variant="brand"
+                  />
+                </div>
+              </>
             )}
           </section>
         </div>

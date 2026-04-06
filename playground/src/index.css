@@ -72,6 +72,43 @@ body {
   box-shadow: 0 1px 0 #fff;
 }
 
+.playground-subtablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-text-muted, #888) 28%, transparent);
+}
+
+.playground-subtab {
+  margin: 0 0 -1px;
+  padding: 0.4rem 0.75rem;
+  font: inherit;
+  font-size: 0.82rem;
+  color: var(--color-text-muted, #555);
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: var(--radius-md, 8px) var(--radius-md, 8px) 0 0;
+  cursor: pointer;
+}
+
+.playground-subtab:hover {
+  color: var(--color-text, #1a1a1a);
+  background: rgb(0 0 0 / 0.04);
+}
+
+.playground-subtab[aria-selected="true"] {
+  color: var(--color-text, #1a1a1a);
+  font-weight: 600;
+  background: #fff;
+  border-color: color-mix(in srgb, var(--color-text-muted, #888) 28%, transparent);
+  border-bottom-color: #fff;
+  box-shadow: 0 1px 0 #fff;
+}
+
 .playground-panel:focus {
   outline: none;
 }

@@ -44,6 +44,18 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Added
+
+- **Brand (the-music-tree)**: **`the-music-tree-mark.svg`** — same artwork as **`behind-the-music-tree-mark.svg`** (symbol-only mark for The Music Tree).
+
+### Changed
+
+- **Brand (the-music-tree)**: Renamed **`the-music-tree-mark.svg`** to **`the-music-tree-lockup-stacked.svg`** — the asset is a stacked (vertical) lockup, not a symbol-only **`-mark`**. Update imports that used the old filename.
+
+### Improved
+
+- **Playground**: **Brand** tab uses one sub-tab per project folder under **`dist/brand/`** (assets grouped by project slug).
+
 ## [6.1.0] - 2026-04-04
 
 ### Added

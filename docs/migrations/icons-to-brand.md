@@ -6,6 +6,7 @@
 
 - [What to change](#what-to-change)
 - [Per-project brand folders](#per-project-brand-folders)
+- [Filename corrections (the-music-tree SVG)](#filename-corrections-the-music-tree-svg)
 - [Versioning](#versioning)
 
 ## What to change
@@ -42,6 +43,10 @@ If you adopted paths that put **every** mark under `brand/behind-the-music-tree/
 Paths for **BehindTheMusicTree** itself stay under `brand/behind-the-music-tree/`.
 
 This layout change is **breaking** for consumers who imported non-BTMT marks via the umbrella folder.
+
+## Filename corrections (the-music-tree SVG)
+
+The file **`the-music-tree-mark.svg`** was misnamed: it is a **stacked (vertical) lockup** (symbol + wordmark), not a symbol-only **`-mark`**. It was renamed to **`the-music-tree-lockup-stacked.svg`** (see [`docs/asset-naming.md`](../asset-naming.md) — orientation **`…-lockup-stacked`**). Update any direct imports that still reference **`the-music-tree-mark.svg`**.
 
 ## Versioning
 
