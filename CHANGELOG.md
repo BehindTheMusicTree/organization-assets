@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [6.4.2] - 2026-04-07
+
 ### Improved
 
 - **Playground**: Catalog rows for every exported **`SocialIcons`** / **`SocialIconsColored`** glyph (including **`IconGitHubSponsors`**, **`IconHeart`**, doc / discussion / information marks, and Tipeee).
