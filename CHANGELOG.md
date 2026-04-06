@@ -44,6 +44,11 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Improved
+
+- **Playground**: Catalog rows for every exported **`SocialIcons`** / **`SocialIconsColored`** glyph (including **`IconGitHubSponsors`**, **`IconHeart`**, doc / discussion / information marks, and Tipeee).
+- **Playground**: Labeled preview for **Grow the Music Tree** horizontal lockup SVG and full raster under **`brand/grow-the-music-tree/`** (alongside The Music Tree lockup PNGs).
+
 ## [6.4.1] - 2026-04-06
 
 ### Changed

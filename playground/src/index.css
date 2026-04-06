@@ -121,6 +121,48 @@ body {
   margin-top: 0.35rem;
 }
 
+/* Standalone SocialIcons / SocialIconsColored (package exports) */
+.social-icon-glyphs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 0.85rem;
+  align-items: flex-start;
+  margin-top: 0.35rem;
+}
+
+.social-icon-glyphs__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  max-width: 7.5rem;
+}
+
+.social-icon-glyphs__plate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 3.25rem;
+  min-height: 3.25rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--color-text-muted, #888) 35%, transparent);
+  border-radius: var(--radius-md, 8px);
+  background: #fff;
+}
+
+.social-icon-glyphs__plate--tipeee {
+  min-width: 5.25rem;
+}
+
+.social-icon-glyphs__name {
+  font-size: 0.65rem;
+  line-height: 1.25;
+  text-align: center;
+  word-break: break-word;
+  color: var(--color-text-muted, #555);
+}
+
 /* Colored-icon rows: keep brand tint on hover (canonical CSS uses text-color hover) */
 .social-links-demo--colored .btmt-icon-link:hover {
   color: inherit;

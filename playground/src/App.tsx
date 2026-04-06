@@ -17,6 +17,37 @@ import {
   EmailSocialLinkColored,
   GithubSocialLink,
   GithubSocialLinkColored,
+  IconBookOpen,
+  IconBookOpenColored,
+  IconDiscord,
+  IconDiscordColored,
+  IconEmail,
+  IconEmailColored,
+  IconGithub,
+  IconGithubColored,
+  IconGitHubConversation,
+  IconGitHubConversationColored,
+  IconGitHubSponsors,
+  IconGitHubSponsorsColored,
+  IconHeart,
+  IconIssue,
+  IconIssueColored,
+  IconLinkedIn,
+  IconLinkedInColored,
+  IconMastodon,
+  IconMastodonColored,
+  IconPypi,
+  IconPypiColored,
+  IconSpotify,
+  IconSpotifyColored,
+  IconTipeee,
+  IconTipeeeColored,
+  IconTwitter,
+  IconTwitterColored,
+  IconWebsite,
+  IconWebsiteColored,
+  IconYouTube,
+  IconYouTubeColored,
   InformationLink,
   InformationLinkColored,
   LinkedInSocialLink,
@@ -43,11 +74,52 @@ import {
   socialBrandIconClass,
   type SocialIconLinkProps,
 } from "@behindthemusictree/assets/components";
+import gtmtLockupFullPng from "@behindthemusictree/assets/brand/grow-the-music-tree/grow-the-music-tree-lockup-horizontal-full.png?url";
+import gtmtLockupSvg from "@behindthemusictree/assets/brand/grow-the-music-tree/grow-the-music-tree-lockup-horizontal.svg?url";
 import lockupDarkPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal-dark.png?url";
 import lockupDefaultPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal.png?url";
 type CatalogTab = "components" | "brand" | "banners" | "favicons";
 
 type SocialLinkComponent = ComponentType<SocialIconLinkProps>;
+
+type IconGlyph = ComponentType<{ className?: string }>;
+
+const SOCIAL_ICON_MONO: { key: string; Icon: IconGlyph; wide?: boolean }[] = [
+  { key: "IconGithub", Icon: IconGithub },
+  { key: "IconGitHubSponsors", Icon: IconGitHubSponsors },
+  { key: "IconPypi", Icon: IconPypi },
+  { key: "IconLinkedIn", Icon: IconLinkedIn },
+  { key: "IconTwitter", Icon: IconTwitter },
+  { key: "IconMastodon", Icon: IconMastodon },
+  { key: "IconYouTube", Icon: IconYouTube },
+  { key: "IconSpotify", Icon: IconSpotify },
+  { key: "IconDiscord", Icon: IconDiscord },
+  { key: "IconTipeee", Icon: IconTipeee, wide: true },
+  { key: "IconEmail", Icon: IconEmail },
+  { key: "IconWebsite", Icon: IconWebsite },
+  { key: "IconBookOpen", Icon: IconBookOpen },
+  { key: "IconGitHubConversation", Icon: IconGitHubConversation },
+  { key: "IconIssue", Icon: IconIssue },
+  { key: "IconHeart", Icon: IconHeart },
+];
+
+const SOCIAL_ICON_COLORED: { key: string; Icon: IconGlyph; wide?: boolean }[] = [
+  { key: "IconGithubColored", Icon: IconGithubColored },
+  { key: "IconGitHubSponsorsColored", Icon: IconGitHubSponsorsColored },
+  { key: "IconPypiColored", Icon: IconPypiColored },
+  { key: "IconLinkedInColored", Icon: IconLinkedInColored },
+  { key: "IconTwitterColored", Icon: IconTwitterColored },
+  { key: "IconMastodonColored", Icon: IconMastodonColored },
+  { key: "IconYouTubeColored", Icon: IconYouTubeColored },
+  { key: "IconSpotifyColored", Icon: IconSpotifyColored },
+  { key: "IconDiscordColored", Icon: IconDiscordColored },
+  { key: "IconTipeeeColored", Icon: IconTipeeeColored, wide: true },
+  { key: "IconEmailColored", Icon: IconEmailColored },
+  { key: "IconWebsiteColored", Icon: IconWebsiteColored },
+  { key: "IconBookOpenColored", Icon: IconBookOpenColored },
+  { key: "IconGitHubConversationColored", Icon: IconGitHubConversationColored },
+  { key: "IconIssueColored", Icon: IconIssueColored },
+];
 
 const SOCIAL_LINK_DEMO: {
   key: string;
@@ -262,6 +334,49 @@ export default function App() {
             </div>
             <div className="demo-row">
               <span className="demo-label">
+                <code>SocialIcons</code> — exported glyphs (<code>currentColor</code> / mono); use with{" "}
+                <code>socialBrandIconClass</code> or your own sizing
+              </span>
+              <div className="social-icon-glyphs">
+                {SOCIAL_ICON_MONO.map(({ key, Icon, wide }) => (
+                  <div key={key} className="social-icon-glyphs__item">
+                    <div
+                      className={
+                        wide
+                          ? "social-icon-glyphs__plate social-icon-glyphs__plate--tipeee"
+                          : "social-icon-glyphs__plate"
+                      }
+                    >
+                      <Icon className={socialBrandIconClass} />
+                    </div>
+                    <code className="social-icon-glyphs__name">{key}</code>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">
+                <code>SocialIconsColored</code> — brand-tinted glyphs (no <code>IconHeartColored</code>)
+              </span>
+              <div className="social-icon-glyphs">
+                {SOCIAL_ICON_COLORED.map(({ key, Icon, wide }) => (
+                  <div key={key} className="social-icon-glyphs__item">
+                    <div
+                      className={
+                        wide
+                          ? "social-icon-glyphs__plate social-icon-glyphs__plate--tipeee"
+                          : "social-icon-glyphs__plate"
+                      }
+                    >
+                      <Icon className={socialBrandIconClass} />
+                    </div>
+                    <code className="social-icon-glyphs__name">{key}</code>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">
                 Social*Link + <code>showText</code> — canonical pill from{" "}
                 <code>@behindthemusictree/assets/styles/icon-links.css</code> (imported in{" "}
                 <code>main.tsx</code>); SVG size in that sheet when not using Tailwind on icons
@@ -465,6 +580,29 @@ export default function App() {
                       alt=""
                       decoding="async"
                     />
+                  </div>
+                </figure>
+              </div>
+            </div>
+            <div className="demo-row lockup-raster-preview">
+              <span className="demo-label">
+                Grow the Music Tree lockup (dist — <code>brand/grow-the-music-tree/</code>)
+              </span>
+              <div className="lockup-raster-preview__pair">
+                <figure className="lockup-raster-preview__figure">
+                  <figcaption className="asset-card-title">
+                    grow-the-music-tree-lockup-horizontal.svg
+                  </figcaption>
+                  <div className="lockup-raster-preview__plate lockup-raster-preview__plate--light">
+                    <img src={gtmtLockupSvg} alt="" decoding="async" />
+                  </div>
+                </figure>
+                <figure className="lockup-raster-preview__figure">
+                  <figcaption className="asset-card-title">
+                    grow-the-music-tree-lockup-horizontal-full.png
+                  </figcaption>
+                  <div className="lockup-raster-preview__plate lockup-raster-preview__plate--light">
+                    <img src={gtmtLockupFullPng} alt="" decoding="async" />
                   </div>
                 </figure>
               </div>
