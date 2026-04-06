@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [6.2.0] - 2026-04-06
+
 ### Added
 
 - **Brand (the-music-tree)**: **`the-music-tree-mark.svg`** — same artwork as **`behind-the-music-tree-mark.svg`** (symbol-only mark for The Music Tree).
