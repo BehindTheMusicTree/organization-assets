@@ -1,5 +1,5 @@
 # Syncs GitHub repository variables to the Vercel project used for `playground/`.
-# Runs on manual dispatch and on push to `main` (canonical repo only; forks skip).
+# Runs only via workflow_dispatch (Actions → Sync playground env to Vercel → Run workflow).
 #
 # Configure in the repo:
 #   Secrets:  VERCEL_TOKEN — Vercel token with project env access
@@ -12,9 +12,6 @@ name: Sync playground env to Vercel
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 concurrency:
   group: vercel-playground-env

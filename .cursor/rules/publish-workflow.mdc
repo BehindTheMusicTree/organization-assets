@@ -34,7 +34,7 @@ Adding a new inlined-at-build env var: extend **`assert-org-url.mjs`**, **`tsup.
 
 ## Vercel playground env sync
 
-**`vercel-playground-env.yml`** pushes the same repository variables to the Vercel project used for **`playground/`** (targets **production**, **preview**, and **development**). **`scripts/sync-vercel-playground-env.mjs`** requires every playground key and fails if any value is empty.
+**`vercel-playground-env.yml`** runs only on **`workflow_dispatch`** (manual). It pushes the same repository variables to the Vercel project used for **`playground/`** (targets **production**, **preview**, and **development**). **`scripts/sync-vercel-playground-env.mjs`** requires every playground key and fails if any value is empty.
 
 | Item | Source |
 | ---- | ------ |
