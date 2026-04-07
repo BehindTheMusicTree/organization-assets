@@ -5,7 +5,8 @@ import type { CSSProperties } from "react";
  */
 import theMusicTreeLockupHorizontalDark from "../../brand/the-music-tree/the-music-tree-lockup-horizontal-dark.svg";
 import theMusicTreeLockupHorizontal from "../../brand/the-music-tree/the-music-tree-lockup-horizontal.svg";
-import theMusicTreeLockupStacked from "../../brand/the-music-tree/the-music-tree-lockup-stacked.svg";
+import theMusicTreeMarkDark from "../../brand/the-music-tree/the-music-tree-mark-dark.svg";
+import theMusicTreeMark from "../../brand/the-music-tree/the-music-tree-mark.svg";
 
 /**
  * Environment variable name read when **this package** is built (`npm run build` / publish).
@@ -146,17 +147,17 @@ export type TheMusicTreeHorizontalLinkProps = TheMusicTreeBylineProps;
 export type TheMusicTreeMarkLinkProps = {
   /** Applied to the outer `<a>`. */
   className?: string;
-  /** Stacked lockup image sizing (default height **56px**, width **auto**). */
+  /** Mark image sizing (default height **56px**, width **auto**). */
   imageClassName?: string;
   imageStyle?: CSSProperties;
   /**
-   * `onDark`: invert the default dark-ink lockup for dark UIs while keeping knockout transparency.
+   * `onDark`: **`the-music-tree-mark-dark.svg`** for dark surfaces (light ink knockout).
    */
   variant?: "default" | "onDark";
 };
 
 /**
- * Clickable **the-music-tree-lockup-stacked** artwork (vertical symbol + wordmark).
+ * Clickable **the-music-tree-mark** (symbol-only) linking to the org site.
  * Uses the same baked `ORG_URL` href behavior as `TheMusicTreeHorizontalLink`.
  */
 export function TheMusicTreeMarkLink({
@@ -169,6 +170,7 @@ export function TheMusicTreeMarkLink({
   const [focusVisible, setFocusVisible] = useState(false);
   const href = useMemo(() => resolveOrgSiteHref(), []);
   const transformActive = hovered || focusVisible;
+  const src = variant === "onDark" ? theMusicTreeMarkDark : theMusicTreeMark;
 
   return (
     <a
@@ -179,7 +181,7 @@ export function TheMusicTreeMarkLink({
         outline: "none",
         boxShadow: focusVisible ? "0 0 0 2px currentColor" : undefined,
       }}
-      aria-label="TheMusicTree stacked lockup — open ecosystem site"
+      aria-label="TheMusicTree mark — open ecosystem site"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onFocus={(e) => {
@@ -190,13 +192,12 @@ export function TheMusicTreeMarkLink({
       onBlur={() => setFocusVisible(false)}
     >
       <img
-        src={theMusicTreeLockupStacked}
+        src={src}
         alt=""
         className={imageClassName}
         style={{
           ...defaultImgStyle,
           ...imageStyle,
-          ...(variant === "onDark" ? { filter: "invert(1)" } : {}),
           ...(transformActive ? imgTransformHover : {}),
           transition: "transform 0.2s ease",
         }}

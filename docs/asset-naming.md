@@ -30,8 +30,9 @@ For banner-specific guidance, see [`src/banners/README.md`](../src/banners/READM
 
 4. **One idea per file** — Do not encode multiple variants in one name beyond the role; use separate files or a documented variant pattern (below).
 
-5. **Variants** — After **`…-lockup-horizontal`** or **`…-lockup-stacked`**, append further segments before the extension (orientation always comes first among lockup-specific parts):
-   - Theme (UI ink): `product-lockup-horizontal-dark.png`, `product-lockup-stacked-light.png`
+5. **Variants** — Append theme and other segments before the extension:
+   - **Marks (`-mark`):** dark surfaces → **`product-mark-dark.svg`** / **`.png`** (light ink knockout); default mark stays **`product-mark.svg`** for light UI.
+   - **Lockups:** after **`…-lockup-horizontal`** or **`…-lockup-stacked`**, orientation comes first, then theme: `product-lockup-horizontal-dark.png`, `product-lockup-stacked-light.png`
    - **Badge / enclosed** (only when both an open and an enclosed lockup ship for the same orientation): `product-lockup-horizontal-badge.png` — pill, capsule, or rounded chip behind the mark + type (see [Lockup kinds](#lockup-kinds-open-vs-enclosed) and [`src/brand/README.md`](../src/brand/README.md#enclosed-lockup-badge-or-pill))
    - Greyscale (optional; only when a committed asset is required): `product-lockup-horizontal-greyscale.svg` — see [`src/brand/README.md`](../src/brand/README.md) for when to add this versus using CSS.
    - Raster scale: `product-lockup-horizontal@2x.png` (only if you ship multiple bitmaps; prefer SVG when possible)

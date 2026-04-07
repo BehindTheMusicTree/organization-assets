@@ -49,10 +49,13 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 - **Asset naming**: Lockup files must always include **`-lockup-horizontal`** or **`-lockup-stacked`** in the basename; bare **`…-lockup.<ext>`** without orientation is disallowed. **`docs/asset-naming.md`**, **`src/brand/README.md`**, **`docs/README.md`**, and Cursor rules updated. Existing committed lockups under **`src/brand/`** already use this pattern.
 - **Conventions**: Dropped the **`-logo`** role from naming docs and Cursor rules—use **`-mark`**, **`-wordmark`**, or **`-lockup-horizontal` / `-lockup-stacked`** only. Root **`README.md`** structure line and brand import example updated; removed dead **`docs/logo-assets.md`** links.
 
+### Added
+
+- **Brand (the-music-tree)**: **`the-music-tree-mark-dark.svg`** and **`the-music-tree-mark-dark.png`** — symbol-only mark for dark UI (light ink knockout), paired with **`the-music-tree-mark.svg`** / **`.png`**.
+
 ### Changed
 
-- **Brand (the-music-tree)**: Renamed **`the-music-tree-mark.png`** to **`the-music-tree-lockup-stacked.png`** — raster matches the stacked lockup (**`-lockup-stacked`**), not a symbol-only **`-mark`**. Update direct imports from the old filename.
-- **Components**: **`TheMusicTreeMarkLink`** uses **`the-music-tree-lockup-stacked.svg`** (same stacked lockup artwork; canonical name). **`the-music-tree-mark.svg`** remains in **`dist/brand/`** for existing direct imports until removed in a future major.
+- **Components**: **`TheMusicTreeMarkLink`** uses **`the-music-tree-mark.svg`** and **`the-music-tree-mark-dark.svg`**; **`variant="onDark"`** selects the dark mark asset (no CSS invert).
 - **Breaking — build env**: Renamed **`ORG_SPONSOR_BUTTON_URL`** to **`ORG_GITHUB_SPONSOR_BUTTON_URL`** (GitHub Sponsors iframe and **`SponsorSocialLink`** defaults). Update **`playground/.env`**, GitHub repository variables (**`publish.yml`** / Vercel sync), and any local shell exports.
 - **Components (GitHub Sponsors)**: **`BtmtSponsorButton`** → **`GithubSponsorButton`**; **`BtmtSponsorButtonProps`** → **`GithubSponsorButtonProps`**. **`socialBuildEnv`** env key export **`ORG_GITHUB_SPONSOR_BUTTON_URL`** → **`GithubSponsorButtonUrl`** (string value unchanged: **`ORG_GITHUB_SPONSOR_BUTTON_URL`**). Previous names remain as **deprecated** aliases.
 

@@ -79,6 +79,10 @@ import gtmtLockupFullPng from "@behindthemusictree/assets/brand/grow-the-music-t
 import gtmtLockupSvg from "@behindthemusictree/assets/brand/grow-the-music-tree/grow-the-music-tree-lockup-horizontal.svg?url";
 import lockupDarkPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal-dark.png?url";
 import lockupDefaultPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-horizontal.png?url";
+import markDarkPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-mark-dark.png?url";
+import markDarkSvg from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-mark-dark.svg?url";
+import markDefaultPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-mark.png?url";
+import markDefaultSvg from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-mark.svg?url";
 type CatalogTab = "components" | "brand" | "banners" | "favicons";
 
 type SocialLinkComponent = ComponentType<SocialIconLinkProps>;
@@ -268,7 +272,7 @@ export default function App() {
         **GithubSponsorButton** and **SponsorSocialLink** use <code>ORG_GITHUB_SPONSOR_BUTTON_URL</code>{" "}
         from the package build. Raster and SVG previews use each file’s
         natural dimensions (wide assets scroll inside the card).{" "}
-        <strong>TheMusicTreeMarkLink</strong> (stacked lockup on a plain background, no tile) lives under{" "}
+        <strong>TheMusicTreeMarkLink</strong> (symbol-only mark on a plain background, no tile) lives under{" "}
         <strong>Components</strong> → <strong>Org &amp; lockups</strong>.
       </p>
 
@@ -614,7 +618,8 @@ export default function App() {
             <div className="lockup-showcase">
               <span className="demo-label">TheMusicTreeMarkLink</span>
               <p className="lockup-showcase__intro">
-                Mark-only org link with the same baked <code>href</code> behavior as
+                Symbol-only mark; SVGs are <strong>the-music-tree-mark.svg</strong> and{" "}
+                <strong>the-music-tree-mark-dark.svg</strong>. Same baked <code>href</code> as
                 the lockup link. Use <code>variant="onDark"</code> for dark surfaces.
               </p>
               <div className="demo-row lockup-showcase__mark-plain-bg">
@@ -649,6 +654,52 @@ export default function App() {
               </div>
             </div>
 
+            <div className="demo-row lockup-raster-preview">
+              <span className="demo-label">
+                Brand mark SVGs (dist — same sources as <code>TheMusicTreeMarkLink</code>)
+              </span>
+              <div className="lockup-raster-preview__pair">
+                <figure className="lockup-raster-preview__figure">
+                  <figcaption className="asset-card-title">
+                    the-music-tree-mark.svg
+                  </figcaption>
+                  <div className="lockup-raster-preview__plate lockup-raster-preview__plate--light">
+                    <img src={markDefaultSvg} alt="" decoding="async" />
+                  </div>
+                </figure>
+                <figure className="lockup-raster-preview__figure">
+                  <figcaption className="asset-card-title">
+                    the-music-tree-mark-dark.svg
+                  </figcaption>
+                  <div className="lockup-raster-preview__plate lockup-raster-preview__plate--dark">
+                    <img src={markDarkSvg} alt="" decoding="async" />
+                  </div>
+                </figure>
+              </div>
+            </div>
+            <div className="demo-row lockup-raster-preview">
+              <span className="demo-label">
+                Brand mark PNGs (dist — symbol-only rasters)
+              </span>
+              <div className="lockup-raster-preview__pair">
+                <figure className="lockup-raster-preview__figure">
+                  <figcaption className="asset-card-title">
+                    the-music-tree-mark.png
+                  </figcaption>
+                  <div className="lockup-raster-preview__plate lockup-raster-preview__plate--light">
+                    <img src={markDefaultPng} alt="" decoding="async" />
+                  </div>
+                </figure>
+                <figure className="lockup-raster-preview__figure">
+                  <figcaption className="asset-card-title">
+                    the-music-tree-mark-dark.png
+                  </figcaption>
+                  <div className="lockup-raster-preview__plate lockup-raster-preview__plate--dark">
+                    <img src={markDarkPng} alt="" decoding="async" />
+                  </div>
+                </figure>
+              </div>
+            </div>
             <div className="demo-row lockup-raster-preview">
               <span className="demo-label">
                 Brand lockup PNGs (dist — raster knockouts for non-React)
