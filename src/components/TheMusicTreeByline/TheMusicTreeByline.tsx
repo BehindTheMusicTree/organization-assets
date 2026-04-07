@@ -5,6 +5,7 @@ import type { CSSProperties } from "react";
  */
 import theMusicTreeLockupHorizontalDark from "../../brand/the-music-tree/the-music-tree-lockup-horizontal-dark.svg";
 import theMusicTreeLockupHorizontal from "../../brand/the-music-tree/the-music-tree-lockup-horizontal.svg";
+import theMusicTreeMark from "../../brand/the-music-tree/the-music-tree-mark.svg";
 
 /**
  * Environment variable name read when **this package** is built (`npm run build` / publish).
@@ -141,3 +142,66 @@ export const TheMusicTreeHorizontalLink = TheMusicTreeByline;
 
 /** Props for {@link TheMusicTreeHorizontalLink} (same as {@link TheMusicTreeBylineProps}). */
 export type TheMusicTreeHorizontalLinkProps = TheMusicTreeBylineProps;
+
+export type TheMusicTreeMarkLinkProps = {
+  /** Applied to the outer `<a>`. */
+  className?: string;
+  /** Mark image sizing (default height **56px**, width **auto**). */
+  imageClassName?: string;
+  imageStyle?: CSSProperties;
+  /**
+   * `onDark`: invert the default dark-ink mark for dark UIs while keeping knockout transparency.
+   */
+  variant?: "default" | "onDark";
+};
+
+/**
+ * Clickable **the-music-tree-mark** artwork only (no wordmark).
+ * Uses the same baked `ORG_URL` href behavior as `TheMusicTreeHorizontalLink`.
+ */
+export function TheMusicTreeMarkLink({
+  className,
+  imageClassName,
+  imageStyle,
+  variant = "default",
+}: TheMusicTreeMarkLinkProps) {
+  const [hovered, setHovered] = useState(false);
+  const [focusVisible, setFocusVisible] = useState(false);
+  const href = useMemo(() => resolveOrgSiteHref(), []);
+  const transformActive = hovered || focusVisible;
+
+  return (
+    <a
+      href={href}
+      className={className}
+      style={{
+        ...anchorStyle,
+        outline: "none",
+        boxShadow: focusVisible ? "0 0 0 2px currentColor" : undefined,
+      }}
+      aria-label="TheMusicTree mark — open ecosystem site"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={(e) => {
+        if (e.currentTarget.matches(":focus-visible")) {
+          setFocusVisible(true);
+        }
+      }}
+      onBlur={() => setFocusVisible(false)}
+    >
+      <img
+        src={theMusicTreeMark}
+        alt=""
+        className={imageClassName}
+        style={{
+          ...defaultImgStyle,
+          ...imageStyle,
+          ...(variant === "onDark" ? { filter: "invert(1)" } : {}),
+          ...(transformActive ? imgTransformHover : {}),
+          transition: "transform 0.2s ease",
+        }}
+        aria-hidden
+      />
+    </a>
+  );
+}

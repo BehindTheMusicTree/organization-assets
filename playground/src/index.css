@@ -318,6 +318,11 @@ body {
   max-width: 42rem;
 }
 
+/* Mark link on default page surface (no checkerboard / dark tile). */
+.lockup-showcase__mark-plain-bg {
+  margin-bottom: 1rem;
+}
+
 .lockup-showcase__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));

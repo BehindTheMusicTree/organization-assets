@@ -145,14 +145,14 @@ export const GithubSocialLinkColored = createSocialIconLink(
 
 export const SponsorSocialLink = createSocialIconLink(
   "http",
-  () => process.env.ORG_SPONSOR_BUTTON_URL?.trim() || undefined,
+  () => process.env.ORG_GITHUB_SPONSOR_BUTTON_URL?.trim() || undefined,
   "GitHub Sponsors",
   IconGitHubSponsors,
 );
 
 export const SponsorSocialLinkColored = createSocialIconLink(
   "http",
-  () => process.env.ORG_SPONSOR_BUTTON_URL?.trim() || undefined,
+  () => process.env.ORG_GITHUB_SPONSOR_BUTTON_URL?.trim() || undefined,
   "GitHub Sponsors",
   IconGitHubSponsorsColored,
 );

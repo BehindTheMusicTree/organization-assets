@@ -19,7 +19,7 @@ Every variable in the **`npm run build`** **`env`** block is **required** for re
 | Workflow `env` key              | Repository variable              | Purpose                                      |
 | ------------------------------- | -------------------------------- | -------------------------------------------- |
 | **`ORG_URL`**                   | **`DOMAIN_NAME`**                | Organization site URL / TheMusicTreeByline   |
-| **`ORG_SPONSOR_BUTTON_URL`**    | **`ORG_SPONSOR_BUTTON_URL`**     | **`BtmtSponsorButton`** iframe `src`; **`SponsorSocialLink`** default |
+| **`ORG_GITHUB_SPONSOR_BUTTON_URL`** | **`ORG_GITHUB_SPONSOR_BUTTON_URL`** | **`GithubSponsorButton`** iframe `src`; **`SponsorSocialLink`** default |
 | **`ORG_GITHUB_URL`**            | **`ORG_GITHUB_URL`**             | **`GithubSocialLink`** default (playground)  |
 | **`ORG_PYPI_URL`**              | **`ORG_PYPI_URL`**               | **`PypiSocialLink`** default (playground)    |
 | **`ORG_LINKEDIN_URL`**          | **`ORG_LINKEDIN_URL`**           | **`LinkedInSocialLink`** default (playground)|
@@ -31,7 +31,7 @@ Every variable in the **`npm run build`** **`env`** block is **required** for re
 | **`ORG_TIPEEE_URL`**            | **`ORG_TIPEEE_URL`**             | **`TipeeeSocialLink`** default (playground) |
 | **`CONTACT_EMAIL`**             | **`CONTACT_EMAIL`**              | **`EmailSocialLink`** default (**mailto:**)  |
 
-Local **`npm run build`** / **`npm run dev`**: **`scripts/assert-org-url.mjs`** merges **`playground/.env`** with **`process.env`** (shell wins), then requires every key above. **`ORG_SPONSOR_BUTTON_URL`** and all **`http(s)`** URLs except **`ORG_LINKEDIN_URL`** must be absolute **`https://`** (or **`http://`**). **`ORG_LINKEDIN_URL`** may omit the scheme (normalized in **`Social*Link`**). **`CONTACT_EMAIL`** must look like a valid email.
+Local **`npm run build`** / **`npm run dev`**: **`scripts/assert-org-url.mjs`** merges **`playground/.env`** with **`process.env`** (shell wins), then requires every key above. **`ORG_GITHUB_SPONSOR_BUTTON_URL`** and all **`http(s)`** URLs except **`ORG_LINKEDIN_URL`** must be absolute **`https://`** (or **`http://`**). **`ORG_LINKEDIN_URL`** may omit the scheme (normalized in **`Social*Link`**). **`CONTACT_EMAIL`** must look like a valid email.
 
 Adding a new inlined-at-build env var: extend **`assert-org-url.mjs`**, **`tsup.config.ts`** **`define`**, **`publish.yml`** **`env`**, **`playground/.env.example`**, **`.github/workflows/vercel-playground-env.yml`** **`env`**, **`scripts/sync-vercel-playground-env.mjs`** **`KEYS`**, and maintainer docs in the same change.
 

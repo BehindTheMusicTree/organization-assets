@@ -3,7 +3,7 @@
  * Pushes required playground build env to a Vercel project (production, preview, development).
  * Used by `.github/workflows/vercel-playground-env.yml`.
  *
- * Required env: VERCEL_TOKEN, VERCEL_PROJECT_ID, ORG_URL, ORG_SPONSOR_BUTTON_URL,
+ * Required env: VERCEL_TOKEN, VERCEL_PROJECT_ID, ORG_URL, ORG_GITHUB_SPONSOR_BUTTON_URL,
  * ORG_GITHUB_URL, ORG_PYPI_URL, ORG_LINKEDIN_URL, ORG_X_URL, ORG_MASTODON_URL,
  * ORG_YOUTUBE_URL, ORG_SPOTIFY_URL, ORG_DISCORD_URL, ORG_TIPEEE_URL, CONTACT_EMAIL
  *
@@ -11,7 +11,7 @@
  */
 const KEYS = [
   "ORG_URL",
-  "ORG_SPONSOR_BUTTON_URL",
+  "ORG_GITHUB_SPONSOR_BUTTON_URL",
   "ORG_GITHUB_URL",
   "ORG_PYPI_URL",
   "ORG_LINKEDIN_URL",

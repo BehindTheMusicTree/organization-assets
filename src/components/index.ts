@@ -2,11 +2,13 @@ export { Button, type ButtonProps } from "./Button";
 export {
   TheMusicTreeByline,
   TheMusicTreeHorizontalLink,
+  TheMusicTreeMarkLink,
   ORG_URL,
   parseOrgSiteHref,
   resolveOrgSiteHref,
   type TheMusicTreeBylineProps,
   type TheMusicTreeHorizontalLinkProps,
+  type TheMusicTreeMarkLinkProps,
 } from "./TheMusicTreeByline";
 export * from "./social/socialBuildEnv";
 export * from "./social/SocialIcons";
@@ -14,7 +16,9 @@ export * from "./social/SocialIconsColored";
 export * from "./social/SocialIconLinks";
 export * from "./social/socialLinkSizing";
 export {
+  GithubSponsorButton,
+  type GithubSponsorButtonProps,
   BtmtSponsorButton,
-  ORG_SPONSOR_BUTTON_URL,
+  ORG_GITHUB_SPONSOR_BUTTON_URL,
   type BtmtSponsorButtonProps,
-} from "./sponsor/BtmtSponsorButton";
+} from "./sponsor/GithubSponsorButton";

@@ -7,7 +7,7 @@ import {
 import { AssetFigure } from "./AssetFigure";
 import {
   BTMT_ICON_LINK_DARK_CLASS,
-  BtmtSponsorButton,
+  GithubSponsorButton,
   Button,
   DiscussionLink,
   DiscussionLinkColored,
@@ -65,6 +65,7 @@ import {
   SpotifySocialLink,
   SpotifySocialLinkColored,
   TheMusicTreeHorizontalLink,
+  TheMusicTreeMarkLink,
   WebsiteSocialLink,
   WebsiteSocialLinkColored,
   XSocialLink,
@@ -147,6 +148,15 @@ const TABS: { id: CatalogTab; label: string }[] = [
   { id: "favicons", label: "Favicons" },
 ];
 
+type ComponentsSubTab = "basics" | "social" | "icons" | "lockups";
+
+const COMPONENT_SUBTABS: { id: ComponentsSubTab; label: string }[] = [
+  { id: "basics", label: "Basics" },
+  { id: "social", label: "Social links" },
+  { id: "icons", label: "Icon glyphs" },
+  { id: "lockups", label: "Org & lockups" },
+];
+
 function labelFromGlobKey(key: string): string {
   const normalized = key.replace(/^\.\.\//, "");
   const marker = "/dist/";
@@ -216,6 +226,8 @@ function AssetGrid({
 
 export default function App() {
   const [tab, setTab] = useState<CatalogTab>("components");
+  const [componentsSubTab, setComponentsSubTab] =
+    useState<ComponentsSubTab>("basics");
   const [brandProject, setBrandProject] = useState<string>("");
   const brandEntries = sortedEntries(brandAssets);
   const brandByProject = useMemo(
@@ -253,9 +265,11 @@ export default function App() {
         <code>playground/.env</code>); pass <code>href</code> / <code>text</code> props to override.{" "}
         <strong>DocLink</strong>, <strong>DiscussionLink</strong>, and{" "}
         <strong>InformationLink</strong> have no build default — supply <code>href</code>.
-        **BtmtSponsorButton** and **SponsorSocialLink** use <code>ORG_SPONSOR_BUTTON_URL</code>{" "}
+        **GithubSponsorButton** and **SponsorSocialLink** use <code>ORG_GITHUB_SPONSOR_BUTTON_URL</code>{" "}
         from the package build. Raster and SVG previews use each file’s
-        natural dimensions (wide assets scroll inside the card).
+        natural dimensions (wide assets scroll inside the card).{" "}
+        <strong>TheMusicTreeMarkLink</strong> (including the mark on a plain background, no tile) lives under{" "}
+        <strong>Components</strong> → <strong>Org &amp; lockups</strong>.
       </p>
 
       <ul className="playground-tablist" role="tablist" aria-label="Catalog">
@@ -286,25 +300,58 @@ export default function App() {
         >
           <section className="section" aria-labelledby="components-heading">
             <h2 id="components-heading">Components</h2>
+            <ul
+              className="playground-subtablist"
+              role="tablist"
+              aria-label="Component demos"
+            >
+              {COMPONENT_SUBTABS.map(({ id: subId, label: subLabel }) => (
+                <li key={subId} role="presentation">
+                  <button
+                    type="button"
+                    role="tab"
+                    id={`tab-components-${subId}`}
+                    aria-selected={componentsSubTab === subId}
+                    aria-controls="panel-components-sub"
+                    tabIndex={0}
+                    className="playground-subtab"
+                    onClick={() => setComponentsSubTab(subId)}
+                  >
+                    {subLabel}
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <div
+              role="tabpanel"
+              id="panel-components-sub"
+              aria-labelledby={`tab-components-${componentsSubTab}`}
+            >
+            {componentsSubTab === "basics" && (
+              <>
             <div className="demo-row">
               <span className="demo-label">Button</span>
               <Button variant="primary">Primary</Button>
               <Button variant="secondary">Secondary</Button>
             </div>
+              </>
+            )}
+            {componentsSubTab === "social" && (
+              <>
             <div className="demo-row">
               <span className="demo-label">
-                BtmtSponsorButton — <code>ORG_SPONSOR_BUTTON_URL</code> inlined in{" "}
+                GithubSponsorButton — <code>ORG_GITHUB_SPONSOR_BUTTON_URL</code> inlined in{" "}
                 <code>dist/</code> at package build
               </span>
               <div className="sponsor-demo">
-                <BtmtSponsorButton />
+                <GithubSponsorButton />
                 <code className="lockup-showcase__code sponsor-demo__code">
-                  &lt;BtmtSponsorButton /&gt;
+                  &lt;GithubSponsorButton /&gt;
                 </code>
                 <p className="empty-note sponsor-demo__hint">
                   Root <code>npm run build</code> and playground <code>npm run build</code> /{" "}
                   <code>npm run dev</code> both run <code>scripts/assert-org-url.mjs</code> first—the
-                  build fails if <code>ORG_SPONSOR_BUTTON_URL</code> or any other required key is
+                  build fails if <code>ORG_GITHUB_SPONSOR_BUTTON_URL</code> or any other required key is
                   missing. If the iframe is still absent, <code>node_modules/@behindthemusictree/assets</code>{" "}
                   is probably stale: run <code>npm run build</code> at the repo root, then{" "}
                   <code>npm install --prefix playground</code>, and refresh.
@@ -332,6 +379,10 @@ export default function App() {
                 ))}
               </div>
             </div>
+              </>
+            )}
+            {componentsSubTab === "icons" && (
+              <>
             <div className="demo-row">
               <span className="demo-label">
                 <code>SocialIcons</code> — exported glyphs (<code>currentColor</code> / mono); use with{" "}
@@ -375,6 +426,10 @@ export default function App() {
                 ))}
               </div>
             </div>
+              </>
+            )}
+            {componentsSubTab === "social" && (
+              <>
             <div className="demo-row">
               <span className="demo-label">
                 Social*Link + <code>showText</code> — canonical pill from{" "}
@@ -518,6 +573,10 @@ export default function App() {
                 />
               </div>
             </div>
+              </>
+            )}
+            {componentsSubTab === "lockups" && (
+              <>
             <div className="lockup-showcase">
               <span className="demo-label">
                 TheMusicTreeHorizontalLink (TheMusicTreeByline — same component)
@@ -548,6 +607,43 @@ export default function App() {
                   </code>
                   <div className="lockup-showcase__sample">
                     <TheMusicTreeHorizontalLink variant="onDark" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="lockup-showcase">
+              <span className="demo-label">TheMusicTreeMarkLink</span>
+              <p className="lockup-showcase__intro">
+                Mark-only org link with the same baked <code>href</code> behavior as
+                the lockup link. Use <code>variant="onDark"</code> for dark surfaces.
+              </p>
+              <div className="demo-row lockup-showcase__mark-plain-bg">
+                <span className="demo-label">
+                  Plain playground background — no tile (transparent knockout only)
+                </span>
+                <TheMusicTreeMarkLink imageStyle={{ height: "64px" }} />
+              </div>
+              <div className="lockup-showcase__grid">
+                <div className="lockup-showcase__tile lockup-showcase__tile--light">
+                  <span className="lockup-showcase__tile-label">
+                    default mark — light UI
+                  </span>
+                  <code className="lockup-showcase__code">
+                    &lt;TheMusicTreeMarkLink /&gt;
+                  </code>
+                  <div className="lockup-showcase__sample">
+                    <TheMusicTreeMarkLink imageStyle={{ height: "64px" }} />
+                  </div>
+                </div>
+                <div className="lockup-showcase__tile lockup-showcase__tile--dark">
+                  <span className="lockup-showcase__tile-label">
+                    mark variant onDark — dark UI
+                  </span>
+                  <code className="lockup-showcase__code">
+                    variant=&quot;onDark&quot;
+                  </code>
+                  <div className="lockup-showcase__sample">
+                    <TheMusicTreeMarkLink variant="onDark" imageStyle={{ height: "64px" }} />
                   </div>
                 </div>
               </div>
@@ -606,6 +702,9 @@ export default function App() {
                   </div>
                 </figure>
               </div>
+            </div>
+              </>
+            )}
             </div>
           </section>
         </div>

@@ -38,7 +38,7 @@ function requireHttpUrl(name) {
 }
 
 requireNonEmpty("ORG_URL");
-requireHttpUrl("ORG_SPONSOR_BUTTON_URL");
+requireHttpUrl("ORG_GITHUB_SPONSOR_BUTTON_URL");
 
 /** Social **`Social*Link`** defaults — same names as **`playground/.env.example`** / **`publish.yml`**. */
 requireHttpUrl("ORG_GITHUB_URL");

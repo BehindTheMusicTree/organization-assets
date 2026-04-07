@@ -1,9 +1,11 @@
 /**
  * Names of environment variables read when **this package** is built; values are **inlined into
  * published `dist/`** for **`Social*Link`** defaults (same pattern as **`ORG_URL`** /
- * **`ORG_SPONSOR_BUTTON_URL`**). **`SponsorSocialLink`** also uses **`ORG_SPONSOR_BUTTON_URL`**
- * (same as **`BtmtSponsorButton`**).
+ * **`GithubSponsorButtonUrl`**). **`SponsorSocialLink`** also uses **`GithubSponsorButtonUrl`**
+ * (same as **`GithubSponsorButton`**).
  */
+/** Build env key (value: **`ORG_GITHUB_SPONSOR_BUTTON_URL`**) for **`GithubSponsorButton`** iframe **`src`** and **`SponsorSocialLink`** defaults. */
+export const GithubSponsorButtonUrl = "ORG_GITHUB_SPONSOR_BUTTON_URL" as const;
 export const ORG_GITHUB_URL = "ORG_GITHUB_URL" as const;
 export const ORG_PYPI_URL = "ORG_PYPI_URL" as const;
 export const ORG_LINKEDIN_URL = "ORG_LINKEDIN_URL" as const;

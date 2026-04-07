@@ -44,6 +44,11 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Changed
+
+- **Breaking — build env**: Renamed **`ORG_SPONSOR_BUTTON_URL`** to **`ORG_GITHUB_SPONSOR_BUTTON_URL`** (GitHub Sponsors iframe and **`SponsorSocialLink`** defaults). Update **`playground/.env`**, GitHub repository variables (**`publish.yml`** / Vercel sync), and any local shell exports.
+- **Components (GitHub Sponsors)**: **`BtmtSponsorButton`** → **`GithubSponsorButton`**; **`BtmtSponsorButtonProps`** → **`GithubSponsorButtonProps`**. **`socialBuildEnv`** env key export **`ORG_GITHUB_SPONSOR_BUTTON_URL`** → **`GithubSponsorButtonUrl`** (string value unchanged: **`ORG_GITHUB_SPONSOR_BUTTON_URL`**). Previous names remain as **deprecated** aliases.
+
 ## [6.4.2] - 2026-04-07
 
 ### Improved
