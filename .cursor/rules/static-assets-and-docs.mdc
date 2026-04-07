@@ -25,8 +25,8 @@ Full detail lives in-repo—keep rules and files aligned:
 
 **Reference guides**
 
-- [`docs/asset-naming.md`](../../docs/asset-naming.md) — kebab-case filenames; spell out product names (not `gtmt`-style abbreviations in shipped names); role suffixes `-mark`, `-wordmark`, `-lockup`, `-icon`, `-og`; optional `…-lockup-horizontal-badge` when both open (knockout) and enclosed (pill/chip) lockups ship; **`src/brand/<project-slug>/`** per product (same slug style as favicons), not one umbrella folder for every mark.
-- [`src/brand/README.md`](../../src/brand/README.md) — canonical spec for `src/brand/`: layout, **SVG** vs **PNG RGBA**, dimensions, OG, greyscale filter `id` rules. **Greyscale:** prefer CSS when possible; add `…-mark-greyscale.svg` / `…-lockup-greyscale.svg` only when a committed asset is required. Docs hub: [`docs/README.md`](../../docs/README.md#brand-assets-marks-and-lockups). Package subpath `./brand/<project-slug>/*`.
+- [`docs/asset-naming.md`](../../docs/asset-naming.md) — kebab-case filenames; spell out product names (not `gtmt`-style abbreviations in shipped names); role suffixes `-mark`, `-wordmark`, **`-lockup-horizontal` / `-lockup-stacked`** (orientation required; no bare `-lockup`), `-icon`, `-og`; optional `…-lockup-horizontal-badge` when both open (knockout) and enclosed (pill/chip) lockups ship; **`src/brand/<project-slug>/`** per product (same slug style as favicons), not one umbrella folder for every mark.
+- [`src/brand/README.md`](../../src/brand/README.md) — canonical spec for `src/brand/`: layout, **SVG** vs **PNG RGBA**, dimensions, OG, greyscale filter `id` rules. **Greyscale:** prefer CSS when possible; add `…-mark-greyscale.svg` / `…-lockup-horizontal-greyscale.svg` / `…-lockup-stacked-greyscale.svg` only when a committed asset is required. Docs hub: [`docs/README.md`](../../docs/README.md#brand-assets-marks-and-lockups). Package subpath `./brand/<project-slug>/*`.
 - [`src/favicons/README.md`](../../src/favicons/README.md) — favicon bundle layout, import path, recommended files, PWA sizes.
 - [`src/banners/README.md`](../../src/banners/README.md) — place banners in `src/banners/<project-slug>/`; use `-banner` role with explicit variants (`-mobile`, `-desktop`, `-light`, `-dark`) and platform suffixes (`-x`, `-linkedin-company`, `-facebook-page`, etc.); prefer WebP for raster delivery.
 
@@ -40,11 +40,10 @@ Full detail lives in-repo—keep rules and files aligned:
 - **Playground (same PR, mandatory):** Any **new or renamed** asset under **`src/brand/`**, **`src/favicons/`**, or **`src/banners/`** that ships to **`dist/`** must appear in **`playground/`** before merge—usually via the **Brand** / **Banners** / **Favicons** tabs after extending **`playground/src/distAssetGlobs.ts`** if needed, or a **labeled preview** in **`playground/src/App.tsx`**. Aligns with the always-applied **`organization-assets-package.mdc`** playground section.
 - If conventions in `docs/*.md` or colocated `src/*/README.md` files change, update this rule file in the same PR so Cursor stays aligned.
 - Update `CHANGELOG.md` `[Unreleased]` section when adding or renaming assets.
-- `-logo` naming is deprecated; use `-lockup` for symbol+text assets and `-wordmark` for text-only assets.
 
 ## Examples
 
 - Prefer `grow-the-music-tree-mark.png` over `gtmt.png`.
-- Prefer `audiometa-lockup.svg` over `audiometa-logo-with-text.svg` for symbol+text assets.
+- Prefer `audiometa-lockup-horizontal.svg` (or `…-lockup-stacked.svg`) with explicit **`-mark`** / **`-wordmark`** roles over vague compound filenames for identity artwork.
 - Prefer `@behindthemusictree/assets/brand/audiometa/audiometa-mark.png` over legacy umbrella paths or `brand/cv/...`.
 - Prefer `grow-the-music-tree-banner-mobile.webp` over `hero-mobile-final.webp`.

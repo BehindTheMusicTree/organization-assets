@@ -18,7 +18,7 @@ Start here for naming, formats, and where specs live.
 
 ## Naming
 
-Conventions for filenames and folders across `src/brand/`, `src/favicons/`, `src/banners/`, and future asset trees: **[`asset-naming.md`](asset-naming.md)** (kebab-case, role suffixes such as `-mark` / `-lockup`, placement, checklist).
+Conventions for filenames and folders across `src/brand/`, `src/favicons/`, `src/banners/`, and future asset trees: **[`asset-naming.md`](asset-naming.md)** (kebab-case, role suffixes such as `-mark` and **`-lockup-horizontal` / `-lockup-stacked`** — orientation required for lockups, placement, checklist).
 
 ## Brand assets (marks and lockups)
 

@@ -1,12 +1,12 @@
 # @behindthemusictree/assets
 
-Shared assets (components, design tokens, icons, styles, hooks, utils) for React projects across the organization.
+Shared assets (components, design tokens, brand artwork, styles, hooks, utils) for React projects across the organization.
 
 ## Ecosystem
 
 Built inside the **[BehindTheMusicTree](https://github.com/BehindTheMusicTree)** ecosystem.
 
-Want the big picture? Explore the full project universe on **[themusictree.org](https://themusictree.org)**. This package is **`@behindthemusictree/assets`** — the shared components, tokens, and icons used by our web apps.
+Want the big picture? Explore the full project universe on **[themusictree.org](https://themusictree.org)**. This package is **`@behindthemusictree/assets`** — the shared components, tokens, and brand artwork used by our web apps.
 
 The portfolio website content lives in **[the-music-tree-frontend](https://github.com/BehindTheMusicTree/the-music-tree-frontend)**; this README focuses on developing, versioning, and publishing this package.
 
@@ -14,7 +14,7 @@ The portfolio website content lives in **[the-music-tree-frontend](https://githu
 
 - **components** – Reusable React components (e.g. `Button`)
 - **tokens** – Design tokens (colors, spacing, radius) as CSS vars and JS
-- **icons** – Raster or SVG marks ([`docs/asset-naming.md`](docs/asset-naming.md), [`docs/logo-assets.md`](docs/logo-assets.md))
+- **brand** – Static marks, lockups, and wordmarks ([`docs/asset-naming.md`](docs/asset-naming.md), [`src/brand/README.md`](src/brand/README.md))
 - **favicons** – Per-project favicon bundles (`src/favicons/<project>/`)
 - **styles** – Global resets and shared CSS (import tokens)
 - **hooks** – Shared React hooks
@@ -82,7 +82,7 @@ import { colors, spacing } from "@behindthemusictree/assets/tokens";
 import "@behindthemusictree/assets/styles";
 ```
 
-**TheMusicTreeByline** — single clickable **SVG knockout** (transparent outside logo + wordmark; link and image use **`backgroundColor: transparent`**). The **`href`** is **not a prop**: when **this package** is built for publish, **`ORG_URL`** (hostname or full **`https://`** URL) is read once and **embedded in `dist/`** via **tsup `define`**. **Consuming apps** normally need **no** **`ORG_URL`** env — they install a pre-built package from GitHub Packages. **Maintainers:** set **`ORG_URL`** when running **`npm run build`** / **`npm run dev`** here, and configure GitHub repository variable **`DOMAIN_NAME`** for **`.github/workflows/publish.yml`** (see **Publishing** below). **`resolveOrgSiteHref()`** and **`parseOrgSiteHref()`** are exported if you need the same URL string in app code. Default variant uses **`the-music-tree-lockup-horizontal.svg`**; **`variant="onDark"`** uses **`the-music-tree-lockup-horizontal-dark.svg`**. Default display height **56px**, width **auto**. **Web-sized PNGs** (**`the-music-tree-lockup-horizontal.png`** / **`-dark.png`**) ship for raster-only contexts (email, CMS); import from **`@behindthemusictree/assets/brand/the-music-tree/...`**.
+**TheMusicTreeByline** — single clickable **SVG knockout** (transparent outside the horizontal lockup; link and image use **`backgroundColor: transparent`**). The **`href`** is **not a prop**: when **this package** is built for publish, **`ORG_URL`** (hostname or full **`https://`** URL) is read once and **embedded in `dist/`** via **tsup `define`**. **Consuming apps** normally need **no** **`ORG_URL`** env — they install a pre-built package from GitHub Packages. **Maintainers:** set **`ORG_URL`** when running **`npm run build`** / **`npm run dev`** here, and configure GitHub repository variable **`DOMAIN_NAME`** for **`.github/workflows/publish.yml`** (see **Publishing** below). **`resolveOrgSiteHref()`** and **`parseOrgSiteHref()`** are exported if you need the same URL string in app code. Default variant uses **`the-music-tree-lockup-horizontal.svg`**; **`variant="onDark"`** uses **`the-music-tree-lockup-horizontal-dark.svg`**. Default display height **56px**, width **auto**. **Web-sized PNGs** (**`the-music-tree-lockup-horizontal.png`** / **`-dark.png`**) ship for raster-only contexts (email, CMS); import from **`@behindthemusictree/assets/brand/the-music-tree/...`**.
 
 ```tsx
 import { TheMusicTreeByline } from "@behindthemusictree/assets/components";
@@ -93,10 +93,10 @@ import { TheMusicTreeByline } from "@behindthemusictree/assets/components";
 />
 ```
 
-BehindTheMusicTree logos (PNG):
+BehindTheMusicTree symbol-only mark (PNG):
 
 ```tsx
-import orgLogo from "@behindthemusictree/assets/icons/behind-the-music-tree/behind-the-music-tree-logo.png";
+import btmtMark from "@behindthemusictree/assets/brand/behind-the-music-tree/behind-the-music-tree-mark.png";
 ```
 
 Project favicon bundle:
@@ -105,7 +105,7 @@ Project favicon bundle:
 import faviconSvg from "@behindthemusictree/assets/favicons/behind-the-music-tree/favicon.svg";
 ```
 
-Naming and logo export rules: [`docs/asset-naming.md`](docs/asset-naming.md), [`docs/logo-assets.md`](docs/logo-assets.md).
+Naming rules: [`docs/asset-naming.md`](docs/asset-naming.md); brand formats: [`src/brand/README.md`](src/brand/README.md).
 
 **DocLink**, **DiscussionLink**, and **InformationLink** (and `*Colored` variants) are styled icon links for documentation, discussion, and general information. They have **no URL baked in at package build** — pass **`href`** (and optional **`text`**, **`showText`**) from your app. Import **`@behindthemusictree/assets/styles/icon-links.css`** once for the default tile and pill styles.
 

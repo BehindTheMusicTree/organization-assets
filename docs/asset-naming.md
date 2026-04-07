@@ -10,7 +10,7 @@ For banner-specific guidance, see [`src/banners/README.md`](../src/banners/READM
 - [Rules](#rules)
 - [Lockup kinds (open vs enclosed)](#lockup-kinds-open-vs-enclosed)
 - [Examples](#examples)
-- [Placement for logo families](#placement-for-logo-families)
+- [Placement per brand project](#placement-per-brand-project)
 - [Checklist for new assets](#checklist-for-new-assets)
 
 ## Rules
@@ -22,21 +22,19 @@ For banner-specific guidance, see [`src/banners/README.md`](../src/banners/READM
 3. **Role before the extension** — Use a short, consistent suffix so the kind of asset is obvious:
    - `-mark` — Symbol-only / app icon style
    - `-wordmark` — Text-only project name
-   - `-lockup` — Symbol + text combined (see [Lockup kinds](#lockup-kinds-open-vs-enclosed))
-   - `-logo` — Deprecated legacy role (use only when documenting old paths)
+   - **`-lockup-horizontal`** / **`-lockup-stacked`** — Symbol + text combined; **always** include the orientation (side‑by‑side vs vertical stack). Do not publish a bare **`…-lockup.`** filename without **`horizontal`** or **`stacked`** (see [Lockup kinds](#lockup-kinds-open-vs-enclosed)).
    - `-icon` — Small UI glyph (toolbar, list row)
-   - `-illustration` — Non-logo artwork
+   - `-illustration` — Illustration or other non-identity artwork
    - `-banner` — Wide promotional/hero artwork
    - `-og` — Open Graph / social preview image
 
 4. **One idea per file** — Do not encode multiple variants in one name beyond the role; use separate files or a documented variant pattern (below).
 
-5. **Variants** — When you add themes or densities, append before the extension:
-   - Theme: `product-lockup-dark.png`, `product-lockup-light.png`
-   - Orientation (only when both are shipped): `product-lockup-horizontal.svg`, `product-lockup-stacked.svg`
+5. **Variants** — After **`…-lockup-horizontal`** or **`…-lockup-stacked`**, append further segments before the extension (orientation always comes first among lockup-specific parts):
+   - Theme (UI ink): `product-lockup-horizontal-dark.png`, `product-lockup-stacked-light.png`
    - **Badge / enclosed** (only when both an open and an enclosed lockup ship for the same orientation): `product-lockup-horizontal-badge.png` — pill, capsule, or rounded chip behind the mark + type (see [Lockup kinds](#lockup-kinds-open-vs-enclosed) and [`src/brand/README.md`](../src/brand/README.md#enclosed-lockup-badge-or-pill))
-   - Greyscale (optional; only when a committed asset is required): `product-lockup-greyscale.svg` — see [`src/brand/README.md`](../src/brand/README.md) for when to add this versus using CSS.
-   - Raster scale: `product-lockup@2x.png` (only if you ship multiple bitmaps; prefer SVG when possible)
+   - Greyscale (optional; only when a committed asset is required): `product-lockup-horizontal-greyscale.svg` — see [`src/brand/README.md`](../src/brand/README.md) for when to add this versus using CSS.
+   - Raster scale: `product-lockup-horizontal@2x.png` (only if you ship multiple bitmaps; prefer SVG when possible)
 
 6. **Format** — Keep the real format in the extension (`.svg`, `.png`, `.webp`). Do not use misleading extensions.
 
@@ -47,7 +45,7 @@ For banner-specific guidance, see [`src/banners/README.md`](../src/banners/READM
 
 ## Lockup kinds (open vs enclosed)
 
-All of these use the **`-lockup`** role (plus **`-horizontal`** or **`-stacked`** when you ship more than one orientation).
+All of these use **`-lockup-horizontal`** or **`-lockup-stacked`** in the filename (orientation is **required**, even when only one lockup ships).
 
 - **Open (knockout) lockup** — Symbol and wordmark on a **transparent** background; the UI supplies the surface color.
 - **Enclosed (badge / pill) lockup** — Same composition, but inside a **defined shape** (white or tinted pill, rounded rectangle, chip). The container is part of the asset. Filename: add the **`…-badge`** segment when both open and enclosed versions exist for that orientation (for example `the-music-tree-lockup-horizontal-badge.png` vs `the-music-tree-lockup-horizontal.png`). Full spec: [`src/brand/README.md`](../src/brand/README.md#enclosed-lockup-badge-or-pill).
@@ -57,9 +55,8 @@ All of these use the **`-lockup`** role (plus **`-horizontal`** or **`-stacked`*
 | Good | Avoid |
 |------|--------|
 | `audiometa-mark.png` | `am-logo.png`, `AM_Logo.png` |
-| `audiometa-lockup.svg` | `audiometa-logo-with-text.svg` |
+| `audiometa-lockup-horizontal.svg` | `audiometa-logo-with-text.svg`, `audiometa-horizontal.svg`, `audiometa-lockup.svg` (missing orientation) |
 | `audiometa-wordmark.svg` | `audiometa-text.svg` |
-| `audiometa-lockup-horizontal.svg` | `audiometa-horizontal.svg` |
 | `the-music-tree-lockup-horizontal-badge.png` | `tmt-pill-logo.png` |
 | `the-music-tree-lockup-stacked.png` | `the-music-tree-mark.png` (misnamed raster; same role as **`the-music-tree-lockup-stacked.svg`**) |
 | `behind-the-music-tree-mark.png` | `btmt-logo.png`, `BTMT.png` |
@@ -67,18 +64,18 @@ All of these use the **`-lockup`** role (plus **`-horizontal`** or **`-stacked`*
 | `brand/hear-the-music-tree/hear-the-music-tree-mark.png` | `brand/cv/htmt.png` |
 | `grow-the-music-tree-banner-mobile.webp` | `hero-mobile-final.webp` |
 
-## Placement for logo families
+## Placement per brand project
 
 Store all brand files for a project together under:
 
 - `src/brand/<project-slug>/`
 
-Keep related `-mark`, `-wordmark`, and `-lockup` files side by side in the same folder so imports and export paths stay predictable.
+Keep related `-mark`, `-wordmark`, and `-lockup-horizontal` / `-lockup-stacked` files side by side in the same folder so imports and export paths stay predictable.
 
 ## Checklist for new assets
 
 - [ ] kebab-case filename with clear product/domain name  
-- [ ] Appropriate role suffix (`-mark`, `-wordmark`, `-lockup`, `-icon`; avoid `-logo` for new assets)  
+- [ ] Appropriate role suffix (`-mark`, `-wordmark`, `-lockup-horizontal` / `-lockup-stacked`, `-icon`; avoid bare `-lockup` for new assets)  
 - [ ] Placed under a semantic folder  
 - [ ] `package.json` `exports` and `build` copy step updated if the path is new  
 - [ ] Brand file specs (format, dimensions, variants) follow [`src/brand/README.md`](../src/brand/README.md) where applicable  

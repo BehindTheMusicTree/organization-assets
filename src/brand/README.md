@@ -1,6 +1,6 @@
 # Brand artwork (static files)
 
-This directory holds **static brand identity** assets: marks (`-mark`), wordmarks (`-wordmark`), lockups (`-lockup`), and related raster/vector exports. It is not a UI icon set; use the `-icon` role only for small interface glyphs if you add them here.
+This directory holds **static brand identity** assets: marks (`-mark`), wordmarks (`-wordmark`), lockups (`-lockup-horizontal` / `-lockup-stacked`), and related raster/vector exports. It is not a UI icon set; use the `-icon` role only for small interface glyphs if you add them here.
 
 **Related:** naming rules in [`docs/asset-naming.md`](../../docs/asset-naming.md); documentation index [`docs/README.md`](../../docs/README.md). **Favicon bundles** live under [`src/favicons/`](../favicons/README.md), not here.
 
@@ -9,11 +9,11 @@ This directory holds **static brand identity** assets: marks (`-mark`), wordmark
 ## Table of contents
 
 - [Imports](#imports)
-- [Role suffixes (mark, wordmark, lockup)](#role-suffixes-mark-wordmark-lockup)
+- [Role suffixes (mark, wordmark, lockup orientation)](#role-suffixes-mark-wordmark-lockup-orientation)
 - [Preferred formats (in order)](#preferred-formats-in-order)
 - [Extensions](#extensions)
 - [Dimensions and resolution](#dimensions-and-resolution)
-  - [Lockups (`-lockup`)](#lockups--lockup)
+  - [Lockups (horizontal and stacked)](#lockups-horizontal-and-stacked)
   - [Enclosed lockup (badge or pill)](#enclosed-lockup-badge-or-pill)
 - [Color, transparency, and background](#color-transparency-and-background)
 - [File size (practical targets)](#file-size-practical-targets)
@@ -34,14 +34,13 @@ import theMusicTreeLockupStackedPng from "@behindthemusictree/assets/brand/the-m
 import productMark from "@behindthemusictree/assets/brand/audiometa/audiometa-mark.svg";
 ```
 
-## Role suffixes (mark, wordmark, lockup)
+## Role suffixes (mark, wordmark, lockup orientation)
 
 Use explicit roles when possible:
 
 - `-mark`: symbol-only asset
 - `-wordmark`: text-only project name
-- `-lockup`: symbol + text combined (see [lockup layouts](#lockups--lockup) below)
-- `-logo`: deprecated legacy role kept only for historical references
+- `-lockup-horizontal` / `-lockup-stacked`: symbol + text combined; **always** pick an orientation in the filename (see [lockup layouts](#lockups-horizontal-and-stacked) below). Do not use a bare `-lockup` segment without **`horizontal`** or **`stacked`**.
 
 ## Preferred formats (in order)
 
@@ -69,26 +68,25 @@ Do not use `.jpg`/`.jpeg` for assets that need transparency behind the artwork.
 
 Think in **CSS pixels** for layout and **intrinsic** bitmap size for clarity on retina displays.
 
-### Horizontal / wordmark (`-wordmark`, legacy `-logo`)
+### Horizontal / wordmark (`-wordmark`)
 
 - **Target display width** in UIs is often **96–200px** wide (nav, footer); hero use can be larger.
 - **Raster exports:** provide art at **2×** the maximum display width you support, or **cap the long edge** around **512–800px** if the design is simple—enough for retina headers without oversized files.
 - **Minimum:** avoid exporting below **~120px** on the long edge for primary artwork; tiny bitmaps look soft when scaled up.
 
-### Lockups (`-lockup`)
+### Lockups (horizontal and stacked)
 
-A lockup is **symbol + wordmark composed as one unit** (fixed spacing and alignment). It is not a `-mark` (symbol alone) or `-wordmark` (text alone).
+A lockup is **symbol + wordmark composed as one unit** (fixed spacing and alignment). It is not a `-mark` (symbol alone) or `-wordmark` (text alone). **Filenames must include the orientation:** `-lockup-horizontal` or `-lockup-stacked`, even when the project ships only one of the two.
 
 - **Horizontal lockup (`-lockup-horizontal`)**: type and symbol side by side (or symbol leading); use for nav bars and footers; same sizing as wordmarks above (**96–200px** typical display width, export at **2×** or long edge **512–800px**).
 - **Stacked lockup (`-lockup-stacked`)**: symbol above or below the wordmark; use when vertical space fits; common display widths are **72–140px** in cards/empty states, exported at **2×**.
 - **Open / knockout lockup**: transparent background around the type and symbol—the artwork floats on whatever surface the UI provides.
-- If shipping only one lockup orientation, use `-lockup` without orientation suffix.
 
 ### Enclosed lockup (badge or pill)
 
-An **enclosed lockup** is still a `-lockup`: the symbol and wordmark sit **inside a defined container** (rounded rectangle, capsule/pill, chip). The fill, stroke, and corner radius are part of the approved identity—not something to recreate only in CSS unless guidelines say so.
+An **enclosed lockup** is still named with **`-lockup-horizontal`** or **`-lockup-stacked`**: the symbol and wordmark sit **inside a defined container** (rounded rectangle, capsule/pill, chip). The fill, stroke, and corner radius are part of the approved identity—not something to recreate only in CSS unless guidelines say so.
 
-- Use the same **`-lockup`** role and **`-horizontal` / `-stacked`** orientation rules as open lockups.
+- Use the same **orientation-required** rules as open lockups, then add **`…-badge`** when applicable.
 - When a project ships **both** an open (knockout) horizontal lockup and a pill-enclosed one, disambiguate in the filename with the **`…-badge`** variant (see [`asset-naming.md`](../../docs/asset-naming.md)): e.g. `the-music-tree-lockup-horizontal-badge.png` alongside `the-music-tree-lockup-horizontal.png`.
 - **Export the full container** in the file: rounded ends must not be clipped; include **safe padding** inside the canvas so the shape clears the image edges (see [Color, transparency, and background](#color-transparency-and-background)).
 - **Typical aspect ratios** for chips in headers are often moderately wide (for example **~3–4∶1** width∶height); size to the UI slot and export raster at **2×** for retina.
@@ -109,8 +107,8 @@ An **enclosed lockup** is still a `-lockup`: the symbol and wordmark sit **insid
 
 ## Color, transparency, and background
 
-- **Light + dark UI:** ship **`…-lockup-light.svg`** / **`…-lockup-dark.svg`** (or PNG equivalents) when a single file does not work on both; see naming guide for variant suffixes.
-- **Greyscale / muted marks:** do **not** ship a grey copy of every mark by default. Prefer CSS for web (for example `opacity`, or `filter: grayscale(1)` on a wrapper) when you only need a subdued or disabled look. Add a **dedicated greyscale file** only when brand guidelines, print/PDF, email, or readability require a committed asset (automatic greyscale can collapse distinct brand colors to similar greys). Use the variant suffix **`…-mark-greyscale.svg`** (or `…-lockup-greyscale.svg` for symbol+text files) next to the full-color source. Implementation note: greyscale SVGs in this package wrap the same paths as the color source asset and apply an sRGB luminance **`feColorMatrix`** filter so the file stays in sync with the source artwork without hand-editing hundreds of fills. Each file uses a **unique `id` on the filter** (for example `audiometa-mark-greyscale`) to reduce clashes when inlining multiple SVGs on one page.
+- **Light + dark UI:** ship **`…-lockup-horizontal-light.svg`** / **`…-lockup-horizontal-dark.svg`** (or **`…-lockup-stacked-…`**, or PNG equivalents) when a single file does not work on both; see naming guide for variant suffixes.
+- **Greyscale / muted marks:** do **not** ship a grey copy of every mark by default. Prefer CSS for web (for example `opacity`, or `filter: grayscale(1)` on a wrapper) when you only need a subdued or disabled look. Add a **dedicated greyscale file** only when brand guidelines, print/PDF, email, or readability require a committed asset (automatic greyscale can collapse distinct brand colors to similar greys). Use the variant suffix **`…-mark-greyscale.svg`** (or **`…-lockup-horizontal-greyscale.svg`** / **`…-lockup-stacked-greyscale.svg`** for symbol+text files) next to the full-color source. Implementation note: greyscale SVGs in this package wrap the same paths as the color source asset and apply an sRGB luminance **`feColorMatrix`** filter so the file stays in sync with the source artwork without hand-editing hundreds of fills. Each file uses a **unique `id` on the filter** (for example `audiometa-mark-greyscale`) to reduce clashes when inlining multiple SVGs on one page.
 - **Safe area:** keep padding inside the canvas so the mark does not touch edges when used in circles or rounded avatars.
 
 ## File size (practical targets)
@@ -121,7 +119,7 @@ An **enclosed lockup** is still a `-lockup`: the symbol and wordmark sit **insid
 ## Checklist for new brand files
 
 - [ ] Format matches the artwork (SVG vs PNG) and extension is correct  
-- [ ] Role is explicit and matches usage (`-mark`, `-wordmark`, `-lockup`; avoid legacy `-logo`)  
+- [ ] Role is explicit and matches usage (`-mark`, `-wordmark`, `-lockup-horizontal` / `-lockup-stacked`; avoid bare `-lockup`)  
 - [ ] Raster long-edge or square size matches intended max display × retina, without huge unused resolution  
 - [ ] Transparency or explicit light/dark variants documented in filename  
 - [ ] File size reasonable; consider SVG if PNG is large and flat  
