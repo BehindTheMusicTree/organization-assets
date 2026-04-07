@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [7.0.0] - 2026-04-07
+
 ### Documentation
 
 - **Asset naming**: Lockup files must always include **`-lockup-horizontal`** or **`-lockup-stacked`** in the basename; bare **`…-lockup.<ext>`** without orientation is disallowed. **`docs/asset-naming.md`**, **`src/brand/README.md`**, **`docs/README.md`**, and Cursor rules updated. Existing committed lockups under **`src/brand/`** already use this pattern.
