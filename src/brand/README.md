@@ -30,7 +30,7 @@ From published package:
 Examples:
 
 ```tsx
-import orgMark from "@behindthemusictree/assets/brand/behind-the-music-tree/behind-the-music-tree-mark.png";
+import theMusicTreeLockupStackedPng from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-stacked.png";
 import productMark from "@behindthemusictree/assets/brand/audiometa/audiometa-mark.svg";
 ```
 

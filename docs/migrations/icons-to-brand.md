@@ -6,7 +6,7 @@
 
 - [What to change](#what-to-change)
 - [Per-project brand folders](#per-project-brand-folders)
-- [Filename corrections (the-music-tree SVG)](#filename-corrections-the-music-tree-svg)
+- [Filename corrections (the-music-tree stacked lockup)](#filename-corrections-the-music-tree-stacked-lockup)
 - [Versioning](#versioning)
 
 ## What to change
@@ -21,7 +21,7 @@ Example:
 
 ```diff
 -import orgLogo from "@behindthemusictree/assets/icons/behind-the-music-tree/behind-the-music-tree-mark.png";
-+import orgLogo from "@behindthemusictree/assets/brand/behind-the-music-tree/behind-the-music-tree-mark.png";
++import orgLogo from "@behindthemusictree/assets/brand/the-music-tree/the-music-tree-lockup-stacked.png";
 ```
 
 The compiled package subpath `./brand` mirrors the old `./icons` pattern:
@@ -38,15 +38,20 @@ If you adopted paths that put **every** mark under `brand/behind-the-music-tree/
 | `.../brand/behind-the-music-tree/audiometa-mark.png` | `.../brand/audiometa/audiometa-mark.png` |
 | `.../brand/behind-the-music-tree/grow-the-music-tree-mark.svg` | `.../brand/grow-the-music-tree/grow-the-music-tree-mark.svg` |
 | `.../brand/behind-the-music-tree/hear-the-music-tree-mark.svg` | `.../brand/hear-the-music-tree/hear-the-music-tree-mark.svg` |
-| `.../brand/behind-the-music-tree/the-music-tree-mark.png` | `.../brand/the-music-tree/the-music-tree-mark.png` |
+| `.../brand/behind-the-music-tree/the-music-tree-mark.png` | `.../brand/the-music-tree/the-music-tree-lockup-stacked.png` |
 
 Paths for **BehindTheMusicTree** itself stay under `brand/behind-the-music-tree/`.
 
 This layout change is **breaking** for consumers who imported non-BTMT marks via the umbrella folder.
 
-## Filename corrections (the-music-tree SVG)
+## Filename corrections (the-music-tree stacked lockup)
 
-The file **`the-music-tree-mark.svg`** was misnamed: it is a **stacked (vertical) lockup** (symbol + wordmark), not a symbol-only **`-mark`**. It was renamed to **`the-music-tree-lockup-stacked.svg`** (see [`docs/asset-naming.md`](../asset-naming.md) — orientation **`…-lockup-stacked`**). Update any direct imports that still reference **`the-music-tree-mark.svg`**.
+The stacked (vertical) artwork — symbol + wordmark — uses **`…-lockup-stacked`**, not **`…-mark`**:
+
+- **`the-music-tree-mark.svg`** → **`the-music-tree-lockup-stacked.svg`**
+- **`the-music-tree-mark.png`** → **`the-music-tree-lockup-stacked.png`**
+
+See [`docs/asset-naming.md`](../asset-naming.md) — orientation **`…-lockup-stacked`**. Update any direct imports that still use the old filenames.
 
 ## Versioning
 

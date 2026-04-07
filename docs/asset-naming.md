@@ -61,6 +61,7 @@ All of these use the **`-lockup`** role (plus **`-horizontal`** or **`-stacked`*
 | `audiometa-wordmark.svg` | `audiometa-text.svg` |
 | `audiometa-lockup-horizontal.svg` | `audiometa-horizontal.svg` |
 | `the-music-tree-lockup-horizontal-badge.png` | `tmt-pill-logo.png` |
+| `the-music-tree-lockup-stacked.png` | `the-music-tree-mark.png` (misnamed raster; same role as **`the-music-tree-lockup-stacked.svg`**) |
 | `behind-the-music-tree-mark.png` | `btmt-logo.png`, `BTMT.png` |
 | `grow-the-music-tree-mark.png` | `gtmt.png` |
 | `brand/hear-the-music-tree/hear-the-music-tree-mark.png` | `brand/cv/htmt.png` |

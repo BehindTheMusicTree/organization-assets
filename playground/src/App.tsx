@@ -268,7 +268,7 @@ export default function App() {
         **GithubSponsorButton** and **SponsorSocialLink** use <code>ORG_GITHUB_SPONSOR_BUTTON_URL</code>{" "}
         from the package build. Raster and SVG previews use each file’s
         natural dimensions (wide assets scroll inside the card).{" "}
-        <strong>TheMusicTreeMarkLink</strong> (including the mark on a plain background, no tile) lives under{" "}
+        <strong>TheMusicTreeMarkLink</strong> (stacked lockup on a plain background, no tile) lives under{" "}
         <strong>Components</strong> → <strong>Org &amp; lockups</strong>.
       </p>
 

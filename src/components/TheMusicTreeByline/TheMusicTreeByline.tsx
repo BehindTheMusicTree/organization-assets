@@ -5,7 +5,7 @@ import type { CSSProperties } from "react";
  */
 import theMusicTreeLockupHorizontalDark from "../../brand/the-music-tree/the-music-tree-lockup-horizontal-dark.svg";
 import theMusicTreeLockupHorizontal from "../../brand/the-music-tree/the-music-tree-lockup-horizontal.svg";
-import theMusicTreeMark from "../../brand/the-music-tree/the-music-tree-mark.svg";
+import theMusicTreeLockupStacked from "../../brand/the-music-tree/the-music-tree-lockup-stacked.svg";
 
 /**
  * Environment variable name read when **this package** is built (`npm run build` / publish).
@@ -146,17 +146,17 @@ export type TheMusicTreeHorizontalLinkProps = TheMusicTreeBylineProps;
 export type TheMusicTreeMarkLinkProps = {
   /** Applied to the outer `<a>`. */
   className?: string;
-  /** Mark image sizing (default height **56px**, width **auto**). */
+  /** Stacked lockup image sizing (default height **56px**, width **auto**). */
   imageClassName?: string;
   imageStyle?: CSSProperties;
   /**
-   * `onDark`: invert the default dark-ink mark for dark UIs while keeping knockout transparency.
+   * `onDark`: invert the default dark-ink lockup for dark UIs while keeping knockout transparency.
    */
   variant?: "default" | "onDark";
 };
 
 /**
- * Clickable **the-music-tree-mark** artwork only (no wordmark).
+ * Clickable **the-music-tree-lockup-stacked** artwork (vertical symbol + wordmark).
  * Uses the same baked `ORG_URL` href behavior as `TheMusicTreeHorizontalLink`.
  */
 export function TheMusicTreeMarkLink({
@@ -179,7 +179,7 @@ export function TheMusicTreeMarkLink({
         outline: "none",
         boxShadow: focusVisible ? "0 0 0 2px currentColor" : undefined,
       }}
-      aria-label="TheMusicTree mark — open ecosystem site"
+      aria-label="TheMusicTree stacked lockup — open ecosystem site"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onFocus={(e) => {
@@ -190,7 +190,7 @@ export function TheMusicTreeMarkLink({
       onBlur={() => setFocusVisible(false)}
     >
       <img
-        src={theMusicTreeMark}
+        src={theMusicTreeLockupStacked}
         alt=""
         className={imageClassName}
         style={{

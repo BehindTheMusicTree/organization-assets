@@ -46,6 +46,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ### Changed
 
+- **Brand (the-music-tree)**: Renamed **`the-music-tree-mark.png`** to **`the-music-tree-lockup-stacked.png`** — raster matches the stacked lockup (**`-lockup-stacked`**), not a symbol-only **`-mark`**. Update direct imports from the old filename.
+- **Components**: **`TheMusicTreeMarkLink`** uses **`the-music-tree-lockup-stacked.svg`** (same stacked lockup artwork; canonical name). **`the-music-tree-mark.svg`** remains in **`dist/brand/`** for existing direct imports until removed in a future major.
 - **Breaking — build env**: Renamed **`ORG_SPONSOR_BUTTON_URL`** to **`ORG_GITHUB_SPONSOR_BUTTON_URL`** (GitHub Sponsors iframe and **`SponsorSocialLink`** defaults). Update **`playground/.env`**, GitHub repository variables (**`publish.yml`** / Vercel sync), and any local shell exports.
 - **Components (GitHub Sponsors)**: **`BtmtSponsorButton`** → **`GithubSponsorButton`**; **`BtmtSponsorButtonProps`** → **`GithubSponsorButtonProps`**. **`socialBuildEnv`** env key export **`ORG_GITHUB_SPONSOR_BUTTON_URL`** → **`GithubSponsorButtonUrl`** (string value unchanged: **`ORG_GITHUB_SPONSOR_BUTTON_URL`**). Previous names remain as **deprecated** aliases.
 
