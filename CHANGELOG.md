@@ -44,6 +44,10 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Fixed
+
+- **IconBookOpen** / **DocLink**: Restored Lucide **`book-open`** geometry — inner fold uses **`a3`** arcs (not **`a4`**) meeting at **(12, 21)** with spine **`M12 7v14`**, fixing the misaligned bottom and center “tail” from the previous **`H3` + `a4`** path and **`V21.873`** spine tweak.
+
 ## [7.0.0] - 2026-04-07
 
 ### Documentation

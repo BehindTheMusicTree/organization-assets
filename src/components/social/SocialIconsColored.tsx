@@ -179,7 +179,7 @@ export function IconEmailColored({ className }: { className?: string }) {
   );
 }
 
-/** Same paths as **`IconBookOpen`** (Lucide-style open book). */
+/** Same geometry as **`IconBookOpen`** (Lucide `book-open`). */
 export function IconBookOpenColored({ className }: { className?: string }) {
   return (
     <svg
@@ -193,7 +193,7 @@ export function IconBookOpenColored({ className }: { className?: string }) {
       aria-hidden
     >
       <path d="M12 7v14" />
-      <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1-1h-6a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3z" />
+      <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
     </svg>
   );
 }
