@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [7.0.2] - 2026-04-08
+
 ### Improved
 
 - **Styles (`icon-links.css`)**: **Tipeee** raster wordmarks dim on hover on light and **`btmt-icon-link--dark`** links (they do not use **`currentColor`**).
