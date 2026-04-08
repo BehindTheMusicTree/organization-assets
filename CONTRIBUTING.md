@@ -15,6 +15,7 @@ This project is currently maintained by a solo developer, but contributions, sug
     - [Component and asset preview (playground)](#component-and-asset-preview-playground)
   - [2. Branching](#2-branching)
   - [3. Developing](#3-developing)
+    - [3.1 Interactive affordances (hover / focus)](#31-interactive-affordances-hover--focus)
   - [4. Committing](#4-committing)
   - [5. Pull Request Process](#5-pull-request-process)
     - [5.1. Pre-PR Checklist](#51-pre-pr-checklist)
@@ -181,6 +182,10 @@ Refresh after `npm run build` at the repo root so new static assets appear.
 - **Components**: follow existing component patterns and import style; prefer minimal, focused diffs.
 - **Playground (required)**: any **new exported component** or **published static asset** must be visible in the playground in the same change (before merge). Add a demo in [`playground/src/App.tsx`](playground/src/App.tsx) for components. For assets, run a full [`npm run build`](README.md#build) so files land under `dist/`; the catalog globs in [`playground/src/distAssetGlobs.ts`](playground/src/distAssetGlobs.ts) list matching files under `dist/brand`, `dist/banners`, and `dist/favicons`. Extend those globs or add an explicit preview import if needed. See [Component and asset preview (playground)](#component-and-asset-preview-playground).
 - **TypeScript**: `tsconfig.json` uses `"moduleResolution": "bundler"` — keep it compatible with tsup.
+
+#### 3.1 Interactive affordances (hover / focus)
+
+Shipped **clickable** UI (`<a>`, `<button>`, and similar) should show a visible **hover** change (and **focus-visible** when the element is focusable). **SVG** marks wired to **`currentColor`** usually inherit this from [`src/styles/icon-links.css`](src/styles/icon-links.css). **Raster** or fixed-color marks need an explicit hover style (for example **Tipeee** uses **`opacity`** on the **`img`** in that stylesheet). Third-party embeds we do not style (for example the **`GithubSponsorButton`** iframe) are exempt. Agent guidance: [`.cursor/rules/interactive-hover.mdc`](.cursor/rules/interactive-hover.mdc).
 
 After structural changes, run a full build to verify:
 

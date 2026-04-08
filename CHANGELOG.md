@@ -44,6 +44,16 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Improved
+
+- **Styles (`icon-links.css`)**: **Tipeee** raster wordmarks dim on hover on light and **`btmt-icon-link--dark`** links (they do not use **`currentColor`**).
+- **Button**: Hover uses a slight **`brightness`** increase for clearer affordance.
+
+### Documentation
+
+- **CONTRIBUTING**: § **3.1 Interactive affordances (hover / focus)** — clickables should show hover/focus feedback; points to **`icon-links.css`** and **`.cursor/rules/interactive-hover.mdc`**.
+- **Cursor rules**: **`interactive-hover.mdc`**; **`organization-assets-package.mdc`** Scope links it.
+
 ## [7.0.1] - 2026-04-08
 
 ### Fixed

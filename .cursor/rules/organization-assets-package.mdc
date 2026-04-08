@@ -50,6 +50,7 @@ Details: **`CONTRIBUTING.md`** (Component and asset preview — playground).
 
 ## Scope
 
+- **Clickable UI:** Hover (and focus-visible where applicable) for buttons, links, and icon links — see [`interactive-hover.mdc`](interactive-hover.mdc) and **`CONTRIBUTING.md`** § 3.1.
 - Prefer **minimal, focused diffs**; match existing component and import style.
 - Published files: `dist`, `docs`, and colocated READMEs listed in `package.json` `files` (e.g. `src/banners/README.md`, `src/brand/README.md`).
 - Follow commit message and PR naming conventions documented in `CONTRIBUTING.md`.
