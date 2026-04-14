@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [7.0.3] - 2026-04-14
+
 ### Added
 
 - **Banners (audiometa)**: Added `audiometa-banner.png` under `src/banners/audiometa/` for package and playground banner catalog coverage.
