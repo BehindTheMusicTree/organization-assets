@@ -44,6 +44,14 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Added
+
+- **Brand (audio-fingerprinter)**: Added `audio-fingerprinter-mark-dark.svg` and `audio-fingerprinter-mark-dark.png` dark variants.
+
+### Improved
+
+- **Brand (audio-fingerprinter)**: Tightened mark framing by reducing excess padding while preserving square dimensions for mark exports.
+
 ## [7.0.4] - 2026-04-15
 
 ### Added
