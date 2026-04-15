@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [7.0.6] - 2026-04-15
+
 ### Improved
 
 - **Brand (audio-fingerprinter)**: Updated mark and dark mark exports (`.png` / `.svg`) with tighter square framing.
