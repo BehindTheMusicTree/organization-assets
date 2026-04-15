@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [7.0.5] - 2026-04-15
+
 ### Added
 
 - **Brand (audio-fingerprinter)**: Added `audio-fingerprinter-mark-dark.svg` and `audio-fingerprinter-mark-dark.png` dark variants.
