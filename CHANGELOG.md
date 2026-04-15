@@ -44,6 +44,14 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Added
+
+- **Brand (audio-fingerprinter)**: Added `audio-fingerprinter-mark.svg` and `audio-fingerprinter-mark.png` under `src/brand/audio-fingerprinter/` and exposed them for package + playground brand catalog usage.
+
+### Fixed
+
+- **Playground**: Brand/favicon asset cards no longer use a `max-width` rule that could collapse previews to 0px; previews use a light checkerboard plate, cap displayed raster/SVG height, and show an error line if an image fails to load.
+
 ## [7.0.3] - 2026-04-14
 
 ### Added

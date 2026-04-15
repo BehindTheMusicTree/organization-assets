@@ -29,6 +29,7 @@
       "import": "./dist/brand/index.js",
       "require": "./dist/brand/index.cjs"
     },
+    "./brand/audio-fingerprinter/*": "./dist/brand/audio-fingerprinter/*",
     "./brand/audiometa/*": "./dist/brand/audiometa/*",
     "./brand/behind-the-music-tree/*": "./dist/brand/behind-the-music-tree/*",
     "./brand/grow-the-music-tree/*": "./dist/brand/grow-the-music-tree/*",
@@ -61,7 +62,7 @@
     "src/brand/README.md"
   ],
   "scripts": {
-    "build": "node scripts/assert-org-url.mjs && tsup && cp src/tokens/*.css dist/tokens/ && cp -r src/styles dist/ && cp -r src/brand/audiometa src/brand/behind-the-music-tree src/brand/grow-the-music-tree src/brand/hear-the-music-tree src/brand/the-music-tree dist/brand/ && cp -r src/favicons dist/ && mkdir -p dist/banners && find src/banners -mindepth 1 -maxdepth 1 -type d -exec cp -r {} dist/banners/ \\;",
+    "build": "node scripts/assert-org-url.mjs && tsup && cp src/tokens/*.css dist/tokens/ && cp -r src/styles dist/ && cp -r src/brand/audio-fingerprinter src/brand/audiometa src/brand/behind-the-music-tree src/brand/grow-the-music-tree src/brand/hear-the-music-tree src/brand/the-music-tree dist/brand/ && cp -r src/favicons dist/ && mkdir -p dist/banners && find src/banners -mindepth 1 -maxdepth 1 -type d -exec cp -r {} dist/banners/ \\;",
     "dev": "node scripts/assert-org-url.mjs && tsup --watch",
     "playground": "node scripts/run-playground.mjs",
     "playground:dev": "npm run dev --prefix playground",

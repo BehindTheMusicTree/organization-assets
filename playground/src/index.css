@@ -277,7 +277,19 @@ body {
   overflow-y: hidden;
   line-height: 0;
   width: max-content;
-  max-width: min(100vw - 3rem, 100%);
+  /* Viewport cap only — avoid `min(..., 100%)` here: percentage resolves against the
+   * figure width and can circularly collapse the preview to 0px wide in some layouts. */
+  max-width: calc(100vw - 3rem);
+}
+
+/* Surfaces where knockouts / light ink need contrast against the white card. */
+.asset-grid--brand .asset-card-preview,
+.asset-grid--favicons .asset-card-preview {
+  padding: 0.5rem;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background: repeating-conic-gradient(#e0e0e0 0% 25%, #fff 0% 50%) 50% / 16px 16px;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.06);
 }
 
 .asset-card-preview img {
@@ -287,6 +299,11 @@ body {
   max-width: none;
   vertical-align: bottom;
   object-fit: contain;
+}
+
+.asset-grid--brand .asset-card-preview img,
+.asset-grid--favicons .asset-card-preview img {
+  max-height: min(240px, 70vh);
 }
 
 .asset-card figcaption {
@@ -305,6 +322,11 @@ body {
   font-variant-numeric: tabular-nums;
   color: var(--color-text-muted, #777);
   margin-top: 0.2rem;
+}
+
+.asset-card-dims--error {
+  color: #b42318;
+  font-weight: 600;
 }
 
 .lockup-showcase {
