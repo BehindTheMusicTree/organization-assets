@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [7.0.4] - 2026-04-15
+
 ### Added
 
 - **Brand (audio-fingerprinter)**: Added `audio-fingerprinter-mark.svg` and `audio-fingerprinter-mark.png` under `src/brand/audio-fingerprinter/` and exposed them for package + playground brand catalog usage.
