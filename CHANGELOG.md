@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [7.1.0] - 2026-04-18
+
 ### Added
 
 - **Build env / `socialBuildEnv`**: Required **`HTMT_API_SUBDOMAIN`**, **`GTMT_FRONT_SUBDOMAIN`**, and **`AUDIOMETA_SUBDOMAIN`** (repository variables + **`playground/.env`**); tsup inlines them into **`dist/`**. Exports: key literals plus **`HTMT_API_SUBDOMAIN_VALUE`**, **`GTMT_FRONT_SUBDOMAIN_VALUE`**, **`AUDIOMETA_SUBDOMAIN_VALUE`**.
