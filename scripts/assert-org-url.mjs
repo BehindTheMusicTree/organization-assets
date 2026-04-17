@@ -54,3 +54,7 @@ const email = requireNonEmpty("CONTACT_EMAIL");
 if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
   fail("Error: CONTACT_EMAIL must look like a valid email address.");
 }
+
+requireNonEmpty("HTMT_API_SUBDOMAIN");
+requireNonEmpty("GTMT_FRONT_SUBDOMAIN");
+requireNonEmpty("AUDIOMETA_SUBDOMAIN");

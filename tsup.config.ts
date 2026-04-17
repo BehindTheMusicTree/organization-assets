@@ -44,6 +44,15 @@ const orgSpotifyUrlLiteral = JSON.stringify(buildEnv.ORG_SPOTIFY_URL ?? "");
 const orgDiscordUrlLiteral = JSON.stringify(buildEnv.ORG_DISCORD_URL ?? "");
 const orgTipeeeUrlLiteral = JSON.stringify(buildEnv.ORG_TIPEEE_URL ?? "");
 const contactEmailLiteral = JSON.stringify(buildEnv.CONTACT_EMAIL ?? "");
+const htmtApiSubdomainLiteral = JSON.stringify(
+  buildEnv.HTMT_API_SUBDOMAIN ?? "",
+);
+const gtmtFrontSubdomainLiteral = JSON.stringify(
+  buildEnv.GTMT_FRONT_SUBDOMAIN ?? "",
+);
+const audiometaSubdomainLiteral = JSON.stringify(
+  buildEnv.AUDIOMETA_SUBDOMAIN ?? "",
+);
 
 export default defineConfig({
   entry: {
@@ -73,6 +82,9 @@ export default defineConfig({
     "process.env.ORG_DISCORD_URL": orgDiscordUrlLiteral,
     "process.env.ORG_TIPEEE_URL": orgTipeeeUrlLiteral,
     "process.env.CONTACT_EMAIL": contactEmailLiteral,
+    "process.env.HTMT_API_SUBDOMAIN": htmtApiSubdomainLiteral,
+    "process.env.GTMT_FRONT_SUBDOMAIN": gtmtFrontSubdomainLiteral,
+    "process.env.AUDIOMETA_SUBDOMAIN": audiometaSubdomainLiteral,
   },
   loader: {
     ".svg": "dataurl",

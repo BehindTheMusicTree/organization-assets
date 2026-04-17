@@ -47,4 +47,7 @@ jobs:
           ORG_DISCORD_URL: ${{ vars.ORG_DISCORD_URL }}
           ORG_TIPEEE_URL: ${{ vars.ORG_TIPEEE_URL }}
           CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
+          HTMT_API_SUBDOMAIN: ${{ vars.HTMT_API_SUBDOMAIN }}
+          GTMT_FRONT_SUBDOMAIN: ${{ vars.GTMT_FRONT_SUBDOMAIN }}
+          AUDIOMETA_SUBDOMAIN: ${{ vars.AUDIOMETA_SUBDOMAIN }}
         run: node scripts/sync-vercel-playground-env.mjs
