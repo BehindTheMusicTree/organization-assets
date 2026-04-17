@@ -1,35 +1,23 @@
 {
-  // "Playground: build + Vite" runs `npm run playground` = root `npm run build` then playground `vite`.
+  // Main launch flow: run build+server tasks, then open browser on the strict Vite port.
   // Library watch (`npm run dev` / tsup --watch) is separate; it does not start the UI.
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "type": "chrome",
       "request": "launch",
-      "name": "Playground: build + Vite (opens browser)",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "playground"],
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal",
-      "serverReadyAction": {
-        "action": "openExternally",
-        "pattern": "http://localhost:([0-9]+)",
-        "uriFormat": "http://localhost:%s/"
-      }
+      "name": "Playground: build then dev server (opens browser)",
+      "preLaunchTask": "playground: build + serve",
+      "url": "http://localhost:5174",
+      "webRoot": "${workspaceFolder}/playground"
     },
     {
-      "type": "node",
+      "type": "chrome",
       "request": "launch",
       "name": "Playground: Vite only (opens browser)",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "playground:dev"],
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal",
-      "serverReadyAction": {
-        "action": "openExternally",
-        "pattern": "http://localhost:([0-9]+)",
-        "uriFormat": "http://localhost:%s/"
-      }
+      "preLaunchTask": "playground: dev server",
+      "url": "http://localhost:5174",
+      "webRoot": "${workspaceFolder}/playground"
     },
     {
       "type": "node",

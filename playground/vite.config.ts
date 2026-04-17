@@ -5,10 +5,14 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5174,
+    strictPort: true,
     // `file:..` links `@behindthemusictree/assets`; default watcher ignores node_modules,
     // so changes under dist/ would not refresh until restart without this.
     watch: {
-      ignored: ["**/node_modules/**", "!**/node_modules/@behindthemusictree/assets/**"],
+      ignored: [
+        "**/node_modules/**",
+        "!**/node_modules/@behindthemusictree/assets/**",
+      ],
     },
   },
 });

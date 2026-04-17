@@ -42,7 +42,8 @@ body {
   margin: 0 0 1.75rem;
   padding: 0;
   list-style: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-text-muted, #888) 35%, transparent);
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-text-muted, #888) 35%, transparent);
 }
 
 .playground-tab {
@@ -67,7 +68,11 @@ body {
   color: var(--color-text, #1a1a1a);
   font-weight: 600;
   background: #fff;
-  border-color: color-mix(in srgb, var(--color-text-muted, #888) 35%, transparent);
+  border-color: color-mix(
+    in srgb,
+    var(--color-text-muted, #888) 35%,
+    transparent
+  );
   border-bottom-color: #fff;
   box-shadow: 0 1px 0 #fff;
 }
@@ -79,7 +84,8 @@ body {
   margin: 0 0 1.25rem;
   padding: 0;
   list-style: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-text-muted, #888) 28%, transparent);
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-text-muted, #888) 28%, transparent);
 }
 
 .playground-subtab {
@@ -104,7 +110,11 @@ body {
   color: var(--color-text, #1a1a1a);
   font-weight: 600;
   background: #fff;
-  border-color: color-mix(in srgb, var(--color-text-muted, #888) 28%, transparent);
+  border-color: color-mix(
+    in srgb,
+    var(--color-text-muted, #888) 28%,
+    transparent
+  );
   border-bottom-color: #fff;
   box-shadow: 0 1px 0 #fff;
 }
@@ -146,7 +156,8 @@ body {
   min-width: 3.25rem;
   min-height: 3.25rem;
   padding: 0.4rem 0.5rem;
-  border: 1px solid color-mix(in srgb, var(--color-text-muted, #888) 35%, transparent);
+  border: 1px solid
+    color-mix(in srgb, var(--color-text-muted, #888) 35%, transparent);
   border-radius: var(--radius-md, 8px);
   background: #fff;
 }
@@ -172,7 +183,11 @@ body {
 .social-links-demo--colored .btmt-icon-link--with-text:hover {
   color: inherit;
   opacity: 0.88;
-  border-color: color-mix(in srgb, var(--color-text-muted, #888) 38%, transparent);
+  border-color: color-mix(
+    in srgb,
+    var(--color-text-muted, #888) 38%,
+    transparent
+  );
   background: #fff;
   box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
 }
@@ -185,7 +200,8 @@ body {
 }
 
 /* Keep brand fills on hover; do not reset dark pills to white */
-.social-links-demo--on-dark.social-links-demo--colored .btmt-icon-link--with-text:hover {
+.social-links-demo--on-dark.social-links-demo--colored
+  .btmt-icon-link--with-text:hover {
   border-color: rgb(255 255 255 / 0.32);
   background: rgb(42 42 42);
   box-shadow: 0 1px 3px rgb(0 0 0 / 0.45);
@@ -198,7 +214,8 @@ body {
 .section h2 {
   margin: 0 0 1rem;
   font-size: 1.1rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-text-muted, #888) 35%, transparent);
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-text-muted, #888) 35%, transparent);
   padding-bottom: 0.35rem;
 }
 
@@ -288,7 +305,8 @@ body {
   padding: 0.5rem;
   border-radius: 6px;
   box-sizing: border-box;
-  background: repeating-conic-gradient(#e0e0e0 0% 25%, #fff 0% 50%) 50% / 16px 16px;
+  background: repeating-conic-gradient(#e0e0e0 0% 25%, #fff 0% 50%) 50% / 16px
+    16px;
   box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.06);
 }
 
@@ -473,4 +491,75 @@ body {
 .sponsor-demo__hint {
   margin: 0;
   max-width: 36rem;
+}
+
+.env-vars-note {
+  max-width: 52rem;
+  margin-bottom: 1rem;
+}
+
+.env-vars-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.env-vars-summary__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid
+    color-mix(in srgb, var(--color-text-muted, #888) 30%, transparent);
+  border-radius: var(--radius-md, 8px);
+  background: #fff;
+}
+
+.env-vars-summary__label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted, #666);
+}
+
+.env-vars-table-wrap {
+  overflow-x: auto;
+  border: 1px solid
+    color-mix(in srgb, var(--color-text-muted, #888) 28%, transparent);
+  border-radius: var(--radius-md, 8px);
+  background: #fff;
+}
+
+.env-vars-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 54rem;
+}
+
+.env-vars-table th,
+.env-vars-table td {
+  padding: 0.6rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-text-muted, #888) 20%, transparent);
+  font-size: 0.85rem;
+}
+
+.env-vars-table thead th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-text-muted, #555);
+  background: rgb(0 0 0 / 0.02);
+}
+
+.env-vars-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.env-vars-table code {
+  font-size: 0.78rem;
+  word-break: break-all;
 }
