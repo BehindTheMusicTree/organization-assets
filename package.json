@@ -1,6 +1,6 @@
 {
   "name": "@behindthemusictree/assets",
-  "version": "7.0.6",
+  "version": "7.0.7",
   "description": "Shared assets (components, tokens, brand artwork, styles) for React projects",
   "repository": {
     "type": "git",
