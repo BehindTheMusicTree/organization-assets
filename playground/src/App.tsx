@@ -64,6 +64,8 @@ import {
   TheMusicTreeHorizontalLink,
   TheMusicTreeMarkLink,
   ORG_URL,
+  resolveOrgSiteHref,
+  ORG_GITHUB_SPONSOR_BUTTON_URL,
   ORG_GITHUB_URL,
   ORG_PYPI_URL,
   ORG_LINKEDIN_URL,
@@ -219,7 +221,8 @@ const TABS: { id: CatalogTab; label: string }[] = [
   { id: "favicons", label: "Favicons" },
 ];
 
-type EnvVarRow = {
+type BuildEnvRow = {
+  category: "Org and sponsor" | "Social links" | "Service subdomains";
   usage: string;
   keyName: string;
   keyValue: string;
@@ -227,8 +230,45 @@ type EnvVarRow = {
   inlinedValue: string | undefined;
 };
 
-const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
+function readBuildEnv(read: () => string | undefined): string | undefined {
+  try {
+    const value = read()?.trim();
+    return value || undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function readResolvedOrgSiteHref(): string | undefined {
+  try {
+    return resolveOrgSiteHref();
+  } catch {
+    return undefined;
+  }
+}
+
+const ORG_AND_SPONSOR_ENV_ROWS: BuildEnvRow[] = [
   {
+    category: "Org and sponsor",
+    usage: "Org site URL",
+    keyName: "ORG_URL",
+    keyValue: ORG_URL,
+    inlinedName: "resolveOrgSiteHref()",
+    inlinedValue: readResolvedOrgSiteHref(),
+  },
+  {
+    category: "Org and sponsor",
+    usage: "Sponsor button URL",
+    keyName: "ORG_GITHUB_SPONSOR_BUTTON_URL",
+    keyValue: ORG_GITHUB_SPONSOR_BUTTON_URL,
+    inlinedName: "GithubSponsorButton src",
+    inlinedValue: readBuildEnv(() => process.env.ORG_GITHUB_SPONSOR_BUTTON_URL),
+  },
+];
+
+const SOCIAL_LINK_ENV_ROWS: BuildEnvRow[] = [
+  {
+    category: "Social links",
     usage: "GitHub social link",
     keyName: "ORG_GITHUB_URL",
     keyValue: ORG_GITHUB_URL,
@@ -236,6 +276,7 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: ORG_GITHUB_PROFILE_URL,
   },
   {
+    category: "Social links",
     usage: "PyPI social link",
     keyName: "ORG_PYPI_URL",
     keyValue: ORG_PYPI_URL,
@@ -243,6 +284,7 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: ORG_PYPI_PROFILE_URL,
   },
   {
+    category: "Social links",
     usage: "LinkedIn social link",
     keyName: "ORG_LINKEDIN_URL",
     keyValue: ORG_LINKEDIN_URL,
@@ -250,6 +292,7 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: ORG_LINKEDIN_PROFILE_URL,
   },
   {
+    category: "Social links",
     usage: "X social link",
     keyName: "ORG_X_URL",
     keyValue: ORG_X_URL,
@@ -257,6 +300,7 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: ORG_X_PROFILE_URL,
   },
   {
+    category: "Social links",
     usage: "Mastodon social link",
     keyName: "ORG_MASTODON_URL",
     keyValue: ORG_MASTODON_URL,
@@ -264,6 +308,7 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: ORG_MASTODON_PROFILE_URL,
   },
   {
+    category: "Social links",
     usage: "YouTube social link",
     keyName: "ORG_YOUTUBE_URL",
     keyValue: ORG_YOUTUBE_URL,
@@ -271,6 +316,7 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: ORG_YOUTUBE_PROFILE_URL,
   },
   {
+    category: "Social links",
     usage: "Spotify social link",
     keyName: "ORG_SPOTIFY_URL",
     keyValue: ORG_SPOTIFY_URL,
@@ -278,6 +324,7 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: ORG_SPOTIFY_PROFILE_URL,
   },
   {
+    category: "Social links",
     usage: "Discord social link",
     keyName: "ORG_DISCORD_URL",
     keyValue: ORG_DISCORD_URL,
@@ -285,6 +332,7 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: ORG_DISCORD_INVITE_URL,
   },
   {
+    category: "Social links",
     usage: "Tipeee social link",
     keyName: "ORG_TIPEEE_URL",
     keyValue: ORG_TIPEEE_URL,
@@ -292,13 +340,18 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: ORG_TIPEEE_PROFILE_URL,
   },
   {
+    category: "Social links",
     usage: "Email social link",
     keyName: "CONTACT_EMAIL",
     keyValue: CONTACT_EMAIL,
     inlinedName: "CONTACT_EMAIL_ADDRESS",
     inlinedValue: CONTACT_EMAIL_ADDRESS,
   },
+];
+
+const SERVICE_SUBDOMAIN_ENV_ROWS: BuildEnvRow[] = [
   {
+    category: "Service subdomains",
     usage: "HTMT front subdomain",
     keyName: "HTMT_FRONT_SUBDOMAIN",
     keyValue: "HTMT_FRONT_SUBDOMAIN",
@@ -306,6 +359,7 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: HTMT_FRONT_SUBDOMAIN,
   },
   {
+    category: "Service subdomains",
     usage: "HTMT API subdomain",
     keyName: "HTMT_API_SUBDOMAIN",
     keyValue: "HTMT_API_SUBDOMAIN",
@@ -313,6 +367,7 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: HTMT_API_SUBDOMAIN,
   },
   {
+    category: "Service subdomains",
     usage: "GTMT front subdomain",
     keyName: "GTMT_FRONT_SUBDOMAIN",
     keyValue: "GTMT_FRONT_SUBDOMAIN",
@@ -320,6 +375,7 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: GTMT_FRONT_SUBDOMAIN,
   },
   {
+    category: "Service subdomains",
     usage: "GTMT API subdomain",
     keyName: "GTMT_API_SUBDOMAIN",
     keyValue: "GTMT_API_SUBDOMAIN",
@@ -327,6 +383,7 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: GTMT_API_SUBDOMAIN,
   },
   {
+    category: "Service subdomains",
     usage: "Audiometa front subdomain",
     keyName: "AUDIOMETA_FRONT_SUBDOMAIN",
     keyValue: "AUDIOMETA_FRONT_SUBDOMAIN",
@@ -334,6 +391,7 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: AUDIOMETA_FRONT_SUBDOMAIN,
   },
   {
+    category: "Service subdomains",
     usage: "Audiometa API subdomain",
     keyName: "AUDIOMETA_API_SUBDOMAIN",
     keyValue: "AUDIOMETA_API_SUBDOMAIN",
@@ -341,6 +399,7 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: AUDIOMETA_API_SUBDOMAIN,
   },
   {
+    category: "Service subdomains",
     usage: "TMTA subdomain",
     keyName: "TMTA_SUBDOMAIN",
     keyValue: "TMTA_SUBDOMAIN",
@@ -348,12 +407,19 @@ const SOCIAL_BUILD_ENV_ROWS: EnvVarRow[] = [
     inlinedValue: TMTA_SUBDOMAIN,
   },
   {
+    category: "Service subdomains",
     usage: "TMD subdomain",
     keyName: "TMD_SUBDOMAIN",
     keyValue: "TMD_SUBDOMAIN",
     inlinedName: "TMD_SUBDOMAIN",
     inlinedValue: TMD_SUBDOMAIN,
   },
+];
+
+const BUILD_ENV_ROWS: BuildEnvRow[] = [
+  ...ORG_AND_SPONSOR_ENV_ROWS,
+  ...SOCIAL_LINK_ENV_ROWS,
+  ...SERVICE_SUBDOMAIN_ENV_ROWS,
 ];
 
 type ComponentsSubTab = "basics" | "social" | "icons" | "lockups";
@@ -1077,7 +1143,7 @@ export default function App() {
           aria-labelledby="tab-env"
         >
           <section className="section" aria-labelledby="env-heading">
-            <h2 id="env-heading">Build env vars (from installed package)</h2>
+            <h2 id="env-heading">Build constants (from installed package)</h2>
             <p className="empty-note env-vars-note">
               This table shows constants exported by{" "}
               <code>@behindthemusictree/assets/components</code>. The rightmost
@@ -1103,6 +1169,7 @@ export default function App() {
               <table className="env-vars-table">
                 <thead>
                   <tr>
+                    <th scope="col">Category</th>
                     <th scope="col">Usage</th>
                     <th scope="col">Build key export</th>
                     <th scope="col">Build key string</th>
@@ -1111,8 +1178,9 @@ export default function App() {
                   </tr>
                 </thead>
                 <tbody>
-                  {SOCIAL_BUILD_ENV_ROWS.map((row) => (
+                  {BUILD_ENV_ROWS.map((row) => (
                     <tr key={row.inlinedName}>
+                      <td>{row.category}</td>
                       <td>{row.usage}</td>
                       <td>
                         <code>{row.keyName}</code>
