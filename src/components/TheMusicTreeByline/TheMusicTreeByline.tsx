@@ -7,42 +7,7 @@ import theMusicTreeLockupHorizontalDark from "../../brand/the-music-tree/the-mus
 import theMusicTreeLockupHorizontal from "../../brand/the-music-tree/the-music-tree-lockup-horizontal.svg";
 import theMusicTreeMarkDark from "../../brand/the-music-tree/the-music-tree-mark-dark.svg";
 import theMusicTreeMark from "../../brand/the-music-tree/the-music-tree-mark.svg";
-
-/**
- * Environment variable name read when **this package** is built (`npm run build` / publish).
- * The value is **embedded in published `dist/`**; consuming apps do not set **`ORG_DOMAIN`** unless they bundle a **local checkout** of this repo without a normal build.
- */
-export const ORG_DOMAIN = "ORG_DOMAIN" as const;
-
-/**
- * Normalize a hostname or full URL to an **`https://…/`** href.
- * Use **`resolveOrgSiteHref()`** for the link target; keep this for tests or custom strings.
- */
-export function parseOrgSiteHref(value: string | undefined): string {
-  const raw = value?.trim();
-  if (!raw) {
-    throw new Error(
-      `Missing organization site URL: set environment variable ${ORG_DOMAIN} when building @behindthemusictree/assets (e.g. map GitHub repository variable DOMAIN_NAME into ORG_DOMAIN in the publish workflow).`,
-    );
-  }
-  return raw.startsWith("http") ? raw : `https://${raw.replace(/\/$/, "")}/`;
-}
-
-/**
- * Raw organization domain as inlined in **`dist/`** at package build time (e.g. `themusictree.org`).
- * Use **`resolveOrgSiteHref()`** when you need a full `https://…/` href.
- */
-export function readOrgDomain(): string | undefined {
-  const v = process.env.ORG_DOMAIN?.trim();
-  return v || undefined;
-}
-
-/**
- * Organization site **`href`**. In **published** installs the URL is already inlined from **`ORG_DOMAIN`** at package build time.
- */
-export function resolveOrgSiteHref(): string {
-  return parseOrgSiteHref(readOrgDomain());
-}
+import { resolveOrgSiteHref } from "../buildEnv/orgSiteEnv";
 
 /**
  * Clickable **`the-music-tree-lockup-horizontal`** artwork only (no separate text node).
