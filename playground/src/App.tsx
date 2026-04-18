@@ -242,7 +242,7 @@ const DOMAIN_ENV_ROWS: BuildEnvRow[] = [
     category: "Domain",
     usage: "Org site URL",
     keyName: "ORG_DOMAIN",
-    keyValue: ORG_DOMAIN,
+    keyValue: "ORG_DOMAIN",
     inlinedName: "ORG_DOMAIN",
     inlinedValue: ORG_DOMAIN,
   },
