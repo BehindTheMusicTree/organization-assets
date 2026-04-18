@@ -3,7 +3,6 @@ export {
   TheMusicTreeHorizontalLink,
   TheMusicTreeMarkLink,
   ORG_DOMAIN,
-  readOrgDomain,
   parseOrgSiteHref,
   resolveOrgSiteHref,
   type TheMusicTreeBylineProps,

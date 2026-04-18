@@ -63,7 +63,6 @@ import {
   TheMusicTreeHorizontalLink,
   TheMusicTreeMarkLink,
   ORG_DOMAIN,
-  readOrgDomain,
   ORG_GITHUB_SPONSOR_BUTTON_URL,
   ORG_GITHUB_URL,
   ORG_PYPI_URL,
@@ -245,7 +244,7 @@ const DOMAIN_ENV_ROWS: BuildEnvRow[] = [
     keyName: "ORG_DOMAIN",
     keyValue: ORG_DOMAIN,
     inlinedName: "ORG_DOMAIN",
-    inlinedValue: readBuildEnv(readOrgDomain),
+    inlinedValue: ORG_DOMAIN,
   },
   {
     category: "Domain",
