@@ -4,7 +4,6 @@ import { AssetFigure } from "./AssetFigure";
 import {
   BTMT_ICON_LINK_DARK_CLASS,
   GithubSponsorButton,
-  GithubSponsorButtonUrl,
   Button,
   DiscussionLink,
   DiscussionLinkColored,
@@ -63,8 +62,8 @@ import {
   SpotifySocialLinkColored,
   TheMusicTreeHorizontalLink,
   TheMusicTreeMarkLink,
-  ORG_URL,
-  resolveOrgSiteHref,
+  ORG_DOMAIN,
+  readOrgDomain,
   ORG_GITHUB_SPONSOR_BUTTON_URL,
   ORG_GITHUB_URL,
   ORG_PYPI_URL,
@@ -222,7 +221,7 @@ const TABS: { id: CatalogTab; label: string }[] = [
 ];
 
 type BuildEnvRow = {
-  category: "Org and sponsor" | "Social links" | "Service subdomains";
+  category: "Social links" | "Domain";
   usage: string;
   keyName: string;
   keyValue: string;
@@ -239,34 +238,90 @@ function readBuildEnv(read: () => string | undefined): string | undefined {
   }
 }
 
-function readResolvedOrgSiteHref(): string | undefined {
-  try {
-    return resolveOrgSiteHref();
-  } catch {
-    return undefined;
-  }
-}
-
-const ORG_AND_SPONSOR_ENV_ROWS: BuildEnvRow[] = [
+const DOMAIN_ENV_ROWS: BuildEnvRow[] = [
   {
-    category: "Org and sponsor",
+    category: "Domain",
     usage: "Org site URL",
-    keyName: "ORG_URL",
-    keyValue: ORG_URL,
-    inlinedName: "resolveOrgSiteHref()",
-    inlinedValue: readResolvedOrgSiteHref(),
+    keyName: "ORG_DOMAIN",
+    keyValue: ORG_DOMAIN,
+    inlinedName: "readOrgDomain()",
+    inlinedValue: readBuildEnv(readOrgDomain),
   },
   {
-    category: "Org and sponsor",
+    category: "Domain",
+    usage: "HTMT front subdomain",
+    keyName: "HTMT_FRONT_SUBDOMAIN",
+    keyValue: "HTMT_FRONT_SUBDOMAIN",
+    inlinedName: "HTMT_FRONT_SUBDOMAIN",
+    inlinedValue: HTMT_FRONT_SUBDOMAIN,
+  },
+  {
+    category: "Domain",
+    usage: "HTMT API subdomain",
+    keyName: "HTMT_API_SUBDOMAIN",
+    keyValue: "HTMT_API_SUBDOMAIN",
+    inlinedName: "HTMT_API_SUBDOMAIN",
+    inlinedValue: HTMT_API_SUBDOMAIN,
+  },
+  {
+    category: "Domain",
+    usage: "GTMT front subdomain",
+    keyName: "GTMT_FRONT_SUBDOMAIN",
+    keyValue: "GTMT_FRONT_SUBDOMAIN",
+    inlinedName: "GTMT_FRONT_SUBDOMAIN",
+    inlinedValue: GTMT_FRONT_SUBDOMAIN,
+  },
+  {
+    category: "Domain",
+    usage: "GTMT API subdomain",
+    keyName: "GTMT_API_SUBDOMAIN",
+    keyValue: "GTMT_API_SUBDOMAIN",
+    inlinedName: "GTMT_API_SUBDOMAIN",
+    inlinedValue: GTMT_API_SUBDOMAIN,
+  },
+  {
+    category: "Domain",
+    usage: "Audiometa front subdomain",
+    keyName: "AUDIOMETA_FRONT_SUBDOMAIN",
+    keyValue: "AUDIOMETA_FRONT_SUBDOMAIN",
+    inlinedName: "AUDIOMETA_FRONT_SUBDOMAIN",
+    inlinedValue: AUDIOMETA_FRONT_SUBDOMAIN,
+  },
+  {
+    category: "Domain",
+    usage: "Audiometa API subdomain",
+    keyName: "AUDIOMETA_API_SUBDOMAIN",
+    keyValue: "AUDIOMETA_API_SUBDOMAIN",
+    inlinedName: "AUDIOMETA_API_SUBDOMAIN",
+    inlinedValue: AUDIOMETA_API_SUBDOMAIN,
+  },
+  {
+    category: "Domain",
+    usage: "TMTA subdomain",
+    keyName: "TMTA_SUBDOMAIN",
+    keyValue: "TMTA_SUBDOMAIN",
+    inlinedName: "TMTA_SUBDOMAIN",
+    inlinedValue: TMTA_SUBDOMAIN,
+  },
+  {
+    category: "Domain",
+    usage: "TMD subdomain",
+    keyName: "TMD_SUBDOMAIN",
+    keyValue: "TMD_SUBDOMAIN",
+    inlinedName: "TMD_SUBDOMAIN",
+    inlinedValue: TMD_SUBDOMAIN,
+  },
+];
+
+const SOCIAL_LINK_ENV_ROWS: BuildEnvRow[] = [
+  {
+    category: "Social links",
     usage: "Sponsor button URL",
     keyName: "ORG_GITHUB_SPONSOR_BUTTON_URL",
     keyValue: ORG_GITHUB_SPONSOR_BUTTON_URL,
     inlinedName: "GithubSponsorButton src",
     inlinedValue: readBuildEnv(() => process.env.ORG_GITHUB_SPONSOR_BUTTON_URL),
   },
-];
-
-const SOCIAL_LINK_ENV_ROWS: BuildEnvRow[] = [
   {
     category: "Social links",
     usage: "GitHub social link",
@@ -349,77 +404,9 @@ const SOCIAL_LINK_ENV_ROWS: BuildEnvRow[] = [
   },
 ];
 
-const SERVICE_SUBDOMAIN_ENV_ROWS: BuildEnvRow[] = [
-  {
-    category: "Service subdomains",
-    usage: "HTMT front subdomain",
-    keyName: "HTMT_FRONT_SUBDOMAIN",
-    keyValue: "HTMT_FRONT_SUBDOMAIN",
-    inlinedName: "HTMT_FRONT_SUBDOMAIN",
-    inlinedValue: HTMT_FRONT_SUBDOMAIN,
-  },
-  {
-    category: "Service subdomains",
-    usage: "HTMT API subdomain",
-    keyName: "HTMT_API_SUBDOMAIN",
-    keyValue: "HTMT_API_SUBDOMAIN",
-    inlinedName: "HTMT_API_SUBDOMAIN",
-    inlinedValue: HTMT_API_SUBDOMAIN,
-  },
-  {
-    category: "Service subdomains",
-    usage: "GTMT front subdomain",
-    keyName: "GTMT_FRONT_SUBDOMAIN",
-    keyValue: "GTMT_FRONT_SUBDOMAIN",
-    inlinedName: "GTMT_FRONT_SUBDOMAIN",
-    inlinedValue: GTMT_FRONT_SUBDOMAIN,
-  },
-  {
-    category: "Service subdomains",
-    usage: "GTMT API subdomain",
-    keyName: "GTMT_API_SUBDOMAIN",
-    keyValue: "GTMT_API_SUBDOMAIN",
-    inlinedName: "GTMT_API_SUBDOMAIN",
-    inlinedValue: GTMT_API_SUBDOMAIN,
-  },
-  {
-    category: "Service subdomains",
-    usage: "Audiometa front subdomain",
-    keyName: "AUDIOMETA_FRONT_SUBDOMAIN",
-    keyValue: "AUDIOMETA_FRONT_SUBDOMAIN",
-    inlinedName: "AUDIOMETA_FRONT_SUBDOMAIN",
-    inlinedValue: AUDIOMETA_FRONT_SUBDOMAIN,
-  },
-  {
-    category: "Service subdomains",
-    usage: "Audiometa API subdomain",
-    keyName: "AUDIOMETA_API_SUBDOMAIN",
-    keyValue: "AUDIOMETA_API_SUBDOMAIN",
-    inlinedName: "AUDIOMETA_API_SUBDOMAIN",
-    inlinedValue: AUDIOMETA_API_SUBDOMAIN,
-  },
-  {
-    category: "Service subdomains",
-    usage: "TMTA subdomain",
-    keyName: "TMTA_SUBDOMAIN",
-    keyValue: "TMTA_SUBDOMAIN",
-    inlinedName: "TMTA_SUBDOMAIN",
-    inlinedValue: TMTA_SUBDOMAIN,
-  },
-  {
-    category: "Service subdomains",
-    usage: "TMD subdomain",
-    keyName: "TMD_SUBDOMAIN",
-    keyValue: "TMD_SUBDOMAIN",
-    inlinedName: "TMD_SUBDOMAIN",
-    inlinedValue: TMD_SUBDOMAIN,
-  },
-];
-
 const BUILD_ENV_ROWS: BuildEnvRow[] = [
-  ...ORG_AND_SPONSOR_ENV_ROWS,
+  ...DOMAIN_ENV_ROWS,
   ...SOCIAL_LINK_ENV_ROWS,
-  ...SERVICE_SUBDOMAIN_ENV_ROWS,
 ];
 
 type ComponentsSubTab = "basics" | "social" | "icons" | "lockups";
@@ -538,8 +525,8 @@ export default function App() {
         <code>npm run build</code> at the repo root, then refresh this app (or
         restart <code>npm run dev</code> if the catalog still looks stale). The
         org link target is **embedded in `dist/`** when you run{" "}
-        <code>npm run build</code> at the repo root (see <code>ORG_URL</code> in{" "}
-        <code>playground/.env</code> for <code>npm run playground</code>).
+        <code>npm run build</code> at the repo root (see <code>ORG_DOMAIN</code>{" "}
+        in <code>playground/.env</code> for <code>npm run playground</code>).
         Social link defaults (<code>ORG_GITHUB_URL</code>,{" "}
         <code>ORG_LINKEDIN_URL</code>, <code>CONTACT_EMAIL</code>, etc.) are
         inlined into <code>dist/</code> when you run root{" "}
@@ -1148,23 +1135,12 @@ export default function App() {
               This table shows constants exported by{" "}
               <code>@behindthemusictree/assets/components</code>. The rightmost
               values are read from built package code, not your runtime process
-              env. If any value is <code>undefined</code>, rebuild the root
-              package with a populated
+              env. Org site and sponsor keys are included in the first rows. If
+              any value is <code>undefined</code>, rebuild the root package with
+              a populated
               <code>playground/.env</code>, then run{" "}
               <code>npm install --prefix playground</code>.
             </p>
-            <div className="env-vars-summary">
-              <div className="env-vars-summary__item">
-                <span className="env-vars-summary__label">Org site key</span>
-                <code>{ORG_URL}</code>
-              </div>
-              <div className="env-vars-summary__item">
-                <span className="env-vars-summary__label">
-                  Sponsor button key
-                </span>
-                <code>{GithubSponsorButtonUrl}</code>
-              </div>
-            </div>
             <div className="env-vars-table-wrap">
               <table className="env-vars-table">
                 <thead>

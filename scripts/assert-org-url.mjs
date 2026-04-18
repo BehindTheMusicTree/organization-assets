@@ -40,7 +40,7 @@ function requireHttpUrl(name) {
   return v;
 }
 
-requireNonEmpty("ORG_URL");
+requireNonEmpty("ORG_DOMAIN");
 requireHttpUrl("ORG_GITHUB_SPONSOR_BUTTON_URL");
 
 /** Social **`Social*Link`** defaults — same names as **`playground/.env.example`** / **`publish.yml`**. */
