@@ -44,6 +44,14 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Changed
+
+- **`ORG_DOMAIN` (breaking)**: Reverted to the env-key literal (`"ORG_DOMAIN"`) instead of the inlined domain value, to preserve the long-standing key-constant behavior.
+
+### Added
+
+- **`readOrgDomain()` (breaking vs `10.0.0`)**: Restored as the robust API for retrieving the inlined domain value baked into `dist/` at package build time.
+
 ## [10.0.1] - 2026-04-18
 
 ## [10.0.0] - 2026-04-18
