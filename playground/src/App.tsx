@@ -244,7 +244,7 @@ const DOMAIN_ENV_ROWS: BuildEnvRow[] = [
     usage: "Org site URL",
     keyName: "ORG_DOMAIN",
     keyValue: ORG_DOMAIN,
-    inlinedName: "readOrgDomain()",
+    inlinedName: "ORG_DOMAIN",
     inlinedValue: readBuildEnv(readOrgDomain),
   },
   {
