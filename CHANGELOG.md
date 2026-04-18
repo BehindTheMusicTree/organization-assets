@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [9.0.0] - 2026-04-18
+
 ### Changed
 
 - **`TheMusicTreeByline` / build env (breaking)**: Renamed build env variable **`ORG_URL`** → **`ORG_DOMAIN`** and matching exported constant **`ORG_URL`** → **`ORG_DOMAIN`**. Update `playground/.env`, CI repository variable mapping (`ORG_DOMAIN: ${{ vars.DOMAIN_NAME }}`), and any import of `ORG_URL`. The value no longer requires an `https://` prefix — supply a bare hostname (e.g. `themusictree.org`); `parseOrgSiteHref()` / `resolveOrgSiteHref()` still normalize to a full URL internally.
