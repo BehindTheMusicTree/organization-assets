@@ -460,7 +460,12 @@ export default function App() {
 
   return (
     <div className="playground">
-      <h1>@behindthemusictree/assets</h1>
+      <h1>
+        @behindthemusictree/assets{" "}
+        <span style={{ fontSize: "0.55em", opacity: 0.6, fontWeight: 400 }}>
+          v{__APP_VERSION__}
+        </span>
+      </h1>
       <p>
         Local catalog: npm pack contents under <code>node_modules/…/dist/</code>
         . After changing brand files or the library build, run{" "}
