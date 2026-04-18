@@ -53,14 +53,23 @@ export const ORG_TIPEEE_PROFILE_URL = readBuildEnv(
 export const CONTACT_EMAIL_ADDRESS = readBuildEnv(
   () => process.env.CONTACT_EMAIL,
 );
+export const HTMT_FRONT_SUBDOMAIN = readBuildEnv(
+  () => process.env.HTMT_FRONT_SUBDOMAIN,
+);
 export const HTMT_API_SUBDOMAIN = readBuildEnv(
   () => process.env.HTMT_API_SUBDOMAIN,
 );
 export const GTMT_FRONT_SUBDOMAIN = readBuildEnv(
   () => process.env.GTMT_FRONT_SUBDOMAIN,
 );
+export const GTMT_API_SUBDOMAIN = readBuildEnv(
+  () => process.env.GTMT_API_SUBDOMAIN,
+);
 export const AUDIOMETA_SUBDOMAIN = readBuildEnv(
   () => process.env.AUDIOMETA_SUBDOMAIN,
+);
+export const AUDIOMETA_API_SUBDOMAIN = readBuildEnv(
+  () => process.env.AUDIOMETA_API_SUBDOMAIN,
 );
 export const TMTA_SUBDOMAIN = readBuildEnv(() => process.env.TMTA_SUBDOMAIN);
 export const TMD_SUBDOMAIN = readBuildEnv(() => process.env.TMD_SUBDOMAIN);

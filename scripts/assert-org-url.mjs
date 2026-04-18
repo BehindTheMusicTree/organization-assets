@@ -59,7 +59,10 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
 }
 
 requireNonEmpty("HTMT_API_SUBDOMAIN");
+requireNonEmpty("HTMT_FRONT_SUBDOMAIN");
 requireNonEmpty("GTMT_FRONT_SUBDOMAIN");
+requireNonEmpty("GTMT_API_SUBDOMAIN");
 requireNonEmpty("AUDIOMETA_SUBDOMAIN");
+requireNonEmpty("AUDIOMETA_API_SUBDOMAIN");
 requireNonEmpty("TMTA_SUBDOMAIN");
 requireNonEmpty("TMD_SUBDOMAIN");
