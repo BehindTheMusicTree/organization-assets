@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [11.0.0] - 2026-04-18
+
 ### Changed
 
 - **`ORG_DOMAIN` (breaking)**: Reverted to the env-key literal (`"ORG_DOMAIN"`) instead of the inlined domain value, to preserve the long-standing key-constant behavior.
