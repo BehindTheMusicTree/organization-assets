@@ -52,7 +52,7 @@ function joinClassNames(
 export type SocialIconLinkProps = {
   /**
    * Link target. When omitted, uses the URL or email **inlined at package build** from the
-   * matching **`ORG_*`**, **`CONTACT_EMAIL`**, or **`ORG_URL`** env var.
+   * matching **`ORG_*`**, **`CONTACT_EMAIL`**, or **`ORG_DOMAIN`** env var.
    * **`DocLink`**, **`DiscussionLink`**, **`InformationLink`**, and their **`Colored`** variants
    * have no build default; without **`href`** they render nothing.
    */
@@ -285,14 +285,14 @@ export const EmailSocialLinkColored = createSocialIconLink(
 
 export const WebsiteSocialLink = createSocialIconLink(
   "http",
-  () => process.env.ORG_URL?.trim() || undefined,
+  () => process.env.ORG_DOMAIN?.trim() || undefined,
   "Website",
   IconWebsite,
 );
 
 export const WebsiteSocialLinkColored = createSocialIconLink(
   "http",
-  () => process.env.ORG_URL?.trim() || undefined,
+  () => process.env.ORG_DOMAIN?.trim() || undefined,
   "Website",
   IconWebsiteColored,
 );

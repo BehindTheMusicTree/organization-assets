@@ -82,7 +82,7 @@ import { colors, spacing } from "@behindthemusictree/assets/tokens";
 import "@behindthemusictree/assets/styles";
 ```
 
-**TheMusicTreeByline** — single clickable **SVG knockout** (transparent outside the horizontal lockup; link and image use **`backgroundColor: transparent`**). The **`href`** is **not a prop**: when **this package** is built for publish, **`ORG_URL`** (hostname or full **`https://`** URL) is read once and **embedded in `dist/`** via **tsup `define`**. **Consuming apps** normally need **no** **`ORG_URL`** env — they install a pre-built package from GitHub Packages. **Maintainers:** set **`ORG_URL`** when running **`npm run build`** / **`npm run dev`** here, and configure GitHub repository variable **`DOMAIN_NAME`** for **`.github/workflows/publish.yml`** (see **Publishing** below). **`resolveOrgSiteHref()`** and **`parseOrgSiteHref()`** are exported if you need the same URL string in app code. Default variant uses **`the-music-tree-lockup-horizontal.svg`**; **`variant="onDark"`** uses **`the-music-tree-lockup-horizontal-dark.svg`**. Default display height **56px**, width **auto**. **Web-sized PNGs** (**`the-music-tree-lockup-horizontal.png`** / **`-dark.png`**) ship for raster-only contexts (email, CMS); import from **`@behindthemusictree/assets/brand/the-music-tree/...`**.
+**TheMusicTreeByline** — single clickable **SVG knockout** (transparent outside the horizontal lockup; link and image use **`backgroundColor: transparent`**). The **`href`** is **not a prop**: when **this package** is built for publish, **`ORG_DOMAIN`** (hostname, no protocol) is read from GitHub repository variable **`DOMAIN_NAME`** and **embedded in `dist/`** via **tsup `define`**. **Consuming apps** normally need **no** **`ORG_DOMAIN`** env — they install a pre-built package from GitHub Packages. **Maintainers:** configure GitHub repository variable **`DOMAIN_NAME`** for **`.github/workflows/publish.yml`** (see **Publishing** below); locally, set **`ORG_DOMAIN`** in **`playground/.env`** when running **`npm run build`** / **`npm run dev`**. **`resolveOrgSiteHref()`** and **`parseOrgSiteHref()`** are exported if you need the same URL string in app code. Default variant uses **`the-music-tree-lockup-horizontal.svg`**; **`variant="onDark"`** uses **`the-music-tree-lockup-horizontal-dark.svg`**. Default display height **56px**, width **auto**. **Web-sized PNGs** (**`the-music-tree-lockup-horizontal.png`** / **`-dark.png`**) ship for raster-only contexts (email, CMS); import from **`@behindthemusictree/assets/brand/the-music-tree/...`**.
 
 ```tsx
 import { TheMusicTreeByline } from "@behindthemusictree/assets/components";
@@ -90,7 +90,7 @@ import { TheMusicTreeByline } from "@behindthemusictree/assets/components";
 <TheMusicTreeByline
   variant="onDark"
   className="border border-white/15 bg-white/5 p-2 hover:bg-white/10"
-/>
+/>;
 ```
 
 BehindTheMusicTree symbol-only mark (PNG):
@@ -140,7 +140,7 @@ npm run release -- patch   # or minor / major
 
 This bumps the version, stamps the changelog, commits, tags, and pushes. Publishing starts automatically. See [CONTRIBUTING.md](CONTRIBUTING.md#6-releasing-for-maintainers) for details.
 
-The **Publish** workflow passes every key in **`publish.yml`**’s **`npm run build`** **`env`** block ( **`ORG_URL`** from **`DOMAIN_NAME`**, **`ORG_GITHUB_SPONSOR_BUTTON_URL`**, and all playground social URLs—see **`playground/.env.example`**). Define the matching **GitHub repository variables** or the build fails. **tsup** inlines **`ORG_URL`**, **`ORG_GITHUB_SPONSOR_BUTTON_URL`**, and those social URLs into **`dist/`** (lockup, **`GithubSponsorButton`** iframe, and **`Social*Link`** defaults); **`scripts/assert-org-url.mjs`** enforces the same keys locally and in CI.
+The **Publish** workflow passes every key in **`publish.yml`**'s **`npm run build`** **`env`** block ( **`ORG_DOMAIN`** from GitHub repository variable **`DOMAIN_NAME`**, **`ORG_GITHUB_SPONSOR_BUTTON_URL`**, and all playground social URLs—see **`playground/.env.example`**). Define the matching **GitHub repository variables** or the build fails. **tsup** inlines **`ORG_DOMAIN`**, **`ORG_GITHUB_SPONSOR_BUTTON_URL`**, and those social URLs into **`dist/`** (lockup, **`GithubSponsorButton`** iframe, and **`Social*Link`** defaults); **`scripts/assert-org-url.mjs`** enforces the same keys locally and in CI.
 
 ## Build
 
@@ -150,7 +150,7 @@ cp playground/.env.example playground/.env   # then edit values
 npm run build
 ```
 
-**`scripts/assert-org-url.mjs`** requires **`playground/.env`** (or equivalent shell exports) to define **`ORG_URL`**, **`ORG_GITHUB_SPONSOR_BUTTON_URL`**, and every playground social key listed in **`playground/.env.example`**. None of these are needed in downstream apps that install the published package. Output is in **`dist/`**.
+**`scripts/assert-org-url.mjs`** requires **`playground/.env`** (or equivalent shell exports) to define **`ORG_DOMAIN`**, **`ORG_GITHUB_SPONSOR_BUTTON_URL`**, and every playground social key listed in **`playground/.env.example`**. None of these are needed in downstream apps that install the published package. Output is in **`dist/`**.
 
 ## Local development
 

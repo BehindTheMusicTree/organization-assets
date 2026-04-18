@@ -18,7 +18,7 @@ Every variable in the **`npm run build`** **`env`** block is **required** for re
 
 | Workflow `env` key                  | Repository variable                 | Purpose                                                                 |
 | ----------------------------------- | ----------------------------------- | ----------------------------------------------------------------------- |
-| **`ORG_URL`**                       | **`DOMAIN_NAME`**                   | Organization site URL / TheMusicTreeByline                              |
+| **`ORG_DOMAIN`**                    | **`DOMAIN_NAME`**                   | Organization site domain / TheMusicTreeByline / ORG_DOMAIN constant     |
 | **`ORG_GITHUB_SPONSOR_BUTTON_URL`** | **`ORG_GITHUB_SPONSOR_BUTTON_URL`** | **`GithubSponsorButton`** iframe `src`; **`SponsorSocialLink`** default |
 | **`ORG_GITHUB_URL`**                | **`ORG_GITHUB_URL`**                | **`GithubSocialLink`** default (playground)                             |
 | **`ORG_PYPI_URL`**                  | **`ORG_PYPI_URL`**                  | **`PypiSocialLink`** default (playground)                               |
@@ -42,9 +42,9 @@ Adding a new inlined-at-build env var: extend **`assert-org-url.mjs`**, **`tsup.
 
 **`vercel-playground-env.yml`** runs only on **`workflow_dispatch`** (manual). It pushes the same repository variables to the Vercel project used for **`playground/`** (targets **production**, **preview**, and **development**). **`scripts/sync-vercel-playground-env.mjs`** requires every playground key and fails if any value is empty.
 
-| Item                                                                                      | Source                                                                                                           |
-| ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| **`VERCEL_TOKEN`**                                                                        | Repository **secret**                                                                                            |
-| **`VERCEL_PROJECT_ID`**                                                                   | Repository **variable**                                                                                          |
-| **`VERCEL_TEAM_ID`**                                                                      | Optional repository **variable** (omit for personal-scope projects; set when the project is under a Vercel team) |
-| Playground keys (`DOMAIN_NAME` → **`ORG_URL`**, plus the same names as **`publish.yml`**) | Repository **variables** — same table as above                                                                   |
+| Item                                                                                         | Source                                                                                                           |
+| -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **`VERCEL_TOKEN`**                                                                           | Repository **secret**                                                                                            |
+| **`VERCEL_PROJECT_ID`**                                                                      | Repository **variable**                                                                                          |
+| **`VERCEL_TEAM_ID`**                                                                         | Optional repository **variable** (omit for personal-scope projects; set when the project is under a Vercel team) |
+| Playground keys (`DOMAIN_NAME` → **`ORG_DOMAIN`**, plus the same names as **`publish.yml`**) | Repository **variables** — same table as above                                                                   |

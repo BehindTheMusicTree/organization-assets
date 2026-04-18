@@ -46,7 +46,7 @@ export function resolveOrgSiteHref(): string {
 
 /**
  * Clickable **`the-music-tree-lockup-horizontal`** artwork only (no separate text node).
- * **`href`** is fixed in published **`dist/`** (from **`ORG_URL`** when the package was built) — not a prop.
+ * **`href`** is fixed in published **`dist/`** (from **`ORG_DOMAIN`** when the package was built) — not a prop.
  * Transparent knockout only — **`backgroundColor: transparent`** on the link and image so host CSS cannot paint a plate behind the lockup.
  * Hover and keyboard **`:focus-visible`** slightly change the image aspect (**`transform`**); focus uses a **2px** ring (**`currentColor`**).
  */
@@ -159,7 +159,7 @@ export type TheMusicTreeMarkLinkProps = {
 
 /**
  * Clickable **the-music-tree-mark** (symbol-only) linking to the org site.
- * Uses the same baked `ORG_URL` href behavior as `TheMusicTreeHorizontalLink`.
+ * Uses the same baked `ORG_DOMAIN` href behavior as `TheMusicTreeHorizontalLink`.
  */
 export function TheMusicTreeMarkLink({
   className,
