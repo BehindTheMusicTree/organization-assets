@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [7.2.1] - 2026-04-18
+
 ### Added
 
 - **Playground**: Header now displays the current package version (`v{version}`) next to the package name, injected at build time via Vite `define`.
