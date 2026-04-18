@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [8.0.0] - 2026-04-18
+
 ### Changed
 
 - **Build env / `socialBuildEnv`**: Renamed **`AUDIOMETA_SUBDOMAIN`** to **`AUDIOMETA_FRONT_SUBDOMAIN`** across required env wiring, playground docs, and exported inlined subdomain constants.
