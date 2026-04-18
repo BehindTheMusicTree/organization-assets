@@ -52,7 +52,23 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [7.0.8] - 2026-04-17
 
+### Added
+
+- **Playground**: Added an Environment Variables tab in the Components view to surface required social/build env keys directly in the demo app.
+
+### Fixed
+
+- **Build env / `socialBuildEnv`**: Made build-env value reads browser-safe so package consumers do not rely on `process` at runtime in browser contexts.
+
+### Changed
+
+- **Playground (Vite + VS Code)**: Enforced a strict dev-server port and added task/launch wiring via `.vscode/tasks.json` and `.vscode/launch.json` for consistent local startup.
+
 ## [7.0.7] - 2026-04-17
+
+### Changed
+
+- **Build env / `socialBuildEnv`**: Simplified exports by centralizing env reads and exposing explicit inlined value constants (`ORG_GITHUB_PROFILE_URL`, `ORG_PYPI_PROFILE_URL`, `ORG_LINKEDIN_PROFILE_URL`, `ORG_X_PROFILE_URL`, `ORG_MASTODON_PROFILE_URL`, `ORG_YOUTUBE_PROFILE_URL`, `ORG_SPOTIFY_PROFILE_URL`, `ORG_DISCORD_INVITE_URL`, `ORG_TIPEEE_PROFILE_URL`, `CONTACT_EMAIL_ADDRESS`).
 
 ## [7.0.6] - 2026-04-15
 
