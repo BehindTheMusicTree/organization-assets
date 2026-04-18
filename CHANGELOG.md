@@ -44,6 +44,14 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Changed
+
+- **`ORG_DOMAIN` (breaking)**: Now holds the **inlined domain value** baked into `dist/` at package build time (e.g. `themusictree.org`), consistent with subdomain constants like `HTMT_FRONT_SUBDOMAIN`. Previously it held the key name string `"ORG_DOMAIN"`. Consumers can now use `ORG_DOMAIN` directly.
+
+### Removed
+
+- **`readOrgDomain()` (breaking)**: Removed — use `ORG_DOMAIN` directly instead.
+
 ## [9.0.1] - 2026-04-18
 
 ## [9.0.0] - 2026-04-18
