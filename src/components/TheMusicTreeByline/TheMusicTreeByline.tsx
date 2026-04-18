@@ -8,22 +8,11 @@ import theMusicTreeLockupHorizontal from "../../brand/the-music-tree/the-music-t
 import theMusicTreeMarkDark from "../../brand/the-music-tree/the-music-tree-mark-dark.svg";
 import theMusicTreeMark from "../../brand/the-music-tree/the-music-tree-mark.svg";
 
-/** Internal key name, only used in the error message below. */
-const ORG_DOMAIN_KEY = "ORG_DOMAIN";
-
 /**
- * Organization domain baked into `dist/` at package build time (e.g. `themusictree.org`).
- * Value is `undefined` if the package was built without `ORG_DOMAIN` set.
- * Use **`resolveOrgSiteHref()`** when you need a full `https://…/` href.
+ * Environment variable name read when **this package** is built (`npm run build` / publish).
+ * The value is **embedded in published `dist/`**; consuming apps do not set **`ORG_DOMAIN`** unless they bundle a **local checkout** of this repo without a normal build.
  */
-export const ORG_DOMAIN: string | undefined = (() => {
-  try {
-    const v = process.env.ORG_DOMAIN?.trim();
-    return v || undefined;
-  } catch {
-    return undefined;
-  }
-})();
+export const ORG_DOMAIN = "ORG_DOMAIN" as const;
 
 /**
  * Normalize a hostname or full URL to an **`https://…/`** href.
@@ -33,17 +22,26 @@ export function parseOrgSiteHref(value: string | undefined): string {
   const raw = value?.trim();
   if (!raw) {
     throw new Error(
-      `Missing organization site URL: set environment variable ${ORG_DOMAIN_KEY} when building @behindthemusictree/assets (e.g. map GitHub repository variable DOMAIN_NAME into ${ORG_DOMAIN_KEY} in the publish workflow).`,
+      `Missing organization site URL: set environment variable ${ORG_DOMAIN} when building @behindthemusictree/assets (e.g. map GitHub repository variable DOMAIN_NAME into ORG_DOMAIN in the publish workflow).`,
     );
   }
   return raw.startsWith("http") ? raw : `https://${raw.replace(/\/$/, "")}/`;
 }
 
 /**
+ * Raw organization domain as inlined in **`dist/`** at package build time (e.g. `themusictree.org`).
+ * Use **`resolveOrgSiteHref()`** when you need a full `https://…/` href.
+ */
+export function readOrgDomain(): string | undefined {
+  const v = process.env.ORG_DOMAIN?.trim();
+  return v || undefined;
+}
+
+/**
  * Organization site **`href`**. In **published** installs the URL is already inlined from **`ORG_DOMAIN`** at package build time.
  */
 export function resolveOrgSiteHref(): string {
-  return parseOrgSiteHref(ORG_DOMAIN);
+  return parseOrgSiteHref(readOrgDomain());
 }
 
 /**
