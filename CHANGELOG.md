@@ -44,6 +44,10 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Changed
+
+- **Build env / `socialBuildEnv`**: Renamed **`AUDIOMETA_SUBDOMAIN`** to **`AUDIOMETA_FRONT_SUBDOMAIN`** across required env wiring, playground docs, and exported inlined subdomain constants.
+
 ## [7.2.1] - 2026-04-18
 
 ### Added
@@ -54,7 +58,7 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ### Added
 
-- **Build env / `socialBuildEnv`**: Required **`HTMT_API_SUBDOMAIN`**, **`GTMT_FRONT_SUBDOMAIN`**, and **`AUDIOMETA_SUBDOMAIN`** (repository variables + **`playground/.env`**); tsup inlines them into **`dist/`**. Exports: key literals plus **`HTMT_API_SUBDOMAIN_VALUE`**, **`GTMT_FRONT_SUBDOMAIN_VALUE`**, **`AUDIOMETA_SUBDOMAIN_VALUE`**.
+- **Build env / `socialBuildEnv`**: Required **`HTMT_API_SUBDOMAIN`**, **`GTMT_FRONT_SUBDOMAIN`**, and **`AUDIOMETA_FRONT_SUBDOMAIN`** (repository variables + **`playground/.env`**); tsup inlines them into **`dist/`**. Exports: key literals plus **`HTMT_API_SUBDOMAIN_VALUE`**, **`GTMT_FRONT_SUBDOMAIN_VALUE`**, **`AUDIOMETA_FRONT_SUBDOMAIN_VALUE`**.
 
 ## [7.0.8] - 2026-04-17
 

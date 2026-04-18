@@ -65,8 +65,8 @@ export const GTMT_FRONT_SUBDOMAIN = readBuildEnv(
 export const GTMT_API_SUBDOMAIN = readBuildEnv(
   () => process.env.GTMT_API_SUBDOMAIN,
 );
-export const AUDIOMETA_SUBDOMAIN = readBuildEnv(
-  () => process.env.AUDIOMETA_SUBDOMAIN,
+export const AUDIOMETA_FRONT_SUBDOMAIN = readBuildEnv(
+  () => process.env.AUDIOMETA_FRONT_SUBDOMAIN,
 );
 export const AUDIOMETA_API_SUBDOMAIN = readBuildEnv(
   () => process.env.AUDIOMETA_API_SUBDOMAIN,
