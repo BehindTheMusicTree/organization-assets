@@ -39,6 +39,8 @@ jobs:
           HTMT_API_SUBDOMAIN: ${{ vars.HTMT_API_SUBDOMAIN }}
           GTMT_FRONT_SUBDOMAIN: ${{ vars.GTMT_FRONT_SUBDOMAIN }}
           AUDIOMETA_SUBDOMAIN: ${{ vars.AUDIOMETA_SUBDOMAIN }}
+          TMTA_SUBDOMAIN: ${{ vars.TMTA_SUBDOMAIN }}
+          TMD_SUBDOMAIN: ${{ vars.TMD_SUBDOMAIN }}
 
       - run: npm publish
         env:

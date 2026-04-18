@@ -23,9 +23,6 @@ export const ORG_SPOTIFY_URL = "ORG_SPOTIFY_URL" as const;
 export const ORG_DISCORD_URL = "ORG_DISCORD_URL" as const;
 export const ORG_TIPEEE_URL = "ORG_TIPEEE_URL" as const;
 export const CONTACT_EMAIL = "CONTACT_EMAIL" as const;
-export const HTMT_API_SUBDOMAIN = "HTMT_API_SUBDOMAIN" as const;
-export const GTMT_FRONT_SUBDOMAIN = "GTMT_FRONT_SUBDOMAIN" as const;
-export const AUDIOMETA_SUBDOMAIN = "AUDIOMETA_SUBDOMAIN" as const;
 
 // Inlined build-time values
 export const ORG_GITHUB_PROFILE_URL = readBuildEnv(
@@ -56,12 +53,14 @@ export const ORG_TIPEEE_PROFILE_URL = readBuildEnv(
 export const CONTACT_EMAIL_ADDRESS = readBuildEnv(
   () => process.env.CONTACT_EMAIL,
 );
-export const HTMT_API_SUBDOMAIN_VALUE = readBuildEnv(
+export const HTMT_API_SUBDOMAIN = readBuildEnv(
   () => process.env.HTMT_API_SUBDOMAIN,
 );
-export const GTMT_FRONT_SUBDOMAIN_VALUE = readBuildEnv(
+export const GTMT_FRONT_SUBDOMAIN = readBuildEnv(
   () => process.env.GTMT_FRONT_SUBDOMAIN,
 );
-export const AUDIOMETA_SUBDOMAIN_VALUE = readBuildEnv(
+export const AUDIOMETA_SUBDOMAIN = readBuildEnv(
   () => process.env.AUDIOMETA_SUBDOMAIN,
 );
+export const TMTA_SUBDOMAIN = readBuildEnv(() => process.env.TMTA_SUBDOMAIN);
+export const TMD_SUBDOMAIN = readBuildEnv(() => process.env.TMD_SUBDOMAIN);

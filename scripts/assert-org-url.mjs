@@ -8,7 +8,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadPlaygroundDotenv } from "./load-playground-dotenv.mjs";
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const repoRoot = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+);
 const playgroundEnvPath = path.join(repoRoot, "playground", ".env");
 const merged = { ...loadPlaygroundDotenv(playgroundEnvPath), ...process.env };
 
@@ -58,3 +61,5 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
 requireNonEmpty("HTMT_API_SUBDOMAIN");
 requireNonEmpty("GTMT_FRONT_SUBDOMAIN");
 requireNonEmpty("AUDIOMETA_SUBDOMAIN");
+requireNonEmpty("TMTA_SUBDOMAIN");
+requireNonEmpty("TMD_SUBDOMAIN");

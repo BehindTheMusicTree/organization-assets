@@ -53,6 +53,8 @@ const gtmtFrontSubdomainLiteral = JSON.stringify(
 const audiometaSubdomainLiteral = JSON.stringify(
   buildEnv.AUDIOMETA_SUBDOMAIN ?? "",
 );
+const tmtaSubdomainLiteral = JSON.stringify(buildEnv.TMTA_SUBDOMAIN ?? "");
+const tmdSubdomainLiteral = JSON.stringify(buildEnv.TMD_SUBDOMAIN ?? "");
 
 export default defineConfig({
   entry: {
@@ -85,6 +87,8 @@ export default defineConfig({
     "process.env.HTMT_API_SUBDOMAIN": htmtApiSubdomainLiteral,
     "process.env.GTMT_FRONT_SUBDOMAIN": gtmtFrontSubdomainLiteral,
     "process.env.AUDIOMETA_SUBDOMAIN": audiometaSubdomainLiteral,
+    "process.env.TMTA_SUBDOMAIN": tmtaSubdomainLiteral,
+    "process.env.TMD_SUBDOMAIN": tmdSubdomainLiteral,
   },
   loader: {
     ".svg": "dataurl",
