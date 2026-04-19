@@ -46,6 +46,10 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [11.0.1] - 2026-04-18
 
+### Changed
+
+- **Build env internals**: Consolidated `ORG_DOMAIN` site-env helpers in `components/buildEnv/orgSiteEnv` and removed internal `readOrgDomain()` usage in favor of `ORG_DOMAIN` + `parseOrgSiteHref()`.
+
 ## [11.0.0] - 2026-04-18
 
 ### Changed
@@ -58,6 +62,10 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [10.0.1] - 2026-04-18
 
+### Fixed
+
+- **`ORG_DOMAIN` key constant**: Restored the `keyValue` wiring to the literal `"ORG_DOMAIN"` (instead of the inlined domain value), preserving key-constant semantics used by env helpers.
+
 ## [10.0.0] - 2026-04-18
 
 ### Changed
@@ -69,6 +77,14 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 - **`readOrgDomain()` (breaking)**: Removed — use `ORG_DOMAIN` directly instead.
 
 ## [9.0.1] - 2026-04-18
+
+### Fixed
+
+- **Build env define key**: Updated the inlined env key name to use `ORG_DOMAIN` directly instead of `readOrgDomain()`, ensuring consistent build-time constant replacement.
+
+### Documentation
+
+- **`ORG_DOMAIN` source**: Clarified that `ORG_DOMAIN` is sourced from the repository `DOMAIN_NAME` variable during package build.
 
 ## [9.0.0] - 2026-04-18
 
