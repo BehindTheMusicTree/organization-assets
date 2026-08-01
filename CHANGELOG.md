@@ -44,6 +44,11 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Fixed
+
+- **Component image imports**: Images imported directly inside components (`TheMusicTreeByline`, `TheMusicTreeMarkLink`, `SocialIcons`, `SocialIconsColored`) were bundled by esbuild's default file loader as hashed files with a relative-path import string. That path is only valid relative to this package's own module location, so it 404s in any consuming app (the URL varies by which page renders the component, since browsers resolve relative URLs against the current page, not the importing module). `tsup.config.ts` now inlines `.svg` imports as base64 data URLs instead, which are self-contained and work regardless of the consumer's bundler or asset pipeline.
+- **Playground build**: Fixed three issues left over from the `@themusictree/assets` → `@behindthemusictree/brand` rename that broke every playground deployment: `CatalogTab`'s `"brand"` member didn't match the `"marks"` id actually used by the Brand tab; two unused imports remained after switching to their `_IFRAME_SRC`/`_ADDRESS` counterparts; and the `@brand-dist` Vite alias still pointed at `.../brand/dist`, which stopped being populated once the package started exporting `marks`/`banners`/`favicons` directly from `src/`.
+
 ## [11.5.1] - 2026-07-12
 
 ### CI
