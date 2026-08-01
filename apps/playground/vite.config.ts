@@ -8,7 +8,7 @@ export default defineConfig({
     alias: {
       "@brand-dist": path.resolve(
         import.meta.dirname,
-        "node_modules/@behindthemusictree/brand/dist",
+        "node_modules/@behindthemusictree/brand/src",
       ),
     },
   },

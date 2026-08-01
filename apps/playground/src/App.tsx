@@ -64,7 +64,6 @@ import {
   TheMusicTreeMarkLink,
   ORG_DOMAIN,
   ORG_NAME,
-  ORG_GITHUB_SPONSOR_BUTTON_URL,
   ORG_GITHUB_SPONSOR_BUTTON_IFRAME_SRC,
   ORG_GITHUB_URL,
   HTMT_API_GITHUB_URL,
@@ -80,7 +79,6 @@ import {
   ORG_SPOTIFY_URL,
   ORG_DISCORD_URL,
   ORG_TIPEEE_URL,
-  CONTACT_EMAIL,
   CONTACT_EMAIL_ADDRESS,
   HTMT_FRONT_SUBDOMAIN,
   HTMT_API_SUBDOMAIN,
@@ -108,7 +106,7 @@ import markDarkPng from "@brand-dist/marks/the-music-tree/the-music-tree-mark-da
 import markDarkSvg from "@brand-dist/marks/the-music-tree/the-music-tree-mark-dark.svg?url";
 import markDefaultPng from "@brand-dist/marks/the-music-tree/the-music-tree-mark.png?url";
 import markDefaultSvg from "@brand-dist/marks/the-music-tree/the-music-tree-mark.svg?url";
-type CatalogTab = "components" | "env" | "brand" | "banners" | "favicons";
+type CatalogTab = "components" | "env" | "marks" | "banners" | "favicons";
 
 type SocialLinkComponent = ComponentType<SocialIconLinkProps>;
 
