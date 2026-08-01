@@ -86,6 +86,13 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   external: ["react", "react-dom"],
+  // Components (e.g. TheMusicTreeByline, SocialIcons) import small SVGs directly. Without this,
+  // esbuild's default file loader copies them to dist/ and rewrites the import to a path that's
+  // only valid relative to this package's own module location — consumers' bundlers never see or
+  // copy that file, so the resulting <img src> 404s. Inlining as a data URL is self-contained.
+  loader: {
+    ".svg": "dataurl",
+  },
   define: {
     "process.env.ORG_DOMAIN": orgDomainLiteral,
     "process.env.ORG_NAME": orgNameLiteral,
