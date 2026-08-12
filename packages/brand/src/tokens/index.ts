@@ -3,6 +3,18 @@ export const colors = {
   primaryHover: "var(--color-primary-hover)",
   text: "var(--color-text)",
   textMuted: "var(--color-text-muted)",
+  neutral100: "var(--color-neutral-100)",
+  neutral200: "var(--color-neutral-200)",
+  neutral300: "var(--color-neutral-300)",
+  neutral500: "var(--color-neutral-500)",
+  neutral600: "var(--color-neutral-600)",
+  neutral700: "var(--color-neutral-700)",
+  red500: "var(--color-red-500)",
+  red600: "var(--color-red-600)",
+  red700: "var(--color-red-700)",
+  green500: "var(--color-green-500)",
+  green600: "var(--color-green-600)",
+  blue500: "var(--color-blue-500)",
 } as const;
 
 export const spacing = {

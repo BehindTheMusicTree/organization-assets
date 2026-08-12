@@ -44,6 +44,11 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+### Added
+
+- **Token Export**: Added `--color-neutral-{100,200,300,500,600,700}`, `--color-red-{500,600,700}`, `--color-green-{500,600}`, and `--color-blue-500` CSS custom properties to `theme.css` (and matching `colors` entries in `tokens/index.ts`), covering the palette consumers like `@behindthemusictree/app-kit`'s `ui` components already hardcode. Values match the existing Tailwind defaults exactly — no visual change, purely relocating existing colors into tokens so downstream packages can reference them instead of duplicating literals.
+- **Token Export**: Added a literal `./tokens/theme.css` export pointing at `src/tokens/theme.css` — previously `./tokens/*` only resolved to `./dist/tokens/*`, which never contained the CSS file (tsup only builds `.ts` entries), so the token CSS was unimportable by any consumer.
+
 ## [11.5.2] - 2026-08-01
 
 ### Fixed
