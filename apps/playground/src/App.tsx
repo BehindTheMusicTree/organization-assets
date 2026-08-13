@@ -4,7 +4,6 @@ import { AssetFigure } from "./AssetFigure";
 import {
   BTMT_ICON_LINK_DARK_CLASS,
   GithubSponsorButton,
-  Button,
   DiscussionLink,
   DiscussionLinkColored,
   DocLink,
@@ -444,10 +443,9 @@ const ENV_ROWS: BuildEnvRow[] = [
   },
 ];
 
-type ComponentsSubTab = "basics" | "social" | "icons" | "lockups";
+type ComponentsSubTab = "social" | "icons" | "lockups";
 
 const COMPONENT_SUBTABS: { id: ComponentsSubTab; label: string }[] = [
-  { id: "basics", label: "Basics" },
   { id: "social", label: "Social links" },
   { id: "icons", label: "Icon glyphs" },
   { id: "lockups", label: "Org & lockups" },
@@ -521,7 +519,7 @@ function AssetGrid({
 export default function App() {
   const [tab, setTab] = useState<CatalogTab>("components");
   const [componentsSubTab, setComponentsSubTab] =
-    useState<ComponentsSubTab>("basics");
+    useState<ComponentsSubTab>("social");
   const [brandProject, setBrandProject] = useState<string>("");
   const [faviconProject, setFaviconProject] = useState<string>("");
   const brandEntries = sortedEntries(brandAssets);
@@ -647,15 +645,6 @@ export default function App() {
               id="panel-components-sub"
               aria-labelledby={`tab-components-${componentsSubTab}`}
             >
-              {componentsSubTab === "basics" && (
-                <>
-                  <div className="demo-row">
-                    <span className="demo-label">Button</span>
-                    <Button variant="primary">Primary</Button>
-                    <Button variant="secondary">Secondary</Button>
-                  </div>
-                </>
-              )}
               {componentsSubTab === "social" && (
                 <>
                   <div className="demo-row">
