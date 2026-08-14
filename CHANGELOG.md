@@ -44,6 +44,8 @@ All contributors (including maintainers) should update `CHANGELOG.md` when creat
 
 ## [Unreleased]
 
+## [12.0.0] - 2026-08-14
+
 ### Removed
 
 - **BREAKING: `Button` component removed**: Removed the `Button`/`ButtonProps` export from `@behindthemusictree/brand` (and its `/components` subpath). This was a duplicate of `@behindthemusictree/app-kit`'s `Button` (itself now extracted to `@behindthemusictree/ui`); no consumer app in the org imported `brand`'s `Button`, only `app-kit`'s. Use `Button` from [`@behindthemusictree/ui`](https://github.com/BehindTheMusicTree/ui) instead.
