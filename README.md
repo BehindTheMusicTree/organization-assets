@@ -12,7 +12,7 @@ The portfolio website content lives in **[the-music-tree-frontend](https://githu
 
 ## Structure
 
-- **components** – Reusable React components (e.g. `Button`)
+- **components** – Reusable brand-identity React components (e.g. `TheMusicTreeByline`, `GithubSponsorButton`). Generic UI primitives (buttons, inputs, tables...) live in [`@behindthemusictree/ui`](https://github.com/BehindTheMusicTree/ui) instead.
 - **tokens** – Design tokens (colors, spacing, radius) as CSS vars and JS
 - **marks** – Static marks, lockups, and wordmarks ([`docs/asset-naming.md`](docs/asset-naming.md), [`src/marks/README.md`](src/marks/README.md))
 - **favicons** – Per-project favicon bundles (`src/favicons/<project>/`)
@@ -77,7 +77,7 @@ pnpm add @behindthemusictree/brand@3.0.1
 Use subpath imports so apps only pull what they need:
 
 ```tsx
-import { Button } from "@behindthemusictree/brand/components";
+import { TheMusicTreeByline } from "@behindthemusictree/brand/components";
 import { colors, spacing } from "@themusictree/marks/tokens";
 import "@behindthemusictree/brand/styles";
 ```
@@ -125,7 +125,7 @@ import "@behindthemusictree/brand/styles/icon-links.css";
 Or from the main entry:
 
 ```tsx
-import { Button, colors } from "@behindthemusictree/brand";
+import { TheMusicTreeByline, colors } from "@behindthemusictree/brand";
 ```
 
 Ensure design tokens are loaded (e.g. import `@behindthemusictree/brand/styles` once in your app root, or import `@behindthemusictree/brand/tokens` and include the tokens CSS in your build).

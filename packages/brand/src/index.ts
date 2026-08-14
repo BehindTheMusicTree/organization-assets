@@ -5,8 +5,6 @@ export {
   BtmtSponsorButton,
   ORG_GITHUB_SPONSOR_BUTTON_URL,
   type BtmtSponsorButtonProps,
-  Button,
-  type ButtonProps,
   TheMusicTreeByline,
   TheMusicTreeHorizontalLink,
   TheMusicTreeMarkLink,
